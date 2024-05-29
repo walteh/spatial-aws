@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "../"
+		}
+	],
+
+	"settings": {
+		"swiftlint.enable": false,
+		"swiftformat.enable": true,
+	"[swift]": {
+		"editor.formatOnSave": true
+	},
+	"lldb.library": "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
+	"lldb.launch.expressions": "native",
+	"cmake.options.statusBarVisibility": "visible",
+	}
+}

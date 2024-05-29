@@ -1,0 +1,660 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A6AAC1132C06C28300D69005 /* SpatialAWSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AAC1122C06C28300D69005 /* SpatialAWSApp.swift */; };
+		A6AAC1152C06C28300D69005 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AAC1142C06C28300D69005 /* ContentView.swift */; };
+		A6AAC1172C06C28400D69005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6AAC1162C06C28400D69005 /* Assets.xcassets */; };
+		A6AAC11B2C06C28400D69005 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6AAC11A2C06C28400D69005 /* Preview Assets.xcassets */; };
+		A6AAC1252C06C28400D69005 /* SpatialAWSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AAC1242C06C28400D69005 /* SpatialAWSTests.swift */; };
+		A6AAC12F2C06C28400D69005 /* SpatialAWSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AAC12E2C06C28400D69005 /* SpatialAWSUITests.swift */; };
+		A6AAC1312C06C28400D69005 /* SpatialAWSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AAC1302C06C28400D69005 /* SpatialAWSUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A6AAC1212C06C28400D69005 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A6AAC1072C06C28300D69005 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A6AAC10E2C06C28300D69005;
+			remoteInfo = "spatial-aws";
+		};
+		A6AAC12B2C06C28400D69005 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A6AAC1072C06C28300D69005 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A6AAC10E2C06C28300D69005;
+			remoteInfo = "spatial-aws";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A6AAC10F2C06C28300D69005 /* SpatialAWS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpatialAWS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6AAC1122C06C28300D69005 /* SpatialAWSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpatialAWSApp.swift; sourceTree = "<group>"; };
+		A6AAC1142C06C28300D69005 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A6AAC1162C06C28400D69005 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A6AAC1182C06C28400D69005 /* SpatialAWS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SpatialAWS.entitlements; sourceTree = "<group>"; };
+		A6AAC11A2C06C28400D69005 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A6AAC1202C06C28400D69005 /* SpatialAWSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpatialAWSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6AAC1242C06C28400D69005 /* SpatialAWSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpatialAWSTests.swift; sourceTree = "<group>"; };
+		A6AAC12A2C06C28400D69005 /* SpatialAWSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpatialAWSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6AAC12E2C06C28400D69005 /* SpatialAWSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpatialAWSUITests.swift; sourceTree = "<group>"; };
+		A6AAC1302C06C28400D69005 /* SpatialAWSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpatialAWSUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A6AAC10C2C06C28300D69005 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6AAC11D2C06C28400D69005 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6AAC1272C06C28400D69005 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A6AAC1062C06C28300D69005 = {
+			isa = PBXGroup;
+			children = (
+				A6AAC13F2C06C2D300D69005 /* Resources */,
+				A6AAC13D2C06C2BE00D69005 /* Sources */,
+				A6AAC13E2C06C2C500D69005 /* Tests */,
+				A6AAC1102C06C28300D69005 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A6AAC1102C06C28300D69005 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A6AAC10F2C06C28300D69005 /* SpatialAWS.app */,
+				A6AAC1202C06C28400D69005 /* SpatialAWSTests.xctest */,
+				A6AAC12A2C06C28400D69005 /* SpatialAWSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A6AAC1112C06C28300D69005 /* SpatialAWS */ = {
+			isa = PBXGroup;
+			children = (
+				A6AAC1122C06C28300D69005 /* SpatialAWSApp.swift */,
+				A6AAC1142C06C28300D69005 /* ContentView.swift */,
+			);
+			path = SpatialAWS;
+			sourceTree = "<group>";
+		};
+		A6AAC1192C06C28400D69005 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				A6AAC11A2C06C28400D69005 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A6AAC1232C06C28400D69005 /* SpatialAWSTests */ = {
+			isa = PBXGroup;
+			children = (
+				A6AAC1242C06C28400D69005 /* SpatialAWSTests.swift */,
+			);
+			path = SpatialAWSTests;
+			sourceTree = "<group>";
+		};
+		A6AAC12D2C06C28400D69005 /* SpatialAWSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A6AAC12E2C06C28400D69005 /* SpatialAWSUITests.swift */,
+				A6AAC1302C06C28400D69005 /* SpatialAWSUITestsLaunchTests.swift */,
+			);
+			path = SpatialAWSUITests;
+			sourceTree = "<group>";
+		};
+		A6AAC13D2C06C2BE00D69005 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A6AAC1112C06C28300D69005 /* SpatialAWS */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		A6AAC13E2C06C2C500D69005 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				A6AAC12D2C06C28400D69005 /* SpatialAWSUITests */,
+				A6AAC1232C06C28400D69005 /* SpatialAWSTests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		A6AAC13F2C06C2D300D69005 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A6AAC1182C06C28400D69005 /* SpatialAWS.entitlements */,
+				A6AAC1162C06C28400D69005 /* Assets.xcassets */,
+				A6AAC1192C06C28400D69005 /* Preview Content */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A6AAC10E2C06C28300D69005 /* SpatialAWS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A6AAC1342C06C28400D69005 /* Build configuration list for PBXNativeTarget "SpatialAWS" */;
+			buildPhases = (
+				A6AAC10B2C06C28300D69005 /* Sources */,
+				A6AAC10C2C06C28300D69005 /* Frameworks */,
+				A6AAC10D2C06C28300D69005 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SpatialAWS;
+			productName = "spatial-aws";
+			productReference = A6AAC10F2C06C28300D69005 /* SpatialAWS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A6AAC11F2C06C28400D69005 /* SpatialAWSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A6AAC1372C06C28400D69005 /* Build configuration list for PBXNativeTarget "SpatialAWSTests" */;
+			buildPhases = (
+				A6AAC11C2C06C28400D69005 /* Sources */,
+				A6AAC11D2C06C28400D69005 /* Frameworks */,
+				A6AAC11E2C06C28400D69005 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A6AAC1222C06C28400D69005 /* PBXTargetDependency */,
+			);
+			name = SpatialAWSTests;
+			productName = "spatial-awsTests";
+			productReference = A6AAC1202C06C28400D69005 /* SpatialAWSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A6AAC1292C06C28400D69005 /* SpatialAWSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A6AAC13A2C06C28400D69005 /* Build configuration list for PBXNativeTarget "SpatialAWSUITests" */;
+			buildPhases = (
+				A6AAC1262C06C28400D69005 /* Sources */,
+				A6AAC1272C06C28400D69005 /* Frameworks */,
+				A6AAC1282C06C28400D69005 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A6AAC12C2C06C28400D69005 /* PBXTargetDependency */,
+			);
+			name = SpatialAWSUITests;
+			productName = "spatial-awsUITests";
+			productReference = A6AAC12A2C06C28400D69005 /* SpatialAWSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A6AAC1072C06C28300D69005 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					A6AAC10E2C06C28300D69005 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					A6AAC11F2C06C28400D69005 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = A6AAC10E2C06C28300D69005;
+					};
+					A6AAC1292C06C28400D69005 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = A6AAC10E2C06C28300D69005;
+					};
+				};
+			};
+			buildConfigurationList = A6AAC10A2C06C28300D69005 /* Build configuration list for PBXProject "spatial-aws" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A6AAC1062C06C28300D69005;
+			productRefGroup = A6AAC1102C06C28300D69005 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A6AAC10E2C06C28300D69005 /* SpatialAWS */,
+				A6AAC11F2C06C28400D69005 /* SpatialAWSTests */,
+				A6AAC1292C06C28400D69005 /* SpatialAWSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A6AAC10D2C06C28300D69005 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6AAC11B2C06C28400D69005 /* Preview Assets.xcassets in Resources */,
+				A6AAC1172C06C28400D69005 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6AAC11E2C06C28400D69005 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6AAC1282C06C28400D69005 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A6AAC10B2C06C28300D69005 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6AAC1152C06C28300D69005 /* ContentView.swift in Sources */,
+				A6AAC1132C06C28300D69005 /* SpatialAWSApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6AAC11C2C06C28400D69005 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6AAC1252C06C28400D69005 /* SpatialAWSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6AAC1262C06C28400D69005 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6AAC12F2C06C28400D69005 /* SpatialAWSUITests.swift in Sources */,
+				A6AAC1312C06C28400D69005 /* SpatialAWSUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A6AAC1222C06C28400D69005 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A6AAC10E2C06C28300D69005 /* SpatialAWS */;
+			targetProxy = A6AAC1212C06C28400D69005 /* PBXContainerItemProxy */;
+		};
+		A6AAC12C2C06C28400D69005 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A6AAC10E2C06C28300D69005 /* SpatialAWS */;
+			targetProxy = A6AAC12B2C06C28400D69005 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A6AAC1322C06C28400D69005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A6AAC1332C06C28400D69005 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		A6AAC1352C06C28400D69005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Resources/SpatialAWS.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Resources/Preview Content\"";
+				DEVELOPMENT_TEAM = F9BQP46G9T;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Spatial AWS";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.walteh.spatial-aws";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Debug;
+		};
+		A6AAC1362C06C28400D69005 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Resources/SpatialAWS.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Resources/Preview Content\"";
+				DEVELOPMENT_TEAM = F9BQP46G9T;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Spatial AWS";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.walteh.spatial-aws";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Release;
+		};
+		A6AAC1382C06C28400D69005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F9BQP46G9T;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.walteh.spatial-aws-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SpatialAWS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SpatialAWS";
+			};
+			name = Debug;
+		};
+		A6AAC1392C06C28400D69005 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F9BQP46G9T;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.walteh.spatial-aws-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SpatialAWS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SpatialAWS";
+			};
+			name = Release;
+		};
+		A6AAC13B2C06C28400D69005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F9BQP46G9T;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.walteh.spatial-aws-uitests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = SpatialAWS;
+			};
+			name = Debug;
+		};
+		A6AAC13C2C06C28400D69005 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F9BQP46G9T;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.walteh.spatial-aws-uitests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = SpatialAWS;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A6AAC10A2C06C28300D69005 /* Build configuration list for PBXProject "spatial-aws" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6AAC1322C06C28400D69005 /* Debug */,
+				A6AAC1332C06C28400D69005 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A6AAC1342C06C28400D69005 /* Build configuration list for PBXNativeTarget "SpatialAWS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6AAC1352C06C28400D69005 /* Debug */,
+				A6AAC1362C06C28400D69005 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A6AAC1372C06C28400D69005 /* Build configuration list for PBXNativeTarget "SpatialAWSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6AAC1382C06C28400D69005 /* Debug */,
+				A6AAC1392C06C28400D69005 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A6AAC13A2C06C28400D69005 /* Build configuration list for PBXNativeTarget "SpatialAWSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6AAC13B2C06C28400D69005 /* Debug */,
+				A6AAC13C2C06C28400D69005 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A6AAC1072C06C28300D69005 /* Project object */;
+}
