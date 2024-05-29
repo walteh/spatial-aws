@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,16 @@
 		A6AAC1252C06C28400D69005 /* SpatialAWSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AAC1242C06C28400D69005 /* SpatialAWSTests.swift */; };
 		A6AAC12F2C06C28400D69005 /* SpatialAWSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AAC12E2C06C28400D69005 /* SpatialAWSUITests.swift */; };
 		A6AAC1312C06C28400D69005 /* SpatialAWSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AAC1302C06C28400D69005 /* SpatialAWSUITestsLaunchTests.swift */; };
+		A6ADC95B2C06C92300F8209C /* Aside.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ADC9572C06C92300F8209C /* Aside.swift */; };
+		A6ADC95C2C06C92300F8209C /* AWSMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ADC9582C06C92300F8209C /* AWSMenu.swift */; };
+		A6ADC95D2C06C92300F8209C /* SSOSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ADC9592C06C92300F8209C /* SSOSignIn.swift */; };
+		A6ADC95E2C06C92300F8209C /* AWSConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ADC95A2C06C92300F8209C /* AWSConsole.swift */; };
+		A6ADC9612C06CB5200F8209C /* XDK in Frameworks */ = {isa = PBXBuildFile; productRef = A6ADC9602C06CB5200F8209C /* XDK */; };
+		A6ADC9632C06CB5200F8209C /* XDKAWSSSO in Frameworks */ = {isa = PBXBuildFile; productRef = A6ADC9622C06CB5200F8209C /* XDKAWSSSO */; };
+		A6ADC9652C06CB5200F8209C /* XDKKeychain in Frameworks */ = {isa = PBXBuildFile; productRef = A6ADC9642C06CB5200F8209C /* XDKKeychain */; };
+		A6ADC9672C06CB5200F8209C /* XDKLogging in Frameworks */ = {isa = PBXBuildFile; productRef = A6ADC9662C06CB5200F8209C /* XDKLogging */; };
+		A6ADC9692C06CB5200F8209C /* XDKMOC in Frameworks */ = {isa = PBXBuildFile; productRef = A6ADC9682C06CB5200F8209C /* XDKMOC */; };
+		A6ADC96B2C06CB5200F8209C /* XDKWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = A6ADC96A2C06CB5200F8209C /* XDKWebSocket */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +55,10 @@
 		A6AAC12A2C06C28400D69005 /* SpatialAWSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpatialAWSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6AAC12E2C06C28400D69005 /* SpatialAWSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpatialAWSUITests.swift; sourceTree = "<group>"; };
 		A6AAC1302C06C28400D69005 /* SpatialAWSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpatialAWSUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A6ADC9572C06C92300F8209C /* Aside.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aside.swift; sourceTree = "<group>"; };
+		A6ADC9582C06C92300F8209C /* AWSMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSMenu.swift; sourceTree = "<group>"; };
+		A6ADC9592C06C92300F8209C /* SSOSignIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSOSignIn.swift; sourceTree = "<group>"; };
+		A6ADC95A2C06C92300F8209C /* AWSConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSConsole.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +66,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6ADC96B2C06CB5200F8209C /* XDKWebSocket in Frameworks */,
+				A6ADC9692C06CB5200F8209C /* XDKMOC in Frameworks */,
+				A6ADC9672C06CB5200F8209C /* XDKLogging in Frameworks */,
+				A6ADC9632C06CB5200F8209C /* XDKAWSSSO in Frameworks */,
+				A6ADC9612C06CB5200F8209C /* XDK in Frameworks */,
+				A6ADC9652C06CB5200F8209C /* XDKKeychain in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +115,10 @@
 		A6AAC1112C06C28300D69005 /* SpatialAWS */ = {
 			isa = PBXGroup;
 			children = (
+				A6ADC9572C06C92300F8209C /* Aside.swift */,
+				A6ADC95A2C06C92300F8209C /* AWSConsole.swift */,
+				A6ADC9582C06C92300F8209C /* AWSMenu.swift */,
+				A6ADC9592C06C92300F8209C /* SSOSignIn.swift */,
 				A6AAC1122C06C28300D69005 /* SpatialAWSApp.swift */,
 				A6AAC1142C06C28300D69005 /* ContentView.swift */,
 			);
@@ -169,6 +193,14 @@
 			dependencies = (
 			);
 			name = SpatialAWS;
+			packageProductDependencies = (
+				A6ADC9602C06CB5200F8209C /* XDK */,
+				A6ADC9622C06CB5200F8209C /* XDKAWSSSO */,
+				A6ADC9642C06CB5200F8209C /* XDKKeychain */,
+				A6ADC9662C06CB5200F8209C /* XDKLogging */,
+				A6ADC9682C06CB5200F8209C /* XDKMOC */,
+				A6ADC96A2C06CB5200F8209C /* XDKWebSocket */,
+			);
 			productName = "spatial-aws";
 			productReference = A6AAC10F2C06C28300D69005 /* SpatialAWS.app */;
 			productType = "com.apple.product-type.application";
@@ -241,6 +273,9 @@
 				Base,
 			);
 			mainGroup = A6AAC1062C06C28300D69005;
+			packageReferences = (
+				A6ADC95F2C06CB5200F8209C /* XCLocalSwiftPackageReference "../xdk" */,
+			);
 			productRefGroup = A6AAC1102C06C28300D69005 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -283,8 +318,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6ADC95C2C06C92300F8209C /* AWSMenu.swift in Sources */,
 				A6AAC1152C06C28300D69005 /* ContentView.swift in Sources */,
+				A6ADC95D2C06C92300F8209C /* SSOSignIn.swift in Sources */,
+				A6ADC95B2C06C92300F8209C /* Aside.swift in Sources */,
 				A6AAC1132C06C28300D69005 /* SpatialAWSApp.swift in Sources */,
+				A6ADC95E2C06C92300F8209C /* AWSConsole.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,6 +694,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		A6ADC95F2C06CB5200F8209C /* XCLocalSwiftPackageReference "../xdk" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../xdk;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A6ADC9602C06CB5200F8209C /* XDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = XDK;
+		};
+		A6ADC9622C06CB5200F8209C /* XDKAWSSSO */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = XDKAWSSSO;
+		};
+		A6ADC9642C06CB5200F8209C /* XDKKeychain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = XDKKeychain;
+		};
+		A6ADC9662C06CB5200F8209C /* XDKLogging */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = XDKLogging;
+		};
+		A6ADC9682C06CB5200F8209C /* XDKMOC */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = XDKMOC;
+		};
+		A6ADC96A2C06CB5200F8209C /* XDKWebSocket */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = XDKWebSocket;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A6AAC1072C06C28300D69005 /* Project object */;
 }
