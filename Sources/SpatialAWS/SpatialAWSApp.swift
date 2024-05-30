@@ -32,9 +32,10 @@ struct SpatialAWSApp: App {
 	let errorHandler: any XDK.ErrorHandler
 
 	let keychainGroup = "\(XDK.getTeamID()!).main.keychain.group"
-	let keychainStorageVersion = "1.0.5"
+	let keychainStorageVersion = "1.0.6"
 
 	public init() {
+		
 		if !XDK.IS_BEING_UNIT_TESTED() {
 			LoggingSystem.bootstrap { label in
 				var level: Logger.Level = .trace
@@ -47,6 +48,8 @@ struct SpatialAWSApp: App {
 				return XDKLogging.ConsoleLogger(label: label, level: level, metadata: .init())
 			}
 		}
+		
+
 
 		XDK.Log(.info).add("teamid", self.keychainGroup).send("getting team id")
 
@@ -60,8 +63,14 @@ struct SpatialAWSApp: App {
 		self.appSessionAPI = try! XDK.StoredAppSession(storageAPI: self.storageAPI)
 		self.userSessionAPI = usersession
 		self.errorHandler = XDK.NotificationCenterErrorHandler {
-			Log(.error).err($0).send("error caught by notification handler")
+			XDK.Log(.error).err($0).send("error caught by notification handler")
 		}
+		
+		XDK.AddLoggerMetadataToContext { ev in
+			return ev.add("device", XDK.GetDeviceFamily(using: self.configAPI).value)
+			
+		}
+
 
 		let res = XDKAWSSSO.signin(storage: self.storageAPI)
 		if let err = res.error {

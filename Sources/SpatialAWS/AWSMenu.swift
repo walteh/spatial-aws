@@ -19,15 +19,15 @@ struct AWSConsoleSidebarMenuView: View {
 	@State var resources: [String] = []
 
 	var body: some View {
-		VStack(alignment: .leading) {
-			ForEach(self.userSession.accountsList.accounts, id: \.self) { account in
-				AccountButton(account: account)
-			}
-			// MenuView(title: "Account", selection: self.$userSession.currentAccount, options: self.$userSession.accountsList.accounts, format: {
-			// 	"\($0.accountName) - \($0.role?.roleName ?? "unknown")"
-			// })
-			// MenuView(title: "Region", selection: self.$userSession.region, options: self.$regions, format: { v in v })
-			// MenuView(title: "Service", selection: self.$userSession.service, options: self.$services, format: { v in v })
+		VStack(alignment: .center) {
+//			ForEach(self.userSession.accountsList.accounts, id: \.self) { account in
+//				AccountButton(account: account)
+//			}
+			 MenuView(title: "Account", selection: self.$userSession.currentAccount, options: self.$userSession.accountsList.accounts, format: {
+			 	"\($0.accountName) - \($0.role?.roleName ?? "unknown")"
+			 })
+			 MenuView(title: "Region", selection: self.$userSession.region, options: self.$regions, format: { v in v })
+			 MenuView(title: "Service", selection: self.$userSession.service, options: self.$services, format: { v in v })
 //			MenuView(title: "Resource", selection: self.$userSession.resource, options: self.$resources, format: { v in v })
 			Spacer()
 			Button("Sign out") {

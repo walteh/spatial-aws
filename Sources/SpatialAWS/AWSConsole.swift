@@ -16,12 +16,12 @@ struct AWSConsoleView: View {
 
 	var body: some View {
 		VStack {
-			Text("\(self.userSession.currentAccount?.accountName ?? "none")")
-//				.tint(.white)
-			Text("\(self.userSession.currentWebview)")
+//			Text("\(self.userSession.currentAccount?.accountName ?? "none")")
+////				.tint(.white)
+//			Text("\(self.userSession.currentWebview)")
 //				.tint(.white)
 			WebViewWrapper()
-				.frame(height: 300)
+//				.frame(height: 300)
 
 		}.background(.blue)
 	}
@@ -33,6 +33,7 @@ struct AWSConsoleView_Previews: PreviewProvider {
 		AWSConsoleView()
 	}
 }
+
 
 #if os(macOS)
 	struct WebViewWrapper: NSViewRepresentable {
