@@ -26,13 +26,16 @@ struct SpatialAWSApp: App {
 
 	let authenticationAPI: any XDK.AuthenticationAPI
 	let storageAPI: any XDK.StorageAPI
-	let userSessionAPI: XDKAWSSSO.AWSSSOUserSession
+	let userSessionAPI: WebSessionManager
 	let appSessionAPI: any XDK.AppSessionAPI
 	let configAPI: any XDK.ConfigAPI
 	let errorHandler: any XDK.ErrorHandler
 
 	let keychainGroup = "\(XDK.getTeamID()!).main.keychain.group"
-	let keychainStorageVersion = "1.0.6"
+	let keychainStorageVersion = "1.0.8"
+	
+	// M/UkFeJeR7GXiw0U1BA/0RKYi2 g6tGcLTnh/TTw
+	// M/UkFeJeR7GXiw0U1BA/0RKYi2+g6tGcLTnh/TTw
 
 	public init() {
 		
@@ -55,7 +58,7 @@ struct SpatialAWSApp: App {
 
 		let loc = XDKKeychain.LocalAuthenticationClient(group: self.keychainGroup, version: self.keychainStorageVersion)
 
-		let usersession = XDKAWSSSO.AWSSSOUserSession(storageAPI: loc)
+		let usersession = WebSessionManager(storageAPI: loc)
 
 		self.storageAPI = loc
 		self.configAPI = XDK.BundleConfig(bundle: Bundle.main)

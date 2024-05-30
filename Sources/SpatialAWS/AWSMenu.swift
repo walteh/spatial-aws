@@ -12,7 +12,7 @@ import WebKit
 import XDKAWSSSO
 
 struct AWSConsoleSidebarMenuView: View {
-	@EnvironmentObject var userSession: XDKAWSSSO.AWSSSOUserSession
+	@EnvironmentObject var userSession: WebSessionManager
 
 	@State var regions: [String] = ["us-east-1", "us-east-2"]
 	@State var services: [String] = ["S3", "appsync"]
@@ -40,7 +40,7 @@ struct AWSConsoleSidebarMenuView: View {
 }
 
 struct AccountButton: View {
-	@EnvironmentObject var userSession: XDKAWSSSO.AWSSSOUserSession
+	@EnvironmentObject var userSession: WebSessionManager
 
 	let account: XDKAWSSSO.AccountInfo
 

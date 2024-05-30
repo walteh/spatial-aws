@@ -17,7 +17,7 @@ import XDKKeychain
 struct SSOSignInView: View {
 	@Environment(\.authentication) var authentication
 	@Environment(\.storage) var storage
-	@EnvironmentObject var userSession: XDKAWSSSO.AWSSSOUserSession
+	@EnvironmentObject var userSession: WebSessionManager
 
 //	@State private var currentViewController: UIViewController?
 

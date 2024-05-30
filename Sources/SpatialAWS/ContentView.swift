@@ -14,7 +14,7 @@ import XDKAWSSSO
 import XDKKeychain
 
 struct ContentView: View {
-	@EnvironmentObject var userSession: XDKAWSSSO.AWSSSOUserSession
+	@EnvironmentObject var userSession: WebSessionManager
 	@State private var isUserLoggedIn: Bool = false
 
 	var body: some View {
