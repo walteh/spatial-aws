@@ -79,7 +79,7 @@ struct AWSConsoleView_Previews: PreviewProvider {
 	}
 #else
 	struct WebViewWrapper: UIViewRepresentable {
-		@EnvironmentObject var userSession: XDKAWSSSO.AWSSSOUserSession
+		@EnvironmentObject var userSession: WebSessionManager
 
 		class Coordinator: NSObject {
 			var parent: WebViewWrapper
@@ -97,23 +97,27 @@ struct AWSConsoleView_Previews: PreviewProvider {
 
 		func makeUIView(context _: Context) -> UIView {
 			let container = UIView()
-			container.addSubview(self.userSession.currentWebview) // Assume model.currentWebView is your initial WKWebView
+			let curr = self.userSession.currentWebview()
+
+			container.addSubview(curr) // Assume model.currentWebView is your initial WKWebView
 
 			// Configure constraints or frame to ensure the web view fills the container
-			self.userSession.currentWebview.frame = container.bounds
-			self.userSession.currentWebview.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+			curr.frame = container.bounds
+			curr.autoresizingMask = .init([.flexibleWidth, .flexibleHeight])
 
 			return container
 		}
 
 		func updateUIView(_ nsView: UIView, context _: Context) {
+			let curr = self.userSession.currentWebview()
+
 			// Ensure the container only contains the current web view
 			nsView.subviews.forEach { $0.removeFromSuperview() }
-			nsView.addSubview(self.userSession.currentWebview)
+			nsView.addSubview(curr)
 
 			// Update frame or constraints if necessary
-			self.userSession.currentWebview.frame = nsView.bounds
-			self.userSession.currentWebview.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+			curr.frame = nsView.bounds
+			curr.autoresizingMask = .init([.flexibleWidth, .flexibleHeight])
 		}
 	}
 #endif

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -103,6 +103,7 @@
 				A6AAC1102C06C28300D69005 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		A6AAC1102C06C28300D69005 /* Products */ = {
 			isa = PBXGroup;
@@ -268,7 +269,7 @@
 				};
 			};
 			buildConfigurationList = A6AAC10A2C06C28300D69005 /* Build configuration list for PBXProject "spatial-aws" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 15.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
