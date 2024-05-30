@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -277,7 +277,7 @@
 			);
 			mainGroup = A6AAC1062C06C28300D69005;
 			packageReferences = (
-				A6ADC95F2C06CB5200F8209C /* XCLocalSwiftPackageReference "../xdk" */,
+				A686A23C2C0917DE007F0859 /* XCRemoteSwiftPackageReference "xdk" */,
 			);
 			productRefGroup = A6AAC1102C06C28300D69005 /* Products */;
 			projectDirPath = "";
@@ -488,7 +488,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Resources/Preview Content\"";
-				DEVELOPMENT_TEAM = F9BQP46G9T;
+				DEVELOPMENT_TEAM = 4497QJSAD3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -509,7 +509,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.walteh.spatial-aws";
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.nugg.spatial-aws";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
@@ -530,7 +530,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Resources/Preview Content\"";
-				DEVELOPMENT_TEAM = F9BQP46G9T;
+				DEVELOPMENT_TEAM = 4497QJSAD3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -551,7 +551,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.walteh.spatial-aws";
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.nugg.spatial-aws";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
@@ -569,12 +569,12 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F9BQP46G9T;
+				DEVELOPMENT_TEAM = 4497QJSAD3;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.walteh.spatial-aws-tests";
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.nugg.spatial-aws-tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
@@ -593,12 +593,12 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F9BQP46G9T;
+				DEVELOPMENT_TEAM = 4497QJSAD3;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.walteh.spatial-aws-tests";
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.nugg.spatial-aws-tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
@@ -616,12 +616,12 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F9BQP46G9T;
+				DEVELOPMENT_TEAM = 4497QJSAD3;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.walteh.spatial-aws-uitests";
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.nugg.spatial-aws-uitests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = auto;
@@ -640,12 +640,12 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F9BQP46G9T;
+				DEVELOPMENT_TEAM = 4497QJSAD3;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.walteh.spatial-aws-uitests";
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.nugg.spatial-aws-uitests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = auto;
@@ -699,12 +699,16 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		A6ADC95F2C06CB5200F8209C /* XCLocalSwiftPackageReference "../xdk" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../xdk;
+/* Begin XCRemoteSwiftPackageReference section */
+		A686A23C2C0917DE007F0859 /* XCRemoteSwiftPackageReference "xdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/walteh/xdk";
+			requirement = {
+				kind = exactVersion;
+				version = 0.38.0;
+			};
 		};
-/* End XCLocalSwiftPackageReference section */
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		A6ADC9602C06CB5200F8209C /* XDK */ = {

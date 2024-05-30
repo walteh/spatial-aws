@@ -1,5 +1,5 @@
 {
-  "originHash" : "9027eb555fc9e607dac76f299079231fad56e17982a5fcfceceda158d0603200",
+  "originHash" : "b3fc721fd793e5cfe95abb69df1383a268a5def399f1ef7535e25083f8519d42",
   "pins" : [
     {
       "identity" : "aws-crt-swift",
@@ -17,6 +17,15 @@
       "state" : {
         "revision" : "36821c2655f8cfb7b872716ff3a7442b1044ed7f",
         "version" : "0.34.0"
+      }
+    },
+    {
+      "identity" : "micro-deterministic-ecdsa",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/walteh/micro-deterministic-ecdsa.git",
+      "state" : {
+        "revision" : "53a1d3a9588cb008de7472f64fd8b7b244645286",
+        "version" : "0.8.0"
       }
     },
     {
@@ -71,6 +80,15 @@
       "state" : {
         "revision" : "9172b9e07dbc6b94ce91c9455c090efdfdd556c9",
         "version" : "0.2.1"
+      }
+    },
+    {
+      "identity" : "xdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/walteh/xdk",
+      "state" : {
+        "revision" : "8500f9d0030f75dcd161feb454a5297c0dd9ea76",
+        "version" : "0.38.0"
       }
     },
     {
