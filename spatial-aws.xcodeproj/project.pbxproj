@@ -61,6 +61,9 @@
 		A6ADC9582C06C92300F8209C /* AWSMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSMenu.swift; sourceTree = "<group>"; };
 		A6ADC9592C06C92300F8209C /* SSOSignIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSOSignIn.swift; sourceTree = "<group>"; };
 		A6ADC95A2C06C92300F8209C /* AWSConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSConsole.swift; sourceTree = "<group>"; };
+		A6BED2D22C0CBB1B00D04245 /* ci_pre_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_pre_xcodebuild.sh; sourceTree = "<group>"; };
+		A6BED2D32C0CBB2F00D04245 /* ci_post_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_xcodebuild.sh; sourceTree = "<group>"; };
+		A6BED2D42C0CBB4300D04245 /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +100,7 @@
 		A6AAC1062C06C28300D69005 = {
 			isa = PBXGroup;
 			children = (
+				A6BED2D12C0CBAF200D04245 /* ci_scripts */,
 				A6AAC13F2C06C2D300D69005 /* Resources */,
 				A6AAC13D2C06C2BE00D69005 /* Sources */,
 				A6AAC13E2C06C2C500D69005 /* Tests */,
@@ -179,6 +183,16 @@
 				A6AAC1192C06C28400D69005 /* Preview Content */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		A6BED2D12C0CBAF200D04245 /* ci_scripts */ = {
+			isa = PBXGroup;
+			children = (
+				A6BED2D22C0CBB1B00D04245 /* ci_pre_xcodebuild.sh */,
+				A6BED2D32C0CBB2F00D04245 /* ci_post_xcodebuild.sh */,
+				A6BED2D42C0CBB4300D04245 /* ci_post_clone.sh */,
+			);
+			path = ci_scripts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
