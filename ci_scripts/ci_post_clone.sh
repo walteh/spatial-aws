@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #  ci_post_clone.sh
 #  spatial-aws
@@ -22,7 +22,18 @@ if [ -z "$latestTag" ]; then
   exit 1
 fi
 
-# Update the version number in Info.plist
-/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $latestTag" "${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
-echo "updated version number to $latestTag"
+# Resolve the Info.plist path
+projectPath=./spatial-aws.xcodeproj/project.pbxproj
 
+# Check if the Info.plist file exists
+if [ ! -f "$projectPath" ]; then
+  echo "Error: Info.plist file not found at $projectPath"
+  exit 1
+fi
+
+# version no v
+latestTag=${latestTag:1}
+
+# Update the version number in Info.plist
+sed -i '' "s/MARKETING_VERSION = [0-9]*\.[0-9]*\.*[0-9]*;/MARKETING_VERSION = $latestTag;/g" "$projectPath"
+echo "updated version number to $latestTag"
