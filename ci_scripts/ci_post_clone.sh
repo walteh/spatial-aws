@@ -7,8 +7,13 @@
 #
 #  update the build version to the latest git tag
 
+# Get the latest tags from git
+echo "Fetching tags from git"
+git fetch --tags
+
+
 # Get the highest semver tag
-latestTag=$(git tag -l | sort -V | tail -n 1)
+latestTag=$(git tag --merged HEAD | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n 1)
 echo "latest tag: $latestTag"
 
 # Check if latestTag is not empty
