@@ -21,7 +21,7 @@ function check() {
 
 # Retry mechanism
 attempt=0
-max_attempts=5
+max_attempts=20
 
 while [ -z "$latestTag" ] && [ $attempt -lt $max_attempts ]; do
   attempt=$((attempt + 1))
@@ -31,8 +31,8 @@ while [ -z "$latestTag" ] && [ $attempt -lt $max_attempts ]; do
 
   if [ -z "$latestTag" ]; then
     if [ $attempt -lt $max_attempts ]; then
-      echo "No tags found. Retrying in 1 minute..."
-      sleep 60
+      echo "No tags found. Retrying in 15 seconds..."
+      sleep 15
     else
       echo "No tags found after $max_attempts attempts. Exiting."
       exit 1
@@ -53,5 +53,5 @@ fi
 latestTag=${latestTag:1}
 
 # Update the MARKETING_VERSION in the Xcode project file
-sed -i '' "s/MARKETING_VERSION = [0-9]*\.[0-9]*\.[0-9]*;/MARKETING_VERSION = $latestTag;/g" "$projectPath"
+sed -i '' "s/MARKETING_VERSION = [0-9]*\.[0-9]*\.[0-9]*;/MARKETING_VERSION = \"$latestTag\";/g" "$projectPath"
 echo "updated version number to $latestTag"
