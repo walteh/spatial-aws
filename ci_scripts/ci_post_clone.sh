@@ -49,8 +49,8 @@ if [ ! -f "$projectPath" ]; then
   exit 1
 fi
 
-# Remove the 'v' prefix from the version tag if it exists
-latestTag=${latestTag:1}
+# Remove the 'v' prefix, if present, and anything after the first '-'
+latestTag=$(echo "$latestTag" | sed -E 's/^v//g' | sed -E 's/-.*//g')
 
 # Update the MARKETING_VERSION in the Xcode project file
 sed -i '' "s/MARKETING_VERSION = [0-9]*\.[0-9]*\.[0-9]*;/MARKETING_VERSION = \"$latestTag\";/g" "$projectPath"
