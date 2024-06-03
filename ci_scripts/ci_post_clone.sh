@@ -53,5 +53,5 @@ fi
 latestTag=$(echo "$latestTag" | sed -E 's/^v//g' | sed -E 's/-.*//g')
 
 # Update the MARKETING_VERSION in the Xcode project file
-sed -i '' "s/MARKETING_VERSION = [0-9]*\.[0-9]*\.[0-9]*;/MARKETING_VERSION = \"$latestTag\";/g" "$projectPath"
+sed -i '' "s/MARKETING_VERSION = [0-9]*\.[0-9]*\.[0-9]*;/MARKETING_VERSION = $latestTag;/g" "$projectPath"
 echo "updated version number to $latestTag"
