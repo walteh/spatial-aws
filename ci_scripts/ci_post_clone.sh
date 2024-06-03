@@ -7,35 +7,51 @@
 #
 #  update the build version to the latest git tag
 
-# Get the latest tags from git
-echo "Fetching tags from git"
-git fetch --tags
+latestTag=""
 
+function check() {
+  # Get the latest tags from git
+  echo "Fetching tags from git"
+  git fetch --tags
 
-# Get the highest semver tag
-latestTag=$(git tag --merged HEAD | grep -E '^v.*$' | sort -V | tail -n 1)
-echo "latest tag: $latestTag"
+  # Get the highest semver tag
+  latestTag=$(git tag --merged HEAD | grep -E '^v.*$' | sort -V | tail -n 1)
+  echo "latest tag: $latestTag"
+}
 
-# Check if latestTag is not empty
-if [ -z "$latestTag" ]; then
-  echo "No tags found. Exiting."
-  exit 1
-fi
+# Retry mechanism
+attempt=0
+max_attempts=5
 
-# Resolve the Info.plist path
+while [ -z "$latestTag" ] && [ $attempt -lt $max_attempts ]; do
+  attempt=$((attempt + 1))
+  echo "Attempt $attempt of $max_attempts"
+  
+  check
+
+  if [ -z "$latestTag" ]; then
+    if [ $attempt -lt $max_attempts ]; then
+      echo "No tags found. Retrying in 1 minute..."
+      sleep 60
+    else
+      echo "No tags found after $max_attempts attempts. Exiting."
+      exit 1
+    fi
+  fi
+done
+
+# We are inside the ci_scripts folder in CI, so need to refer from there
 projectPath=../spatial-aws.xcodeproj/project.pbxproj
 
-ls -la
-
-# Check if the Info.plist file exists
+# Check if the Xcode project file exists
 if [ ! -f "$projectPath" ]; then
   echo "file not found at $projectPath"
   exit 1
 fi
 
-# version no v
+# Remove the 'v' prefix from the version tag if it exists
 latestTag=${latestTag:1}
 
-# Update the version number in Info.plist
-sed -i '' "s/MARKETING_VERSION = [0-9]*\.[0-9]*\.*[0-9]*;/MARKETING_VERSION = $latestTag;/g" "$projectPath"
+# Update the MARKETING_VERSION in the Xcode project file
+sed -i '' "s/MARKETING_VERSION = [0-9]*\.[0-9]*\.[0-9]*;/MARKETING_VERSION = $latestTag;/g" "$projectPath"
 echo "updated version number to $latestTag"
