@@ -23,7 +23,7 @@ if [ -z "$latestTag" ]; then
 fi
 
 # Resolve the Info.plist path
-projectPath=./spatial-aws.xcodeproj/project.pbxproj
+projectPath=../spatial-aws.xcodeproj/project.pbxproj
 
 ls -la
 
