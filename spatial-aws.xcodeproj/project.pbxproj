@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A670B8F12C08C12D009CEC87 /* WebSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A670B8F02C08C12D009CEC87 /* WebSession.swift */; };
+		A6963EBC2C0D663300CA55F2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A6963EBB2C0D663300CA55F2 /* Info.plist */; };
 		A6AAC1132C06C28300D69005 /* SpatialAWSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AAC1122C06C28300D69005 /* SpatialAWSApp.swift */; };
 		A6AAC1152C06C28300D69005 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AAC1142C06C28300D69005 /* ContentView.swift */; };
 		A6AAC1172C06C28400D69005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6AAC1162C06C28400D69005 /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		A670B8F02C08C12D009CEC87 /* WebSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSession.swift; sourceTree = "<group>"; };
+		A6963EBB2C0D663300CA55F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6AAC10F2C06C28300D69005 /* SpatialAWS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpatialAWS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6AAC1122C06C28300D69005 /* SpatialAWSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpatialAWSApp.swift; sourceTree = "<group>"; };
 		A6AAC1142C06C28300D69005 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				A6AAC1182C06C28400D69005 /* SpatialAWS.entitlements */,
 				A6AAC1162C06C28400D69005 /* Assets.xcassets */,
 				A6AAC1192C06C28400D69005 /* Preview Content */,
+				A6963EBB2C0D663300CA55F2 /* Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 			files = (
 				A6AAC11B2C06C28400D69005 /* Preview Assets.xcassets in Resources */,
 				A6AAC1172C06C28400D69005 /* Assets.xcassets in Resources */,
+				A6963EBC2C0D663300CA55F2 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,6 +435,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Resources/Info.plist;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -486,6 +491,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Resources/Info.plist;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
