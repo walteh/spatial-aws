@@ -13,7 +13,7 @@ git fetch --tags
 
 
 # Get the highest semver tag
-latestTag=$(git tag --merged HEAD | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n 1)
+latestTag=$(git tag --merged HEAD | grep -E '^v.*$' | sort -V | tail -n 1)
 echo "latest tag: $latestTag"
 
 # Check if latestTag is not empty
@@ -25,9 +25,11 @@ fi
 # Resolve the Info.plist path
 projectPath=./spatial-aws.xcodeproj/project.pbxproj
 
+ls -la
+
 # Check if the Info.plist file exists
 if [ ! -f "$projectPath" ]; then
-  echo "Error: Info.plist file not found at $projectPath"
+  echo "file not found at $projectPath"
   exit 1
 fi
 
