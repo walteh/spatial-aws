@@ -1,1 +1,1 @@
-# spatial-aws 🚀
+# spatial-aws 🚀 
