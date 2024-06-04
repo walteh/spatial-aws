@@ -295,7 +295,7 @@
 			);
 			mainGroup = A6AAC1062C06C28300D69005;
 			packageReferences = (
-				A686A23C2C0917DE007F0859 /* XCRemoteSwiftPackageReference "xdk" */,
+				A6A2FE832C0F3A1E00786029 /* XCRemoteSwiftPackageReference "xdk" */,
 			);
 			productRefGroup = A6AAC1102C06C28300D69005 /* Products */;
 			projectDirPath = "";
@@ -731,12 +731,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A686A23C2C0917DE007F0859 /* XCRemoteSwiftPackageReference "xdk" */ = {
+		A6A2FE832C0F3A1E00786029 /* XCRemoteSwiftPackageReference "xdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/walteh/xdk";
+			repositoryURL = "https://github.com/walteh/xdk.git";
 			requirement = {
 				kind = exactVersion;
-				version = 0.38.0;
+				version = 0.39.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

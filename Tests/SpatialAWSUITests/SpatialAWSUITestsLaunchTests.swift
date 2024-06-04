@@ -7,7 +7,7 @@
 
 import XCTest
 
-final class spatial_awsUITestsLaunchTests: XCTestCase {
+final class SpatialAWSUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
