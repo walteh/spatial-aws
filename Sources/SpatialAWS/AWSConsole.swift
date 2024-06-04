@@ -15,15 +15,23 @@ struct AWSConsoleView: View {
 	@EnvironmentObject var userSession: WebSessionManager
 
 	var body: some View {
-		VStack {
-//			Text("\(self.userSession.currentAccount?.accountName ?? "none")")
-////				.tint(.white)
-//			Text("\(self.userSession.currentWebview)")
-//				.tint(.white)
-			WebViewWrapper()
-//				.frame(height: 300)
+		ZStack {
+			VStack {
+				WebViewWrapper()
+					.edgesIgnoringSafeArea(.all)
+			}
 
-		}.background(.blue)
+			MenuView3(
+				title: "Options",
+				selection: self.$userSession.currentAccount,
+				options: self.$userSession.accountsList.accounts,
+				format: {
+					"\($0.accountName) - \($0.role?.roleName ?? "unknown")"
+				}
+			)
+			.edgesIgnoringSafeArea(.all)
+		}
+		.background(Color.blue)
 	}
 }
 

@@ -16,16 +16,16 @@ import XDKKeychain
 struct ContentView: View {
 	@EnvironmentObject var userSession: WebSessionManager
 	@State private var isUserLoggedIn: Bool = false
-
+	@State var regions: [String] = ["us-east-1", "us-east-2"]
+	@State var services: [String] = ["S3", "appsync"]
+	@State var resources: [String] = []
 	var body: some View {
 		Group {
 			if self.isUserLoggedIn {
 				HStack {
 					AWSConsoleView()
 						.edgesIgnoringSafeArea(.all)
-					AWSConsoleSidebarMenuView()
-						.edgesIgnoringSafeArea(.all)
-						.frame(width: 200)
+				
 				}
 			} else {
 				SSOSignInView()

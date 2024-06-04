@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A670B8F12C08C12D009CEC87 /* WebSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A670B8F02C08C12D009CEC87 /* WebSession.swift */; };
+		A6963EC32C0E23CE00CA55F2 /* MenuSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6963EC22C0E23CE00CA55F2 /* MenuSlider.swift */; };
 		A6AAC1132C06C28300D69005 /* SpatialAWSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AAC1122C06C28300D69005 /* SpatialAWSApp.swift */; };
 		A6AAC1152C06C28300D69005 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AAC1142C06C28300D69005 /* ContentView.swift */; };
 		A6AAC1172C06C28400D69005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6AAC1162C06C28400D69005 /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		A670B8F02C08C12D009CEC87 /* WebSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSession.swift; sourceTree = "<group>"; };
+		A6963EC22C0E23CE00CA55F2 /* MenuSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSlider.swift; sourceTree = "<group>"; };
 		A6AAC10F2C06C28300D69005 /* SpatialAWS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpatialAWS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6AAC1122C06C28300D69005 /* SpatialAWSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpatialAWSApp.swift; sourceTree = "<group>"; };
 		A6AAC1142C06C28300D69005 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				A6AAC1122C06C28300D69005 /* SpatialAWSApp.swift */,
 				A6AAC1142C06C28300D69005 /* ContentView.swift */,
 				A670B8F02C08C12D009CEC87 /* WebSession.swift */,
+				A6963EC22C0E23CE00CA55F2 /* MenuSlider.swift */,
 			);
 			path = SpatialAWS;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				A6ADC95D2C06C92300F8209C /* SSOSignIn.swift in Sources */,
 				A6ADC95B2C06C92300F8209C /* Aside.swift in Sources */,
 				A6AAC1132C06C28300D69005 /* SpatialAWSApp.swift in Sources */,
+				A6963EC32C0E23CE00CA55F2 /* MenuSlider.swift in Sources */,
 				A6ADC95E2C06C92300F8209C /* AWSConsole.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -594,6 +598,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4497QJSAD3;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Resources/Info.gen.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MARKETING_VERSION = 0.0.0;
@@ -618,6 +623,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4497QJSAD3;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Resources/Info.gen.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MARKETING_VERSION = 0.0.0;
@@ -641,6 +647,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4497QJSAD3;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Resources/Info.gen.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MARKETING_VERSION = 0.0.0;
@@ -665,6 +672,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4497QJSAD3;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Resources/Info.gen.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MARKETING_VERSION = 0.0.0;
