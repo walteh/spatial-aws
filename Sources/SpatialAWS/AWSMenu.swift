@@ -11,7 +11,7 @@ import SwiftUI
 import WebKit
 import XDKAWSSSO
 
-//struct AWSConsoleSidebarMenuView: View {
+// struct AWSConsoleSidebarMenuView: View {
 //	@EnvironmentObject var userSession: WebSessionManager
 //
 //	@State var regions: [String] = ["us-east-1", "us-east-2"]
@@ -32,9 +32,9 @@ import XDKAWSSSO
 //		.padding()
 //		// Add any styling you wish here
 //	}
-//}
+// }
 //
-//struct AccountButton: View {
+// struct AccountButton: View {
 //	@EnvironmentObject var userSession: WebSessionManager
 //
 //	let account: XDKAWSSSO.AccountInfo
@@ -46,95 +46,98 @@ import XDKAWSSSO
 //		// selected account should be highlighted
 //		.background(self.userSession.currentAccount == self.account ? Color.blue : Color.clear)
 //	}
-//}
-
+// }
 
 struct MenuView3<T: Hashable>: View {
-	let title: String
-	@Binding var selection: T?
-	@Binding var options: [T]
-	let format: (T) -> String
-	@State private var isExpanded: Bool = false
+    let title: String
+    @Binding var selection: T?
+    @Binding var options: [T]
+    let format: (T) -> String
+    @State private var isExpanded: Bool = false
 
-	var body: some View {
-		ZStack {
-			if isExpanded {
-				Color.black.opacity(0.5)
-					.edgesIgnoringSafeArea(.all)
-					.transition(.opacity)
-					.onTapGesture {
-						withAnimation {
-							isExpanded.toggle()
-						}
-					}
+    var body: some View {
+        ZStack {
+            if isExpanded {
+                Color.black.opacity(0.5)
+                    .edgesIgnoringSafeArea(.all)
+                    .transition(.opacity)
+                    .onTapGesture {
+                        withAnimation {
+                            isExpanded.toggle()
+                        }
+                    }
 
-				VStack(spacing: 20) {
-					Text(title)
-						.font(.headline)
-						.padding(.top, 20)
+//                VStack(spacing: 20) {
+//                    Text(title)
+//                        .font(.headline)
+//                        .padding(.top, 20)
 
-					MenuSlider(
-						selectedIndex: Binding(
-							get: { selection.flatMap({ options.firstIndex(of: $0) }) ?? 0 },
-							set: { newIndex in
-								selection = options[newIndex]
-							}
-						),
-						items: options.map { format($0) }
-					)
-					.padding()
+                MenuSlider(
+                    selectedIndex: Binding(
+                        get: { selection.flatMap { options.firstIndex(of: $0) } ?? 0 },
+                        set: { newIndex in
+                            selection = options[newIndex]
+                        }
+                    ),
+                    items: options.map { format($0) }
+                )
+                .padding(50)
+                .frame(width: 200, height: .init(200))
 
-					Spacer()
+//                    Spacer()
+//
+//                    Button(action: {
+//                        withAnimation {
+//                            isExpanded.toggle()
+//                        }
+//                    }) {
+//                        Text("Close")
+//                            .font(.title)
+//                            .padding()
+//                            .background(Color.blue)
+//                            .foregroundColor(.white)
+//                            .cornerRadius(10)
+//                            .shadow(radius: 5)
+//                    }
+//                    .padding(.bottom, 20)
+//                }
+//                .frame(width: 300, height: 400)
+//                .background(Color.white)
+//                .cornerRadius(10)
+//                .shadow(radius: 10)
+                .transition(.scale)
+                //				.frame(width: "100%", height: "75%")
+                .scaledToFit()
 
-					Button(action: {
-						withAnimation {
-							isExpanded.toggle()
-						}
-					}) {
-						Text("Close")
-							.font(.title)
-							.padding()
-							.background(Color.blue)
-							.foregroundColor(.white)
-							.cornerRadius(10)
-							.shadow(radius: 5)
-					}
-					.padding(.bottom, 20)
-				}
-				.frame(width: 300, height: 400)
-				.background(Color.white)
-				.cornerRadius(10)
-				.shadow(radius: 10)
-				.transition(.scale)
-			} else {
-				HStack {
-					Spacer()
-					VStack {
-						Spacer()
-						Button(action: {
-							withAnimation {
-								isExpanded.toggle()
-							}
-						}) {
-							Text("Options")
-								.font(.system(size: 16, weight: .bold))
-								.foregroundColor(.white)
-								.padding()
-								.background(Color.blue)
-								.cornerRadius(10)
-								.shadow(radius: 5)
-						}
-						.padding()
-					}
-				}
-			}
-		}
-	}
+            } else {
+                HStack {
+                    Spacer()
+                    VStack {
+                        Spacer()
+                        Button(action: {
+                            withAnimation {
+                                isExpanded.toggle()
+                            }
+                        }) {
+                            Text("Options")
+                                .font(.system(size: 16, weight: .bold))
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(Color.blue)
+                                .cornerRadius(10)
+                                .shadow(radius: 5)
+                        }
+                        .padding()
+                    }
+                }
+            }
+        }
+    }
 }
 
 //
 //
-//struct MenuView<T: Hashable>: View {
+// struct MenuView<T: Hashable>: View {
 //	let title: String
 //	@Binding var selection: T?
 //	@Binding var options: [T]
@@ -156,14 +159,14 @@ struct MenuView3<T: Hashable>: View {
 //			)
 //			.frame(height: 300)
 //			.padding()
-//			
+//
 //		}
 //	}
-//}
+// }
 
-// preview
-//struct AWSConsoleSidebarMenuView_Previews: PreviewProvider {
-//	static var previews: some View {
-//		AWSConsoleSidebarMenuView()
-//	}
-//}
+// @preview
+struct AWSConsoleSidebarMenuView_Previews: PreviewProvider {
+    static var previews: some View {
+        MenuView3(title: "Account", selection: .constant(nil), options: .constant(["Account 1", "Account 2", "Account 3"]), format: { $0 })
+    }
+}
