@@ -1,5 +1,5 @@
 //
-//  spatial_awsUITests.swift
+//  SpatialAWSUITests.swift
 //  spatial-awsUITests
 //
 //  Created by walter on 5/28/24.
@@ -7,8 +7,7 @@
 
 import XCTest
 
-final class spatial_awsUITests: XCTestCase {
-
+final class SpatialAWSUITests: XCTestCase {
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
