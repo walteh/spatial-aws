@@ -10,6 +10,7 @@
 		A670B8F12C08C12D009CEC87 /* WebSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A670B8F02C08C12D009CEC87 /* WebSession.swift */; };
 		A6963EC32C0E23CE00CA55F2 /* MenuSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6963EC22C0E23CE00CA55F2 /* MenuSlider.swift */; };
 		A6A2FE862C0F514800786029 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A2FE852C0F514800786029 /* Label.swift */; };
+		A6A2FE892C0F815900786029 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A2FE882C0F815900786029 /* Button.swift */; };
 		A6AAC1132C06C28300D69005 /* SpatialAWSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AAC1122C06C28300D69005 /* SpatialAWSApp.swift */; };
 		A6AAC1152C06C28300D69005 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AAC1142C06C28300D69005 /* ContentView.swift */; };
 		A6AAC1172C06C28400D69005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6AAC1162C06C28400D69005 /* Assets.xcassets */; };
@@ -50,6 +51,7 @@
 		A670B8F02C08C12D009CEC87 /* WebSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSession.swift; sourceTree = "<group>"; };
 		A6963EC22C0E23CE00CA55F2 /* MenuSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSlider.swift; sourceTree = "<group>"; };
 		A6A2FE852C0F514800786029 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		A6A2FE882C0F815900786029 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		A6AAC10F2C06C28300D69005 /* SpatialAWS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpatialAWS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6AAC1122C06C28300D69005 /* SpatialAWSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpatialAWSApp.swift; sourceTree = "<group>"; };
 		A6AAC1142C06C28300D69005 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				A670B8F02C08C12D009CEC87 /* WebSession.swift */,
 				A6963EC22C0E23CE00CA55F2 /* MenuSlider.swift */,
 				A6A2FE852C0F514800786029 /* Label.swift */,
+				A6A2FE882C0F815900786029 /* Button.swift */,
 			);
 			path = SpatialAWS;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				A670B8F12C08C12D009CEC87 /* WebSession.swift in Sources */,
 				A6ADC95D2C06C92300F8209C /* SSOSignIn.swift in Sources */,
 				A6ADC95B2C06C92300F8209C /* Aside.swift in Sources */,
+				A6A2FE892C0F815900786029 /* Button.swift in Sources */,
 				A6A2FE862C0F514800786029 /* Label.swift in Sources */,
 				A6AAC1132C06C28300D69005 /* SpatialAWSApp.swift in Sources */,
 				A6963EC32C0E23CE00CA55F2 /* MenuSlider.swift in Sources */,

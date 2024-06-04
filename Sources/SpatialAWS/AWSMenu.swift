@@ -7,56 +7,36 @@
 
 import SwiftUI
 
-// import UIKit
 import WebKit
 import XDKAWSSSO
-
-// struct AWSConsoleSidebarMenuView: View {
-//	@EnvironmentObject var userSession: WebSessionManager
-//
-//	@State var regions: [String] = ["us-east-1", "us-east-2"]
-//	@State var services: [String] = ["S3", "appsync"]
-//	@State var resources: [String] = []
-//
-//	var body: some View {
-//		VStack(alignment: .center) {
-//			 MenuView(title: "Account", selection: self.$userSession.currentAccount, options: self.$userSession.accountsList.accounts, format: {
-//			 	"\($0.accountName) - \($0.role?.roleName ?? "unknown")"
-//			 })
-//			 MenuView(title: "Region", selection: self.$userSession.region, options: self.$regions, format: { v in v })
-//			 MenuView(title: "Service", selection: self.$userSession.service, options: self.$services, format: { v in v })
-//			Spacer()
-//			Button("Sign out") {
-//			}
-//		}
-//		.padding()
-//		// Add any styling you wish here
-//	}
-// }
-//
-// struct AccountButton: View {
-//	@EnvironmentObject var userSession: WebSessionManager
-//
-//	let account: XDKAWSSSO.AccountInfo
-//
-//	var body: some View {
-//		Button(self.account.accountName) {
-//			self.userSession.currentAccount = self.account
-//		}
-//		// selected account should be highlighted
-//		.background(self.userSession.currentAccount == self.account ? Color.blue : Color.clear)
-//	}
-// }
 
 struct MenuView3<T: Hashable>: View {
     let title: String
     @Binding var selection: T?
-    @Binding var options: [T]
+    var options: [T]
     let format: (T) -> String
+    let offset: CGSize
     @State private var isExpanded: Bool = false
 
     var body: some View {
         ZStack {
+			HStack {
+				Spacer()
+				VStack {
+					Spacer()
+					Button(
+						background: .dark,
+						action: {
+							withAnimation {
+								isExpanded.toggle()
+							}
+						}
+					) {
+						Text(self.title)
+					}
+					.offset(offset)
+				}
+			}
             if isExpanded {
                 Color.black.opacity(0.5)
                     .edgesIgnoringSafeArea(.all)
@@ -66,11 +46,6 @@ struct MenuView3<T: Hashable>: View {
                             isExpanded.toggle()
                         }
                     }
-
-//                VStack(spacing: 20) {
-//                    Text(title)
-//                        .font(.headline)
-//                        .padding(.top, 20)
 
                 MenuSlider(
                     selectedIndex: Binding(
@@ -83,53 +58,9 @@ struct MenuView3<T: Hashable>: View {
                 )
                 .padding(50)
                 .frame(width: 200, height: .init(200))
-
-//                    Spacer()
-//
-//                    Button(action: {
-//                        withAnimation {
-//                            isExpanded.toggle()
-//                        }
-//                    }) {
-//                        Text("Close")
-//                            .font(.title)
-//                            .padding()
-//                            .background(Color.blue)
-//                            .foregroundColor(.white)
-//                            .cornerRadius(10)
-//                            .shadow(radius: 5)
-//                    }
-//                    .padding(.bottom, 20)
-//                }
-//                .frame(width: 300, height: 400)
-//                .background(Color.white)
-//                .cornerRadius(10)
-//                .shadow(radius: 10)
                 .transition(.scale)
-                //				.frame(width: "100%", height: "75%")
                 .scaledToFit()
 
-            } else {
-                HStack {
-                    Spacer()
-                    VStack {
-                        Spacer()
-                        Button(action: {
-                            withAnimation {
-                                isExpanded.toggle()
-                            }
-                        }) {
-                            Text("Options")
-                                .font(.system(size: 16, weight: .bold))
-                                .foregroundColor(.white)
-                                .padding()
-                                .background(Color.blue)
-                                .cornerRadius(10)
-                                .shadow(radius: 5)
-                        }
-                        .padding()
-                    }
-                }
             }
         }
     }
@@ -167,6 +98,6 @@ struct MenuView3<T: Hashable>: View {
 // @preview
 struct AWSConsoleSidebarMenuView_Previews: PreviewProvider {
     static var previews: some View {
-        MenuView3(title: "Account", selection: .constant(nil), options: .constant(["Account 1", "Account 2", "Account 3"]), format: { $0 })
+        MenuView3(title: "Account", selection: .constant(nil), options: .init(["Account 1", "Account 2", "Account 3"]), format: { $0 }, offset: .init(width: -100, height: 0))
     }
 }

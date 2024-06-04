@@ -14,6 +14,8 @@ import XDKAWSSSO
 struct AWSConsoleView: View {
     @EnvironmentObject var userSession: WebSessionManager
 
+    let regions: [String] = ["us-east-1", "us-east-2"]
+
     var body: some View {
         ZStack {
             VStack {
@@ -21,16 +23,34 @@ struct AWSConsoleView: View {
                     .edgesIgnoringSafeArea(.all)
             }
 
-            MenuView3(
-                title: "Options",
-                selection: self.$userSession.currentAccount,
-                options: self.$userSession.accountsList.accounts,
-                format: {
-//                    "\($0.accountName) - \($0.role?.roleName ?? "unknown")"
-                    "\($0.accountName)"
-                }
-            )
-            .edgesIgnoringSafeArea(.all)
+            ZStack {
+                MenuView3(
+                    title: "Account",
+                    selection: self.$userSession.currentAccount,
+                    options: self.userSession.accountsList.accounts,
+                    format: {
+                        //                    "\($0.accountName) - \($0.role?.roleName ?? "unknown")"
+                        "\($0.accountName)"
+                    },
+                    offset: .init(width: 0, height: 0)
+                )
+//                .edgesIgnoringSafeArea(.all)
+
+                Spacer()
+
+                MenuView3(
+                    title: "Role",
+                    selection: self.$userSession.currentAccountOrFirst.role,
+                    options: self.userSession.currentAccountOrFirst.roles,
+                    format: {
+                        //                    "\($0.accountName) - \($0.role?.roleName ?? "unknown")"
+                        "\($0.roleName)"
+                    },
+                    offset: .init(width: -120, height: 0)
+                )
+
+//                .edgesIgnoringSafeArea(.all)
+            }
         }
         .background(Color.blue)
     }

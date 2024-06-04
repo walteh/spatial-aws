@@ -39,6 +39,9 @@ public class WebSessionInstance: NSObject, ObservableObject, WKNavigationDelegat
         }
 
         isLoggedIn = true
+		
+		
+//		webview
 
         guard let _ = await webview.load(URLRequest(url: url)) else {
             XDK.Log(.error).send("error loading webview")
@@ -66,7 +69,7 @@ public class WebSessionInstance: NSObject, ObservableObject, WKNavigationDelegat
     // when the webview starts up
     public func webView(_ webview: WKWebView, didStartProvisionalNavigation _: WKNavigation!) {
         XDK.Log(.info).info("url", webview.url).send("webview navigation start")
-    }
+	}
 
     public func webView(_ webView: WKWebView, didFinish _: WKNavigation!) {
         XDK.Log(.info).info("url", webview.url).send("webview navigation navigation")
@@ -122,6 +125,19 @@ public class WebSessionManager: ObservableObject, XDKAWSSSO.ManagedRegionService
     let storageAPI: any XDK.StorageAPI
 
     @Published public var currentAccount: AccountInfo? = nil
+
+    public var currentAccountOrFirst: AccountInfo {
+        get {
+            if let account = currentAccount {
+                return account
+            } else {
+                return accountsList.accounts.first!
+            }
+        }
+        set {
+            currentAccount = newValue
+        }
+    }
 
     public func currentWebview() -> WKWebView {
         if let currentAccount {

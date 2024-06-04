@@ -50,7 +50,7 @@ struct SSOSignInView: View {
             .padding()
 
             // Here you would add the foundation logic for the sign-in action
-            Button(action: self.signInUsingSSO, label: {
+            Button(background: .dark, action: self.signInUsingSSO, content: {
                 Text("Sign in Using SSO")
             })
             .padding()
@@ -115,10 +115,10 @@ struct SignInDetailView: View {
         VStack {
             // if this isa macos catalyst, add option to open in browser
             #if os(macOS)
-                Button("Open in Browser") {
+                Button(background: .dark, action: {
                     NSWorkspace.shared.open(self.userSignInData.activationURLWithCode)
-                }
-                .padding()
+                }, content: { Text("Open in Browser") })
+                    .padding()
 
             #else
                 Link("Open In Safari", destination: self.userSignInData.activationURLWithCode)
