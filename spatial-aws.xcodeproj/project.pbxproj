@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 63;
+	objectVersion = 73;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -292,7 +292,6 @@
 				};
 			};
 			buildConfigurationList = A6AAC10A2C06C28300D69005 /* Build configuration list for PBXProject "spatial-aws" */;
-			compatibilityVersion = "Xcode 15.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -303,6 +302,7 @@
 			packageReferences = (
 				A6A2FE872C0F641300786029 /* XCRemoteSwiftPackageReference "xdk" */,
 			);
+			preferredProjectObjectVersion = 73;
 			productRefGroup = A6AAC1102C06C28300D69005 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

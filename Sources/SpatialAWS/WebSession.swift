@@ -74,7 +74,10 @@ public class WebSessionInstance: NSObject, ObservableObject, WKNavigationDelegat
     public func webView(_ webView: WKWebView, didFinish _: WKNavigation!) {
         XDK.Log(.info).info("url", webview.url).send("webview navigation navigation")
 
-        currentURL = webView.url
+        currentURL = webView.url 
+		
+
+		
     }
 
     public func webView(_: WKWebView, didFail _: WKNavigation!, withError error: Error) {
