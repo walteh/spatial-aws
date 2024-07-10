@@ -24,20 +24,23 @@ public class WebSessionInstance: NSObject, ObservableObject {
 	public var currentURL: URL? = nil
 
 	public let account: AccountInfo
+
 	public let webview: WKWebView
 	public let parent: WebSessionManager
+	public var lastSuccessfulRole: RoleInfo?
 
 	public var isLoggedIn: Bool = false
 
 	public func rebuildURL() async {
 		var err: Error? = nil
 
-		guard let url = await parent.regenerate(account: account, isLoggedIn: isLoggedIn).to(&err) else {
+		guard let url = await parent.regenerate(account: account, isLoggedIn: self.lastSuccessfulRole != nil && self.lastSuccessfulRole == self.parent.role).to(&err) else {
 			XDK.Log(.error).err(err).send("error generating console url")
 			return
 		}
 
 		self.isLoggedIn = true
+		self.lastSuccessfulRole = self.parent.role
 
 		guard let _ = webview.load(URLRequest(url: url)) else {
 			XDK.Log(.error).send("error loading webview")
@@ -95,18 +98,18 @@ public class WebSessionManager: ObservableObject {
 	@Published public var accountsList: AccountInfoList = .init(accounts: [])
 
 	@Published public var accounts: [AccountInfo: WebSessionInstance] = [:]
-	
+
 	@Published public var role: RoleInfo? = nil {
 		didSet {
 			XDK.Log(.info).info("role updated", self.role).send("okay")
-//			currentAccountOrFirst
 			Task {
-				await currentWebSession()?.rebuildURL()
+				await self.currentWebSession()?.rebuildURL()
 			}
 		}
+		willSet {}
 	}
 
-	init(accounts: AccountInfoList, storage: StorageAPI) async {
+	init(accounts: AccountInfoList, storage: StorageAPI) {
 		self.accountsList = accounts
 		self.storageAPI = storage
 
@@ -126,12 +129,15 @@ public class WebSessionManager: ObservableObject {
 	}
 
 	public func regenerate(account: AccountInfo, isLoggedIn: Bool) async -> Result<URL, Error> {
+		if self.accessToken == nil {
+			return .failure(x.error("oops"))
+		}
 		let tkn = self.accessToken!
-		Log(.info).meta(["account": .string(account.accountName), "role": .string(account.roles.first!.roleName)]).send("regenerating")
+		Log(.info).meta(["account": .string(account.accountName), "role": .string(self.role?.roleName ?? "none")]).send("regenerating")
 		return
 			await XDKAWSSSO.generateAWSConsoleURLWithDefaultClient(
 				account: account,
-				role: role ?? account.roles.first!,
+				role: self.role ?? account.roles.first!,
 				managedRegion: self.managedRegionService(),
 				storageAPI: self.storageAPI,
 				accessToken: tkn,
@@ -165,9 +171,9 @@ public class WebSessionManager: ObservableObject {
 	}
 
 	public func currentWebview() -> WKWebView? {
-		return currentWebSession()?.webview
+		return self.currentWebSession()?.webview
 	}
-	
+
 	public func currentWebSession() -> WebSessionInstance? {
 		let wv = self.accounts[self.currentAccountOrFirst]
 		return wv

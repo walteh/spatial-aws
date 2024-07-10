@@ -14,45 +14,85 @@ import XDKAWSSSO
 struct AWSConsoleView: View {
 	@EnvironmentObject var userSession: WebSessionManager
 
-	let regions: [String] = ["us-east-1", "us-east-2"]
+	var body: some View {
+		VStack(spacing: 0) {
+			// Top bar
+			TopBar(
+				selectedAccount: self.$userSession.currentAccount,
+				selectedRole: self.$userSession.role,
+				accounts: self.userSession.accountsList.accounts,
+				roles: self.userSession.currentAccountOrFirst.roles,
+				onRefresh: {
+					return
+				}
+			)
+
+			WebViewWrapper()
+//				.edgesIgnoringSafeArea(.all)
+		}
+		.edgesIgnoringSafeArea(.bottom)
+	}
+}
+
+struct TopBar: View {
+	@Binding var selectedAccount: AccountInfo?
+	@Binding var selectedRole: RoleInfo?
+	@State private var isAccountMenuOpen = false
+	@State private var isRoleMenuOpen = false
+
+	var accounts: [AccountInfo]
+	var roles: [RoleInfo]
+	var onRefresh: () -> Void
 
 	var body: some View {
-		ZStack {
-			VStack {
-				WebViewWrapper()
-					.edgesIgnoringSafeArea(.all)
-			}
+		HStack {
+			AccountPicker(selection: self.$selectedAccount, accounts: self.accounts)
 
-			ZStack {
-				MenuView3(
-					title: "Account",
-					selection: self.$userSession.currentAccount,
-					options: self.userSession.accountsList.accounts,
-					format: {
-						//                    "\($0.accountName) - \($0.role?.roleName ?? "unknown")"
-						"\($0.accountName)"
-					},
-					offset: .init(width: 0, height: 0)
-				)
-				//                .edgesIgnoringSafeArea(.all)
+			Divider()
 
-				Spacer()
+			RolePicker(selection: self.$selectedRole, roles: self.roles)
+//			Button(action: self.onRefresh) {
+//				Image(systemName: "arrow.clockwise")
+//			}
+//			.padding(.leading)
 
-				MenuView3(
-					title: "Role",
-					selection: self.$userSession.role,
-					options: self.userSession.currentAccountOrFirst.roles,
-					format: {
-						//                    "\($0.accountName) - \($0.role?.roleName ?? "unknown")"
-						"\($0.roleName)"
-					},
-					offset: .init(width: -120, height: 0)
-				)
+			Spacer()
 
-				//                .edgesIgnoringSafeArea(.all)
+			Text("Spatial AWS")
+				.font(.headline)
+		}
+		.padding(.horizontal)
+		.frame(height: 40)
+		.background(Color(NSColor.windowBackgroundColor))
+		.border(Color(NSColor.separatorColor), width: 1)
+	}
+}
+
+struct AccountPicker: View {
+	@Binding var selection: AccountInfo?
+	let accounts: [AccountInfo]
+
+	var body: some View {
+		Picker("Account", selection: self.$selection) {
+			ForEach(self.accounts, id: \.accountID) { account in
+				Text(account.accountName).tag(account)
 			}
 		}
-		.background(Color.blue)
+		.frame(width: 200)
+	}
+}
+
+struct RolePicker: View {
+	@Binding var selection: RoleInfo?
+	let roles: [RoleInfo]
+
+	var body: some View {
+		Picker("Role", selection: self.$selection) {
+			ForEach(self.roles, id: \.roleName) { role in
+				Text(role.roleName).tag(role)
+			}
+		}
+		.frame(width: 200)
 	}
 }
 
@@ -60,6 +100,12 @@ struct AWSConsoleView: View {
 struct AWSConsoleView_Previews: PreviewProvider {
 	static var previews: some View {
 		AWSConsoleView()
+			.environmentObject(
+				WebSessionManager(accounts:
+					AccountInfoList(accounts: [
+						AccountInfo(accountID: "111", accountName: "ho", roles: [
+							RoleInfo(roleName: "me", accountID: "111")], accountEmail: "ok@me.com"),
+					]), storage: NoopStorage()))
 	}
 }
 
