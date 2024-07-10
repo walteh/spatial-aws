@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A64D67F72C3DB7E900DE90ED /* XDKWebsocket in Frameworks */ = {isa = PBXBuildFile; productRef = A64D67F62C3DB7E900DE90ED /* XDKWebsocket */; };
 		A670B8F12C08C12D009CEC87 /* WebSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A670B8F02C08C12D009CEC87 /* WebSession.swift */; };
 		A6963EC32C0E23CE00CA55F2 /* MenuSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6963EC22C0E23CE00CA55F2 /* MenuSlider.swift */; };
 		A6A2FE862C0F514800786029 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A2FE852C0F514800786029 /* Label.swift */; };
@@ -26,8 +27,6 @@
 		A6ADC9632C06CB5200F8209C /* XDKAWSSSO in Frameworks */ = {isa = PBXBuildFile; productRef = A6ADC9622C06CB5200F8209C /* XDKAWSSSO */; };
 		A6ADC9652C06CB5200F8209C /* XDKKeychain in Frameworks */ = {isa = PBXBuildFile; productRef = A6ADC9642C06CB5200F8209C /* XDKKeychain */; };
 		A6ADC9672C06CB5200F8209C /* XDKLogging in Frameworks */ = {isa = PBXBuildFile; productRef = A6ADC9662C06CB5200F8209C /* XDKLogging */; };
-		A6ADC9692C06CB5200F8209C /* XDKMOC in Frameworks */ = {isa = PBXBuildFile; productRef = A6ADC9682C06CB5200F8209C /* XDKMOC */; };
-		A6ADC96B2C06CB5200F8209C /* XDKWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = A6ADC96A2C06CB5200F8209C /* XDKWebSocket */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,8 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6ADC96B2C06CB5200F8209C /* XDKWebSocket in Frameworks */,
-				A6ADC9692C06CB5200F8209C /* XDKMOC in Frameworks */,
+				A64D67F72C3DB7E900DE90ED /* XDKWebsocket in Frameworks */,
 				A6ADC9672C06CB5200F8209C /* XDKLogging in Frameworks */,
 				A6ADC9632C06CB5200F8209C /* XDKAWSSSO in Frameworks */,
 				A6ADC9612C06CB5200F8209C /* XDK in Frameworks */,
@@ -103,6 +101,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A64D67F52C3DB7D300DE90ED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A6AAC1062C06C28300D69005 = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +116,7 @@
 				A6AAC13D2C06C2BE00D69005 /* Sources */,
 				A6AAC13E2C06C2C500D69005 /* Tests */,
 				A6AAC1102C06C28300D69005 /* Products */,
+				A64D67F52C3DB7D300DE90ED /* Frameworks */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 1;
@@ -225,8 +231,7 @@
 				A6ADC9622C06CB5200F8209C /* XDKAWSSSO */,
 				A6ADC9642C06CB5200F8209C /* XDKKeychain */,
 				A6ADC9662C06CB5200F8209C /* XDKLogging */,
-				A6ADC9682C06CB5200F8209C /* XDKMOC */,
-				A6ADC96A2C06CB5200F8209C /* XDKWebSocket */,
+				A64D67F62C3DB7E900DE90ED /* XDKWebsocket */,
 			);
 			productName = "spatial-aws";
 			productReference = A6AAC10F2C06C28300D69005 /* SpatialAWS.app */;
@@ -276,7 +281,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					A6AAC10E2C06C28300D69005 = {
 						CreatedOnToolsVersion = 15.4;
@@ -300,7 +305,7 @@
 			);
 			mainGroup = A6AAC1062C06C28300D69005;
 			packageReferences = (
-				A6A2FE872C0F641300786029 /* XCRemoteSwiftPackageReference "xdk" */,
+				A64D67F42C3DB47600DE90ED /* XCLocalSwiftPackageReference "../xdk" */,
 			);
 			preferredProjectObjectVersion = 73;
 			productRefGroup = A6AAC1102C06C28300D69005 /* Products */;
@@ -425,6 +430,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -451,6 +457,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -488,6 +495,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -506,6 +514,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Release;
 		};
@@ -519,6 +528,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 4497QJSAD3;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -548,7 +558,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 			};
 			name = Debug;
@@ -563,6 +573,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 4497QJSAD3;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -592,7 +603,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 			};
 			name = Release;
@@ -600,10 +611,10 @@
 		A6AAC1382C06C28400D69005 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 4497QJSAD3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Resources/Info.gen.plist;
@@ -625,10 +636,10 @@
 		A6AAC1392C06C28400D69005 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 4497QJSAD3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Resources/Info.gen.plist;
@@ -650,10 +661,10 @@
 		A6AAC13B2C06C28400D69005 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 4497QJSAD3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Resources/Info.gen.plist;
@@ -676,10 +687,10 @@
 		A6AAC13C2C06C28400D69005 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 4497QJSAD3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Resources/Info.gen.plist;
@@ -740,18 +751,19 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		A6A2FE872C0F641300786029 /* XCRemoteSwiftPackageReference "xdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/walteh/xdk.git";
-			requirement = {
-				kind = exactVersion;
-				version = 0.40.0;
-			};
+/* Begin XCLocalSwiftPackageReference section */
+		A64D67F42C3DB47600DE90ED /* XCLocalSwiftPackageReference "../xdk" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../xdk;
 		};
-/* End XCRemoteSwiftPackageReference section */
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A64D67F62C3DB7E900DE90ED /* XDKWebsocket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A64D67F42C3DB47600DE90ED /* XCLocalSwiftPackageReference "../xdk" */;
+			productName = XDKWebsocket;
+		};
 		A6ADC9602C06CB5200F8209C /* XDK */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = XDK;
@@ -767,14 +779,6 @@
 		A6ADC9662C06CB5200F8209C /* XDKLogging */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = XDKLogging;
-		};
-		A6ADC9682C06CB5200F8209C /* XDKMOC */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = XDKMOC;
-		};
-		A6ADC96A2C06CB5200F8209C /* XDKWebSocket */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = XDKWebSocket;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

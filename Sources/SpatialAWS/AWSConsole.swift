@@ -40,7 +40,7 @@ struct AWSConsoleView: View {
 
                 MenuView3(
                     title: "Role",
-                    selection: self.$userSession.currentAccountOrFirst.role,
+                    selection: self.$userSession.role,
                     options: self.userSession.currentAccountOrFirst.roles,
                     format: {
                         //                    "\($0.accountName) - \($0.role?.roleName ?? "unknown")"
@@ -74,7 +74,6 @@ struct AWSConsoleView_Previews: PreviewProvider {
                 self.parent = parent
             }
 
-            // Add methods to manage dynamic switching here if needed
         }
 
         func makeCoordinator() -> Coordinator {
@@ -83,26 +82,32 @@ struct AWSConsoleView_Previews: PreviewProvider {
 
         func makeNSView(context _: Context) -> NSView {
             let container = NSView()
-            let curr = userSession.currentWebview()
-            container.addSubview(curr) // Assume model.currentWebView is your initial WKWebView
+			
+			if             let curr = userSession.currentWebview() {
+				container.addSubview(curr)
+				
+				curr.frame = CGRect(x: 0, y: 0, width: container.bounds.width, height: container.bounds.height)
+				curr.autoresizingMask = [.width, .height]
+			}
+			
 
-            // Configure constraints or frame to ensure the web view fills the container
-            curr.frame = container.bounds
-            curr.autoresizingMask = [.width, .height]
 
             return container
         }
 
         func updateNSView(_ nsView: NSView, context _: Context) {
-            let curr = userSession.currentWebview()
+           
 
             // Ensure the container only contains the current web view
-            nsView.subviews.forEach { $0.removeFromSuperview() }
-            nsView.addSubview(curr)
+			if  let curr = userSession.currentWebview() {
+				nsView.subviews.forEach { $0.removeFromSuperview() }
 
-            // Update frame or constraints if necessary
-            curr.frame = nsView.bounds
-            curr.autoresizingMask = [.width, .height]
+				nsView.addSubview(curr)
+				
+				curr.frame = CGRect(x: 0, y: 0, width: nsView.bounds.width, height: nsView.bounds.height)
+				curr.autoresizingMask = [.width, .height]
+			}
+
         }
     }
 #else
@@ -125,27 +130,29 @@ struct AWSConsoleView_Previews: PreviewProvider {
 
         func makeUIView(context _: Context) -> UIView {
             let container = UIView()
-            let curr = userSession.currentWebview()
+			if let curr = userSession.currentWebview() {
+				container.addSubview(curr)
 
-            container.addSubview(curr) // Assume model.currentWebView is your initial WKWebView
-
-            // Configure constraints or frame to ensure the web view fills the container
-            curr.frame = container.bounds
-            curr.autoresizingMask = .init([.flexibleWidth, .flexibleHeight])
+				// Configure constraints or frame to ensure the web view fills the container
+				curr.frame = CGRect(x: 0, y: 0, width: container.bounds.width, height: container.bounds.height)
+				curr.autoresizingMask = .init([.flexibleWidth, .flexibleHeight])
+			}
 
             return container
         }
 
         func updateUIView(_ nsView: UIView, context _: Context) {
-            let curr = userSession.currentWebview()
+           
+			if  let curr = userSession.currentWebview() {
+				nsView.subviews.forEach { $0.removeFromSuperview() }
 
-            // Ensure the container only contains the current web view
-            nsView.subviews.forEach { $0.removeFromSuperview() }
-            nsView.addSubview(curr)
+				nsView.addSubview(curr)
 
-            // Update frame or constraints if necessary
-            curr.frame = nsView.bounds
-            curr.autoresizingMask = .init([.flexibleWidth, .flexibleHeight])
+				// Update frame or constraints if necessary
+				curr.frame = CGRect(x: 0, y: 0, width: nsView.bounds.width, height: nsView.bounds.height)
+				curr.autoresizingMask = .init([.flexibleWidth, .flexibleHeight])
+			}
+  
         }
     }
 #endif

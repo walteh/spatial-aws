@@ -144,7 +144,7 @@ struct MenuSlider: SwiftUI.View {
 
 #if os(iOS)
     import UIKit
-
+@MainActor
     class FeedbackGenerator {
         static let shared = FeedbackGenerator()
         private var feedbackGenerator: UIImpactFeedbackGenerator?
@@ -161,7 +161,7 @@ struct MenuSlider: SwiftUI.View {
     }
 #else
     class FeedbackGenerator {
-        static let shared = FeedbackGenerator()
+		@MainActor static let shared = FeedbackGenerator()
 
         func triggerFeedback() {
             print("trigger")

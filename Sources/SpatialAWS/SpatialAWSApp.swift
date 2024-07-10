@@ -14,7 +14,7 @@ import AWSSSOOIDC
 import ClientRuntime
 import Combine
 import Logging
-import XDK
+@preconcurrency import XDK
 import XDKAWSSSO
 import XDKKeychain
 import XDKLogging
@@ -82,30 +82,6 @@ struct SpatialAWSApp: App {
         }
     }
 
-    //	func scene(_ scene: UIScene,
-    //			   willConnectTo session: UISceneSession,
-    //			   options connectionOptions: UIScene.ConnectionOptions) {
-//
-//
-    //		// Determine who sent the URL.
-    //		if let urlContext = connectionOptions.urlContexts.first {
-//
-//
-    //			let sendingAppID = urlContext.options.sourceApplication
-    //			let url = urlContext.url
-    //			print("source application = \(sendingAppID ?? "Unknown")")
-    //			print("url = \(url)")
-//
-//
-    //			// Process the URL similarly to the UIApplicationDelegate example.
-    //		}
-//
-//
-    //		/*
-    //		 *
-    //		 */
-    //	}
-
     var body: some Scene {
         WindowGroup {
             if XDK.IS_BEING_UNIT_TESTED() {
@@ -145,40 +121,47 @@ public extension View {
     }
 }
 
-private struct AuthenticationContextKey: EnvironmentKey {
-    static let defaultValue: any XDK.AuthenticationAPI = XDK.NoopAuthentication()
-}
-
-private struct StorageContextKey: EnvironmentKey {
-    static let defaultValue: any XDK.StorageAPI = XDK.NoopStorage()
-}
-
-private struct AppSessionContextKey: EnvironmentKey {
-    static let defaultValue: any XDK.AppSessionAPI = XDK.NoopAppSession()
-}
-
-private struct ConfigContextKey: EnvironmentKey {
-    static let defaultValue: any XDK.ConfigAPI = XDK.NoopConfig()
-}
-
 extension EnvironmentValues {
-    var authentication: any XDK.AuthenticationAPI {
-        get { self[AuthenticationContextKey.self] }
-        set { self[AuthenticationContextKey.self] = newValue }
-    }
-
-    var appSession: any XDK.AppSessionAPI {
-        get { self[AppSessionContextKey.self] }
-        set { self[AppSessionContextKey.self] = newValue }
-    }
-
-    var storage: any XDK.StorageAPI {
-        get { self[StorageContextKey.self] }
-        set { self[StorageContextKey.self] = newValue }
-    }
-
-    var config: any XDK.ConfigAPI {
-        get { self[ConfigContextKey.self] }
-        set { self[ConfigContextKey.self] = newValue }
-    }
+	@Entry var authentication: any XDK.AuthenticationAPI = XDK.NoopAuthentication()
+	@Entry var appSession: any XDK.AppSessionAPI = XDK.NoopAppSession()
+	@Entry var storage: any XDK.StorageAPI = XDK.NoopStorage()
+	@Entry var config: any XDK.ConfigAPI = XDK.NoopConfig()
 }
+//
+//private struct AuthenticationContextKey: EnvironmentKey {
+//    static let defaultValue: any XDK.AuthenticationAPI = XDK.NoopAuthentication()
+//}
+//
+//private struct StorageContextKey: EnvironmentKey {
+//    static let defaultValue: any XDK.StorageAPI = XDK.NoopStorage()
+//}
+//
+//private struct AppSessionContextKey: EnvironmentKey {
+//	@MainActor static let defaultValue: any XDK.AppSessionAPI = XDK.NoopAppSession()
+//}
+//
+//private struct ConfigContextKey: EnvironmentKey {
+//    static let defaultValue: any XDK.ConfigAPI = XDK.NoopConfig()
+//}
+//
+//extension EnvironmentValues {
+//    var authentication: any XDK.AuthenticationAPI {
+//        get { self[AuthenticationContextKey.self] }
+//        set { self[AuthenticationContextKey.self] = newValue }
+//    }
+//
+//    var appSession: any XDK.AppSessionAPI {
+//        get { self[AppSessionContextKey.self] }
+//        set { self[AppSessionContextKey.self] = newValue }
+//    }
+//
+//    var storage: any XDK.StorageAPI {
+//        get { self[StorageContextKey.self] }
+//        set { self[StorageContextKey.self] = newValue }
+//    }
+//
+//    var config: any XDK.ConfigAPI {
+//        get { self[ConfigContextKey.self] }
+//        set { self[ConfigContextKey.self] = newValue }
+//    }
+//}
