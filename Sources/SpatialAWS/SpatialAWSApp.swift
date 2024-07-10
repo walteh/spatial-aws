@@ -14,7 +14,7 @@ import AWSSSOOIDC
 import ClientRuntime
 import Combine
 import Logging
-@preconcurrency import XDK
+import XDK
 import XDKAWSSSO
 import XDKKeychain
 import XDKLogging
@@ -32,7 +32,7 @@ struct SpatialAWSApp: App {
 	let errorHandler: any XDK.ErrorHandler
 
 	let keychainGroup = "\(XDK.getTeamID()!).main.keychain.group"
-	let keychainStorageVersion = "1.0.19"
+	let keychainStorageVersion = "1.0.18"
 
 	public init() {
 		if !XDK.IS_BEING_UNIT_TESTED() {

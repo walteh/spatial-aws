@@ -24,7 +24,6 @@ struct ContentView: View {
 			if self.isUserLoggedIn {
 				HStack {
 					AWSConsoleView()
-//						.edgesIgnoringSafeArea(.all)
 				}
 			} else {
 				SSOSignInView()

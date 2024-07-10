@@ -13,7 +13,7 @@ import XDKAWSSSO
 
 struct AWSConsoleView: View {
 	@EnvironmentObject var userSession: WebSessionManager
-	
+
 	@State var expiry: Date?
 
 	var body: some View {
@@ -22,7 +22,7 @@ struct AWSConsoleView: View {
 			TopBar(
 				selectedAccount: self.$userSession.currentAccount,
 				selectedRole: self.$userSession.role,
-				expiration: self.$expiry,
+				expiration: self.$userSession.displayExpiry,
 				accounts: self.userSession.accountsList.accounts,
 				roles: self.userSession.currentAccountOrFirst.roles,
 				onRefresh: {
@@ -34,75 +34,10 @@ struct AWSConsoleView: View {
 //				.edgesIgnoringSafeArea(.all)
 		}
 		.edgesIgnoringSafeArea(.bottom)
-		.onChange(of: userSession.currentWebSession) { newv, _ in
-			expiry = newv!.expiry
-		}
-	}
-}
-
-struct TopBar: View {
-	@Binding var selectedAccount: AccountInfo?
-	@Binding var selectedRole: RoleInfo?
-	@Binding var expiration: Date?
-	@State private var isAccountMenuOpen = false
-	@State private var isRoleMenuOpen = false
-
-	var accounts: [AccountInfo]
-	var roles: [RoleInfo]
-	var onRefresh: () -> Void
-
-	var body: some View {
-		HStack {
-			AccountPicker(selection: self.$selectedAccount, accounts: self.accounts)
-
-			Divider()
-
-			RolePicker(selection: self.$selectedRole, roles: self.roles)
-//			Button(action: self.onRefresh) {
-//				Image(systemName: "arrow.clockwise")
-//			}
-//			.padding(.leading)
-
-			Spacer()
-			
-			TimerView(viewModel: TimerViewModel(endDate: $expiration))
-
-
-			Text("Spatial AWS")
-				.font(.headline)
-		}
-		.padding(.horizontal)
-		.frame(height: 40)
-		.background(Color(NSColor.windowBackgroundColor))
-		.border(Color(NSColor.separatorColor), width: 1)
-	}
-}
-
-struct AccountPicker: View {
-	@Binding var selection: AccountInfo?
-	let accounts: [AccountInfo]
-
-	var body: some View {
-		Picker("Account", selection: self.$selection) {
-			ForEach(self.accounts, id: \.accountID) { account in
-				Text(account.accountName).tag(account)
-			}
-		}
-		.frame(width: 200)
-	}
-}
-
-struct RolePicker: View {
-	@Binding var selection: RoleInfo?
-	let roles: [RoleInfo]
-
-	var body: some View {
-		Picker("Role", selection: self.$selection) {
-			ForEach(self.roles, id: \.roleName) { role in
-				Text(role.roleName).tag(role)
-			}
-		}
-		.frame(width: 200)
+//		.onAppearAndChange(of: userSession.displayExpiry) {o, n in
+//			x.log(.info).info("what", n?.expiry?.formatted()).info("role", n?.lastSuccessfulRole?.roleName).send("sending")
+//			expiry = n?.expiry
+//		}
 	}
 }
 

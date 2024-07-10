@@ -28,22 +28,21 @@ public class WebSessionInstance: NSObject, ObservableObject {
 	public let webview: WKWebView
 	public let parent: WebSessionManager
 	public var lastSuccessfulRole: RoleInfo?
-	public var expiry: Date?
-
+	public var expiry: Date? = nil
 	public var isLoggedIn: Bool = false
 
 	public func rebuildURL() async {
 		var err: Error? = nil
 
-		guard let (url, expiry) = await parent.regenerate(account: account, isLoggedIn: self.lastSuccessfulRole != nil && self.lastSuccessfulRole == self.parent.role).to(&err) else {
+		guard let (url, exp) = await parent.regenerate(account: account, isLoggedIn: self.lastSuccessfulRole != nil && self.lastSuccessfulRole?.roleName == self.parent.role?.roleName).to(&err) else {
 			XDK.Log(.error).err(err).send("error generating console url")
 			return
 		}
 
 		self.isLoggedIn = true
 		self.lastSuccessfulRole = self.parent.role
-		self.expiry = expiry
-		
+		self.parent.displayExpiry = exp
+		self.expiry = exp
 		guard let _ = webview.load(URLRequest(url: url)) else {
 			XDK.Log(.error).send("error loading webview")
 			return
@@ -98,8 +97,8 @@ public class WebSessionManager: ObservableObject {
 
 	@Published public var accessToken: SecureAWSSSOAccessToken? = nil
 	@Published public var accountsList: AccountInfoList = .init(accounts: [])
-
 	@Published public var accounts: [AccountInfo: WebSessionInstance] = [:]
+	@Published public var displayExpiry: Date? = nil
 
 	@Published public var role: RoleInfo? = nil {
 		didSet {
@@ -130,7 +129,7 @@ public class WebSessionManager: ObservableObject {
 		self.accounts[account] = viewer
 	}
 
-	public func regenerate(account: AccountInfo, isLoggedIn: Bool) async -> Result<(URL,Date), Error> {
+	public func regenerate(account: AccountInfo, isLoggedIn: Bool) async -> Result<(URL, Date), Error> {
 		if self.accessToken == nil {
 			return .failure(x.error("oops"))
 		}
@@ -157,7 +156,11 @@ public class WebSessionManager: ObservableObject {
 
 	let storageAPI: any XDK.StorageAPI
 
-	@Published public var currentAccount: AccountInfo? = nil
+	@Published public var currentAccount: AccountInfo? = nil {
+		didSet {
+			self.displayExpiry = self.accounts[self.currentAccountOrFirst]?.expiry
+		}
+	}
 
 	public var currentAccountOrFirst: AccountInfo {
 		get {

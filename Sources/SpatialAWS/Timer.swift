@@ -5,53 +5,52 @@
 //  Created by walter on 7/10/24.
 //
 
-
-
-import Foundation
 import Combine
-
 import Foundation
-import Combine
+import XDK
 
-class TimerViewModel: ObservableObject {
-	@Binding var endDate: Date?
-	@Published var timeRemaining: TimeInterval = 0
-
-	private var timer: AnyCancellable?
-
-	init(endDate: Binding<Date?>) {
-		self._endDate = endDate
-		
-		self.timeRemaining = endDate.wrappedValue?.timeIntervalSinceNow ?? 0
-		startTimer()
-	}
-
-	private func startTimer() {
-		timer = Timer.publish(every: 1, on: .main, in: .common)
-			.autoconnect()
-			.sink { [weak self] _ in
-				self?.updateTimeRemaining()
-			}
-	}
-
-	private func updateTimeRemaining() {
-		timeRemaining = endDate?.timeIntervalSinceNow ?? 0
-		if timeRemaining <= 0 {
-			timer?.cancel()
-		}
-	}
-}
-
+class TimerViewModel: ObservableObject {}
 
 import SwiftUI
 
 struct TimerView: View {
-	@ObservedObject var viewModel: TimerViewModel
+	@Binding var endDate: Date?
+	@State var timeRemaining: TimeInterval = 0
+
+	@State private var timer: AnyCancellable?
+
+	init(endDate: Binding<Date?>) {
+		self._endDate = endDate
+
+		self.timeRemaining = endDate.wrappedValue?.timeIntervalSinceNow ?? 0
+
+		self.startTimer()
+	}
+
+	private func startTimer() {
+		self.timer = Timer.publish(every: 1, on: .main, in: .common)
+			.autoconnect()
+			.sink { _ in
+				self.updateTimeRemaining()
+			}
+	}
+
+	private func updateTimeRemaining() {
+		Log(.info).meta(["time": .string(self.endDate?.formatted() ?? "none"), "left": .string(self.endDate?.timeIntervalSinceNow.description ?? "none")]).send("up")
+		self.timeRemaining = self.endDate?.timeIntervalSinceNow ?? 1
+		if self.timeRemaining <= 0 {
+			self.timer?.cancel()
+		}
+	}
 
 	var body: some View {
-		Text(timeString(from: viewModel.timeRemaining))
+		Text(self.timeString(from: self.timeRemaining))
 			.font(.largeTitle)
 			.padding()
+			.monospaced()
+			.onAppearAndChange(of: self.endDate) { _, n in
+				self.timeRemaining = n?.timeIntervalSinceNow ?? 0
+			}
 	}
 
 	private func timeString(from timeInterval: TimeInterval) -> String {

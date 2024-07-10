@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		A64D67F72C3DB7E900DE90ED /* XDKWebsocket in Frameworks */ = {isa = PBXBuildFile; productRef = A64D67F62C3DB7E900DE90ED /* XDKWebsocket */; };
 		A64D67F92C3EF71F00DE90ED /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64D67F82C3EF71A00DE90ED /* Timer.swift */; };
+		A64D67FB2C3EF93100DE90ED /* TobBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64D67FA2C3EF92E00DE90ED /* TobBar.swift */; };
+		A64D67FD2C3F152A00DE90ED /* Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64D67FC2C3F152800DE90ED /* Ticker.swift */; };
+		A64D67FF2C3F154E00DE90ED /* NumberAnimate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64D67FE2C3F154E00DE90ED /* NumberAnimate.swift */; };
 		A670B8F12C08C12D009CEC87 /* WebSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A670B8F02C08C12D009CEC87 /* WebSession.swift */; };
 		A6963EC32C0E23CE00CA55F2 /* MenuSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6963EC22C0E23CE00CA55F2 /* MenuSlider.swift */; };
 		A6A2FE862C0F514800786029 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A2FE852C0F514800786029 /* Label.swift */; };
@@ -20,7 +23,6 @@
 		A6AAC1252C06C28400D69005 /* SpatialAWSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AAC1242C06C28400D69005 /* SpatialAWSTests.swift */; };
 		A6AAC12F2C06C28400D69005 /* SpatialAWSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AAC12E2C06C28400D69005 /* SpatialAWSUITests.swift */; };
 		A6AAC1312C06C28400D69005 /* SpatialAWSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AAC1302C06C28400D69005 /* SpatialAWSUITestsLaunchTests.swift */; };
-		A6ADC95B2C06C92300F8209C /* Aside.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ADC9572C06C92300F8209C /* Aside.swift */; };
 		A6ADC95C2C06C92300F8209C /* AWSMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ADC9582C06C92300F8209C /* AWSMenu.swift */; };
 		A6ADC95D2C06C92300F8209C /* SSOSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ADC9592C06C92300F8209C /* SSOSignIn.swift */; };
 		A6ADC95E2C06C92300F8209C /* AWSConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ADC95A2C06C92300F8209C /* AWSConsole.swift */; };
@@ -49,6 +51,9 @@
 
 /* Begin PBXFileReference section */
 		A64D67F82C3EF71A00DE90ED /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		A64D67FA2C3EF92E00DE90ED /* TobBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TobBar.swift; sourceTree = "<group>"; };
+		A64D67FC2C3F152800DE90ED /* Ticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticker.swift; sourceTree = "<group>"; };
+		A64D67FE2C3F154E00DE90ED /* NumberAnimate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberAnimate.swift; sourceTree = "<group>"; };
 		A670B8F02C08C12D009CEC87 /* WebSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSession.swift; sourceTree = "<group>"; };
 		A6963EC22C0E23CE00CA55F2 /* MenuSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSlider.swift; sourceTree = "<group>"; };
 		A6A2FE852C0F514800786029 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
@@ -64,7 +69,6 @@
 		A6AAC12A2C06C28400D69005 /* SpatialAWSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpatialAWSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6AAC12E2C06C28400D69005 /* SpatialAWSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpatialAWSUITests.swift; sourceTree = "<group>"; };
 		A6AAC1302C06C28400D69005 /* SpatialAWSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpatialAWSUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		A6ADC9572C06C92300F8209C /* Aside.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aside.swift; sourceTree = "<group>"; };
 		A6ADC9582C06C92300F8209C /* AWSMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSMenu.swift; sourceTree = "<group>"; };
 		A6ADC9592C06C92300F8209C /* SSOSignIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSOSignIn.swift; sourceTree = "<group>"; };
 		A6ADC95A2C06C92300F8209C /* AWSConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSConsole.swift; sourceTree = "<group>"; };
@@ -136,8 +140,10 @@
 		A6AAC1112C06C28300D69005 /* SpatialAWS */ = {
 			isa = PBXGroup;
 			children = (
+				A64D67FC2C3F152800DE90ED /* Ticker.swift */,
+				A64D67FE2C3F154E00DE90ED /* NumberAnimate.swift */,
+				A64D67FA2C3EF92E00DE90ED /* TobBar.swift */,
 				A64D67F82C3EF71A00DE90ED /* Timer.swift */,
-				A6ADC9572C06C92300F8209C /* Aside.swift */,
 				A6ADC95A2C06C92300F8209C /* AWSConsole.swift */,
 				A6ADC9582C06C92300F8209C /* AWSMenu.swift */,
 				A6ADC9592C06C92300F8209C /* SSOSignIn.swift */,
@@ -354,14 +360,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6ADC95C2C06C92300F8209C /* AWSMenu.swift in Sources */,
+				A64D67FD2C3F152A00DE90ED /* Ticker.swift in Sources */,
 				A6AAC1152C06C28300D69005 /* ContentView.swift in Sources */,
 				A670B8F12C08C12D009CEC87 /* WebSession.swift in Sources */,
 				A6ADC95D2C06C92300F8209C /* SSOSignIn.swift in Sources */,
-				A6ADC95B2C06C92300F8209C /* Aside.swift in Sources */,
 				A6A2FE892C0F815900786029 /* Button.swift in Sources */,
 				A6A2FE862C0F514800786029 /* Label.swift in Sources */,
 				A6AAC1132C06C28300D69005 /* SpatialAWSApp.swift in Sources */,
 				A6963EC32C0E23CE00CA55F2 /* MenuSlider.swift in Sources */,
+				A64D67FB2C3EF93100DE90ED /* TobBar.swift in Sources */,
+				A64D67FF2C3F154E00DE90ED /* NumberAnimate.swift in Sources */,
 				A64D67F92C3EF71F00DE90ED /* Timer.swift in Sources */,
 				A6ADC95E2C06C92300F8209C /* AWSConsole.swift in Sources */,
 			);
