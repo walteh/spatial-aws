@@ -13,6 +13,8 @@ import XDKAWSSSO
 
 struct AWSConsoleView: View {
 	@EnvironmentObject var userSession: WebSessionManager
+	
+	@State var expiry: Date?
 
 	var body: some View {
 		VStack(spacing: 0) {
@@ -20,6 +22,7 @@ struct AWSConsoleView: View {
 			TopBar(
 				selectedAccount: self.$userSession.currentAccount,
 				selectedRole: self.$userSession.role,
+				expiration: self.$expiry,
 				accounts: self.userSession.accountsList.accounts,
 				roles: self.userSession.currentAccountOrFirst.roles,
 				onRefresh: {
@@ -31,12 +34,16 @@ struct AWSConsoleView: View {
 //				.edgesIgnoringSafeArea(.all)
 		}
 		.edgesIgnoringSafeArea(.bottom)
+		.onChange(of: userSession.currentWebSession) { newv, _ in
+			expiry = newv!.expiry
+		}
 	}
 }
 
 struct TopBar: View {
 	@Binding var selectedAccount: AccountInfo?
 	@Binding var selectedRole: RoleInfo?
+	@Binding var expiration: Date?
 	@State private var isAccountMenuOpen = false
 	@State private var isRoleMenuOpen = false
 
@@ -57,6 +64,9 @@ struct TopBar: View {
 //			.padding(.leading)
 
 			Spacer()
+			
+			TimerView(viewModel: TimerViewModel(endDate: $expiration))
+
 
 			Text("Spatial AWS")
 				.font(.headline)

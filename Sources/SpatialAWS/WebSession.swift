@@ -28,20 +28,22 @@ public class WebSessionInstance: NSObject, ObservableObject {
 	public let webview: WKWebView
 	public let parent: WebSessionManager
 	public var lastSuccessfulRole: RoleInfo?
+	public var expiry: Date?
 
 	public var isLoggedIn: Bool = false
 
 	public func rebuildURL() async {
 		var err: Error? = nil
 
-		guard let url = await parent.regenerate(account: account, isLoggedIn: self.lastSuccessfulRole != nil && self.lastSuccessfulRole == self.parent.role).to(&err) else {
+		guard let (url, expiry) = await parent.regenerate(account: account, isLoggedIn: self.lastSuccessfulRole != nil && self.lastSuccessfulRole == self.parent.role).to(&err) else {
 			XDK.Log(.error).err(err).send("error generating console url")
 			return
 		}
 
 		self.isLoggedIn = true
 		self.lastSuccessfulRole = self.parent.role
-
+		self.expiry = expiry
+		
 		guard let _ = webview.load(URLRequest(url: url)) else {
 			XDK.Log(.error).send("error loading webview")
 			return
@@ -103,7 +105,7 @@ public class WebSessionManager: ObservableObject {
 		didSet {
 			XDK.Log(.info).info("role updated", self.role).send("okay")
 			Task {
-				await self.currentWebSession()?.rebuildURL()
+				await self.currentWebSession?.rebuildURL()
 			}
 		}
 		willSet {}
@@ -128,14 +130,14 @@ public class WebSessionManager: ObservableObject {
 		self.accounts[account] = viewer
 	}
 
-	public func regenerate(account: AccountInfo, isLoggedIn: Bool) async -> Result<URL, Error> {
+	public func regenerate(account: AccountInfo, isLoggedIn: Bool) async -> Result<(URL,Date), Error> {
 		if self.accessToken == nil {
 			return .failure(x.error("oops"))
 		}
 		let tkn = self.accessToken!
 		Log(.info).meta(["account": .string(account.accountName), "role": .string(self.role?.roleName ?? "none")]).send("regenerating")
 		return
-			await XDKAWSSSO.generateAWSConsoleURLWithDefaultClient(
+			await XDKAWSSSO.generateAWSConsoleURLWithExpiryWithDefaultClient(
 				account: account,
 				role: self.role ?? account.roles.first!,
 				managedRegion: self.managedRegionService(),
@@ -171,10 +173,10 @@ public class WebSessionManager: ObservableObject {
 	}
 
 	public func currentWebview() -> WKWebView? {
-		return self.currentWebSession()?.webview
+		return self.currentWebSession?.webview
 	}
 
-	public func currentWebSession() -> WebSessionInstance? {
+	public var currentWebSession: WebSessionInstance? {
 		let wv = self.accounts[self.currentAccountOrFirst]
 		return wv
 	}

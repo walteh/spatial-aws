@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A64D67F72C3DB7E900DE90ED /* XDKWebsocket in Frameworks */ = {isa = PBXBuildFile; productRef = A64D67F62C3DB7E900DE90ED /* XDKWebsocket */; };
+		A64D67F92C3EF71F00DE90ED /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64D67F82C3EF71A00DE90ED /* Timer.swift */; };
 		A670B8F12C08C12D009CEC87 /* WebSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A670B8F02C08C12D009CEC87 /* WebSession.swift */; };
 		A6963EC32C0E23CE00CA55F2 /* MenuSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6963EC22C0E23CE00CA55F2 /* MenuSlider.swift */; };
 		A6A2FE862C0F514800786029 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A2FE852C0F514800786029 /* Label.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A64D67F82C3EF71A00DE90ED /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		A670B8F02C08C12D009CEC87 /* WebSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSession.swift; sourceTree = "<group>"; };
 		A6963EC22C0E23CE00CA55F2 /* MenuSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSlider.swift; sourceTree = "<group>"; };
 		A6A2FE852C0F514800786029 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 		A6AAC1112C06C28300D69005 /* SpatialAWS */ = {
 			isa = PBXGroup;
 			children = (
+				A64D67F82C3EF71A00DE90ED /* Timer.swift */,
 				A6ADC9572C06C92300F8209C /* Aside.swift */,
 				A6ADC95A2C06C92300F8209C /* AWSConsole.swift */,
 				A6ADC9582C06C92300F8209C /* AWSMenu.swift */,
@@ -359,6 +362,7 @@
 				A6A2FE862C0F514800786029 /* Label.swift in Sources */,
 				A6AAC1132C06C28300D69005 /* SpatialAWSApp.swift in Sources */,
 				A6963EC32C0E23CE00CA55F2 /* MenuSlider.swift in Sources */,
+				A64D67F92C3EF71F00DE90ED /* Timer.swift in Sources */,
 				A6ADC95E2C06C92300F8209C /* AWSConsole.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
