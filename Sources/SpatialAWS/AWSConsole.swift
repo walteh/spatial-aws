@@ -12,124 +12,118 @@ import XDK
 import XDKAWSSSO
 
 struct AWSConsoleView: View {
-    @EnvironmentObject var userSession: WebSessionManager
+	@EnvironmentObject var userSession: WebSessionManager
 
-    let regions: [String] = ["us-east-1", "us-east-2"]
+	let regions: [String] = ["us-east-1", "us-east-2"]
 
-    var body: some View {
-        ZStack {
-            VStack {
-                WebViewWrapper()
-                    .edgesIgnoringSafeArea(.all)
-            }
+	var body: some View {
+		ZStack {
+			VStack {
+				WebViewWrapper()
+					.edgesIgnoringSafeArea(.all)
+			}
 
-            ZStack {
-                MenuView3(
-                    title: "Account",
-                    selection: self.$userSession.currentAccount,
-                    options: self.userSession.accountsList.accounts,
-                    format: {
-                        //                    "\($0.accountName) - \($0.role?.roleName ?? "unknown")"
-                        "\($0.accountName)"
-                    },
-                    offset: .init(width: 0, height: 0)
-                )
-//                .edgesIgnoringSafeArea(.all)
+			ZStack {
+				MenuView3(
+					title: "Account",
+					selection: self.$userSession.currentAccount,
+					options: self.userSession.accountsList.accounts,
+					format: {
+						//                    "\($0.accountName) - \($0.role?.roleName ?? "unknown")"
+						"\($0.accountName)"
+					},
+					offset: .init(width: 0, height: 0)
+				)
+				//                .edgesIgnoringSafeArea(.all)
 
-                Spacer()
+				Spacer()
 
-                MenuView3(
-                    title: "Role",
-                    selection: self.$userSession.role,
-                    options: self.userSession.currentAccountOrFirst.roles,
-                    format: {
-                        //                    "\($0.accountName) - \($0.role?.roleName ?? "unknown")"
-                        "\($0.roleName)"
-                    },
-                    offset: .init(width: -120, height: 0)
-                )
+				MenuView3(
+					title: "Role",
+					selection: self.$userSession.role,
+					options: self.userSession.currentAccountOrFirst.roles,
+					format: {
+						//                    "\($0.accountName) - \($0.role?.roleName ?? "unknown")"
+						"\($0.roleName)"
+					},
+					offset: .init(width: -120, height: 0)
+				)
 
-//                .edgesIgnoringSafeArea(.all)
-            }
-        }
-        .background(Color.blue)
-    }
+				//                .edgesIgnoringSafeArea(.all)
+			}
+		}
+		.background(Color.blue)
+	}
 }
 
 // preview
 struct AWSConsoleView_Previews: PreviewProvider {
-    static var previews: some View {
-        AWSConsoleView()
-    }
+	static var previews: some View {
+		AWSConsoleView()
+	}
 }
 
 #if os(macOS)
-    struct WebViewWrapper: NSViewRepresentable {
-        @EnvironmentObject var userSession: WebSessionManager
+	struct WebViewWrapper: NSViewRepresentable {
+		@EnvironmentObject var userSession: WebSessionManager
 
-        class Coordinator: NSObject {
-            var parent: WebViewWrapper
+		class Coordinator: NSObject {
+			var parent: WebViewWrapper
 
-            init(_ parent: WebViewWrapper) {
-                self.parent = parent
-            }
+			init(_ parent: WebViewWrapper) {
+				self.parent = parent
+			}
+		}
 
-        }
+		func makeCoordinator() -> Coordinator {
+			Coordinator(self)
+		}
 
-        func makeCoordinator() -> Coordinator {
-            Coordinator(self)
-        }
+		func makeNSView(context _: Context) -> NSView {
+			let container = NSView()
 
-        func makeNSView(context _: Context) -> NSView {
-            let container = NSView()
-			
-			if             let curr = userSession.currentWebview() {
+			if let curr = userSession.currentWebview() {
 				container.addSubview(curr)
-				
+
 				curr.frame = CGRect(x: 0, y: 0, width: container.bounds.width, height: container.bounds.height)
 				curr.autoresizingMask = [.width, .height]
 			}
-			
 
+			return container
+		}
 
-            return container
-        }
-
-        func updateNSView(_ nsView: NSView, context _: Context) {
-           
-
-            // Ensure the container only contains the current web view
-			if  let curr = userSession.currentWebview() {
+		func updateNSView(_ nsView: NSView, context _: Context) {
+			// Ensure the container only contains the current web view
+			if let curr = userSession.currentWebview() {
 				nsView.subviews.forEach { $0.removeFromSuperview() }
 
 				nsView.addSubview(curr)
-				
+
 				curr.frame = CGRect(x: 0, y: 0, width: nsView.bounds.width, height: nsView.bounds.height)
 				curr.autoresizingMask = [.width, .height]
 			}
-
-        }
-    }
+		}
+	}
 #else
-    struct WebViewWrapper: UIViewRepresentable {
-        @EnvironmentObject var userSession: WebSessionManager
+	struct WebViewWrapper: UIViewRepresentable {
+		@EnvironmentObject var userSession: WebSessionManager
 
-        class Coordinator: NSObject {
-            var parent: WebViewWrapper
+		class Coordinator: NSObject {
+			var parent: WebViewWrapper
 
-            init(_ parent: WebViewWrapper) {
-                self.parent = parent
-            }
+			init(_ parent: WebViewWrapper) {
+				self.parent = parent
+			}
 
-            // Add methods to manage dynamic switching here if needed
-        }
+			// Add methods to manage dynamic switching here if needed
+		}
 
-        func makeCoordinator() -> Coordinator {
-            Coordinator(self)
-        }
+		func makeCoordinator() -> Coordinator {
+			Coordinator(self)
+		}
 
-        func makeUIView(context _: Context) -> UIView {
-            let container = UIView()
+		func makeUIView(context _: Context) -> UIView {
+			let container = UIView()
 			if let curr = userSession.currentWebview() {
 				container.addSubview(curr)
 
@@ -138,12 +132,11 @@ struct AWSConsoleView_Previews: PreviewProvider {
 				curr.autoresizingMask = .init([.flexibleWidth, .flexibleHeight])
 			}
 
-            return container
-        }
+			return container
+		}
 
-        func updateUIView(_ nsView: UIView, context _: Context) {
-           
-			if  let curr = userSession.currentWebview() {
+		func updateUIView(_ nsView: UIView, context _: Context) {
+			if let curr = userSession.currentWebview() {
 				nsView.subviews.forEach { $0.removeFromSuperview() }
 
 				nsView.addSubview(curr)
@@ -152,9 +145,8 @@ struct AWSConsoleView_Previews: PreviewProvider {
 				curr.frame = CGRect(x: 0, y: 0, width: nsView.bounds.width, height: nsView.bounds.height)
 				curr.autoresizingMask = .init([.flexibleWidth, .flexibleHeight])
 			}
-  
-        }
-    }
+		}
+	}
 #endif
 
 // struct AWSConsoleWebViewControllerRepresentable: PlatformViewControllerRepresentable {
