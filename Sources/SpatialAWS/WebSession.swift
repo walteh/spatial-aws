@@ -25,6 +25,7 @@ public class WebSessionInstance: NSObject, ObservableObject {
 
 	public let account: AccountInfo
 	public let role: RoleInfo
+	
 	public let webview: WKWebView
 	public let parent: WebSessionManager
 	@Published public var expiry: Date? = nil
@@ -98,6 +99,8 @@ public class WebSessionManager: ObservableObject {
 	@Published public var accountsList: AccountInfoList = .init(accounts: [])
 	@Published public var webSessionInstanceCache: [String: WebSessionInstance] = [:]
 	@Published public var lastRoleForAccount: [String: RoleInfo] = [:]
+	
+	
 	
 	let storageAPI: any XDK.StorageAPI
 	let appSession: any AppSessionAPI
@@ -277,8 +280,12 @@ public class WebSessionManager: ObservableObject {
 			}
 		}
 	}
+	
+	let services = XDKAWSSSO.loadTheServices()
+
 
 	func managedRegionService() -> ManagedRegionService {
 		return SimpleManagedRegionService(region: self.region, service: self.service)
 	}
 }
+

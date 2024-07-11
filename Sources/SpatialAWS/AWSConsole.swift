@@ -22,6 +22,8 @@ struct AWSConsoleView: View {
 			TopBar(
 				selectedAccount: self.$userSession.currentAccount,
 				selectedRole: self.$userSession.role,
+				selectedService: self.$userSession.service,
+				selectedRegion: self.$userSession.region,
 				expiration: self.$expiry,
 				accounts: self.userSession.accountsList.accounts,
 				onRefresh: {

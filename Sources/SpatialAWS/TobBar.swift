@@ -14,11 +14,15 @@ import XDKAWSSSO
 struct TopBar: View {
 	@Binding var selectedAccount: AccountInfo?
 	@Binding var selectedRole: RoleInfo?
+	@Binding var selectedService: String?
+	@Binding var selectedRegion: String?
 	@Binding var expiration: Date?
 	@State private var isAccountMenuOpen = false
 	@State private var isRoleMenuOpen = false
-
+	
+	var services = XDKAWSSSO.loadTheServices()
 	var accounts: [AccountInfo]
+	var regions: [String] = XDKAWSSSO.regionsList
 	var onRefresh: () -> Void
 
 	var body: some View {
@@ -28,6 +32,14 @@ struct TopBar: View {
 			Divider()
 
 			RolePicker(selection: self.$selectedRole, roles: self.selectedAccount?.roles ?? [])
+			
+			Divider()
+			
+			ServicePicker(selection: self.$selectedService, services: services)
+			
+			Divider()
+			
+			RegionPicker(selection: self.$selectedRegion, regions: regions)
 
 			Spacer()
 
@@ -65,6 +77,35 @@ struct RolePicker: View {
 		Picker("Role", selection: self.$selection) {
 			ForEach(self.roles, id: \.roleName) { role in
 				Text(role.roleName).tag(role)
+			}
+		}
+		.frame(width: 200)
+	}
+}
+
+
+struct ServicePicker: View {
+	@Binding var selection: String?
+	let services: [String]
+	
+	var body: some View {
+		Picker("Service", selection: self.$selection) {
+			ForEach(self.services, id: \.self) { service in
+				Text(service).tag(service)
+			}
+		}
+		.frame(width: 200)
+	}
+}
+
+struct RegionPicker: View {
+	@Binding var selection: String?
+	let regions: [String]
+	
+	var body: some View {
+		Picker("Region", selection: self.$selection) {
+			ForEach(self.regions, id: \.self) { region in
+					Text(region).tag(region)
 			}
 		}
 		.frame(width: 200)
