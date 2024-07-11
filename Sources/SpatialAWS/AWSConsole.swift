@@ -22,9 +22,8 @@ struct AWSConsoleView: View {
 			TopBar(
 				selectedAccount: self.$userSession.currentAccount,
 				selectedRole: self.$userSession.role,
-				expiration: self.$userSession.displayExpiry,
+				expiration: self.$expiry,
 				accounts: self.userSession.accountsList.accounts,
-				roles: self.userSession.currentAccountOrFirst.roles,
 				onRefresh: {
 					return
 				}
@@ -34,25 +33,24 @@ struct AWSConsoleView: View {
 //				.edgesIgnoringSafeArea(.all)
 		}
 		.edgesIgnoringSafeArea(.bottom)
-//		.onAppearAndChange(of: userSession.displayExpiry) {o, n in
-//			x.log(.info).info("what", n?.expiry?.formatted()).info("role", n?.lastSuccessfulRole?.roleName).send("sending")
-//			expiry = n?.expiry
-//		}
+		.onAppearAndChange(of: self.userSession.currentWebSession) {o, n in
+			expiry = n?.expiry
+		}
 	}
 }
 
 // preview
-struct AWSConsoleView_Previews: PreviewProvider {
-	static var previews: some View {
-		AWSConsoleView()
-			.environmentObject(
-				WebSessionManager(accounts:
-					AccountInfoList(accounts: [
-						AccountInfo(accountID: "111", accountName: "ho", roles: [
-							RoleInfo(roleName: "me", accountID: "111")], accountEmail: "ok@me.com"),
-					]), storage: NoopStorage()))
-	}
-}
+//struct AWSConsoleView_Previews: PreviewProvider {
+//	static var previews: some View {
+//		AWSConsoleView()
+//			.environmentObject(
+//				WebSessionManager(accounts:
+//					AccountInfoList(accounts: [
+//						AccountInfo(accountID: "111", accountName: "ho", roles: [
+//							RoleInfo(roleName: "me", accountID: "111")], accountEmail: "ok@me.com"),
+//					]), storage: NoopStorage()))
+//	}
+//}
 
 #if os(macOS)
 	struct WebViewWrapper: NSViewRepresentable {

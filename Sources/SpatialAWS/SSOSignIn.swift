@@ -18,10 +18,11 @@ struct SSOSignInView: View {
 	@Environment(\.authentication) var authentication
 	@Environment(\.storage) var storage
 	@EnvironmentObject var userSession: WebSessionManager
+	@Environment(\.appSession) var appSession
 
 	//	@State private var currentViewController: UIViewController?
 
-	@State private var promptURL: UserSignInData? = nil
+	@State private var promptURL: AWSSSOSignInCodeData? = nil
 	@State private var shouldPresent: Bool = false
 	@State private var activityItems: [Any] = []
 	@State private var showSignInDetail = false
@@ -78,16 +79,16 @@ struct SSOSignInView: View {
 					throw URLError(.init(rawValue: 0), userInfo: ["uri": val])
 				}
 
-				guard let ssooidc = XDKAWSSSO.buildAWSSSOSDKProtocolWrapped(ssoRegion: "us-east-1").to(&err) else {
+				guard let ssooidc = XDKAWSSSO.buildAWSSSOSDKProtocolWrapped(ssoRegion: selectedRegion).to(&err) else {
 					throw XDK.Err("problem refreshing access token", root: err)
 				}
 
-				guard let resp = await XDKAWSSSO.signin(
+				guard let resp = await XDKAWSSSO.generateSSOAccessTokenUsingBrowserIfNeeded(
 					client: ssooidc,
-					storageAPI: storage,
-					ssoRegion: "us-east-1",
+					storage: storage,
+					session: appSession,
+					ssoRegion: selectedRegion,
 					startURL: startURI,
-					//					redirectURL: URL.init(string:"spatial-aws://hello"),
 					callback: { url in
 						DispatchQueue.main.async {
 							self.promptURL = url
@@ -97,7 +98,7 @@ struct SSOSignInView: View {
 					throw XDK.Err("problem signing in with sso", root: err)
 				}
 
-				guard let _ = await self.userSession.refresh(accessToken: resp, storageAPI: storage).err(&err) else {
+				guard let _ = await self.userSession.refresh(session: appSession, storageAPI: storage, accessToken: resp).err(&err) else {
 					throw XDK.Err("problem refreshing access token", root: err)
 				}
 
@@ -110,7 +111,7 @@ struct SSOSignInView: View {
 }
 
 struct SignInDetailView: View {
-	let userSignInData: XDKAWSSSO.UserSignInData
+	let userSignInData: XDKAWSSSO.AWSSSOSignInCodeData
 
 	var body: some View {
 		VStack {

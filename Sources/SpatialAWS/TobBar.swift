@@ -19,7 +19,6 @@ struct TopBar: View {
 	@State private var isRoleMenuOpen = false
 
 	var accounts: [AccountInfo]
-	var roles: [RoleInfo]
 	var onRefresh: () -> Void
 
 	var body: some View {
@@ -28,7 +27,7 @@ struct TopBar: View {
 
 			Divider()
 
-			RolePicker(selection: self.$selectedRole, roles: self.roles)
+			RolePicker(selection: self.$selectedRole, roles: self.selectedAccount?.roles ?? [])
 
 			Spacer()
 
@@ -39,8 +38,8 @@ struct TopBar: View {
 		}
 		.padding(.horizontal)
 		.frame(height: 40)
-		.background(Color(NSColor.windowBackgroundColor))
-		.border(Color(NSColor.separatorColor), width: 1)
+//		.background(Color(.windowBackgroundColor))
+//		.border(Color(.separatorColor), width: 1)
 	}
 }
 
