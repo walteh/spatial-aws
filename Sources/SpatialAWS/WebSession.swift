@@ -16,6 +16,23 @@ func createWebView() -> WKWebView {
 	let webViewConfig = WKWebViewConfiguration()
 	webViewConfig.websiteDataStore = WKWebsiteDataStore.nonPersistent()
 	let webView = WKWebView(frame: .zero, configuration: webViewConfig)
+	
+	let userScript: WKUserScript = WKUserScript(
+		source:
+"""
+(function injectWebkitAppRegionStyle(){
+const styleEle = document.createElement('style');
+styleEle.type = 'text/css';
+styleEle.innerHTML = 'div#h { display: none; }';
+document.head.appendChild(styleEle);
+})();
+""",
+		injectionTime: WKUserScriptInjectionTime.atDocumentEnd,
+		forMainFrameOnly: false
+	)
+	
+	webView.configuration.userContentController.addUserScript(userScript)
+	
 	return webView
 }
 
@@ -42,6 +59,7 @@ public class WebSessionInstance: NSObject, ObservableObject {
 		self.isLoggedIn = true
 		self.expiry = exp
 		
+
 		guard let _ = webview.load(URLRequest(url: url)) else {
 			XDK.Log(.error).send("error loading webview")
 			return
