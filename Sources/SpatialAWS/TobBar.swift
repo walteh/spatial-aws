@@ -14,12 +14,13 @@ import XDKAWSSSO
 struct TopBar: View {
 	@Binding var selectedAccount: AccountInfo?
 	@Binding var selectedRole: RoleInfo?
-	@Binding var selectedService: String?
-	@Binding var selectedRegion: String?
-	@Binding var expiration: Date?
+	@Binding var selectedService: String
+	@Binding var selectedRegion: String
+	@Binding var roleExpiration: Date?
+	@Binding var tokenExpiration: Date?
 	@State private var isAccountMenuOpen = false
 	@State private var isRoleMenuOpen = false
-	
+
 	var services = XDKAWSSSO.loadTheServices()
 	var accounts: [AccountInfo]
 	var regions: [String] = XDKAWSSSO.regionsList
@@ -32,18 +33,19 @@ struct TopBar: View {
 			Divider()
 
 			RolePicker(selection: self.$selectedRole, roles: self.selectedAccount?.roles ?? [])
-			
+
 			Divider()
-			
-			ServicePicker(selection: self.$selectedService, services: services)
-			
+
+			ServicePicker(selection: self.$selectedService, services: self.services)
+
 			Divider()
-			
-			RegionPicker(selection: self.$selectedRegion, regions: regions)
+
+			RegionPicker(selection: self.$selectedRegion, regions: self.regions)
 
 			Spacer()
 
-			Label { TimeTicker(endDate: self.$expiration) }
+			Label { TimeTicker(endDate: self.$roleExpiration) }
+			Label { TimeTicker(endDate: self.$tokenExpiration) }
 
 			Text("Spatial AWS")
 				.font(.headline)
@@ -83,11 +85,10 @@ struct RolePicker: View {
 	}
 }
 
-
 struct ServicePicker: View {
-	@Binding var selection: String?
+	@Binding var selection: String
 	let services: [String]
-	
+
 	var body: some View {
 		Picker("Service", selection: self.$selection) {
 			ForEach(self.services, id: \.self) { service in
@@ -99,13 +100,13 @@ struct ServicePicker: View {
 }
 
 struct RegionPicker: View {
-	@Binding var selection: String?
+	@Binding var selection: String
 	let regions: [String]
-	
+
 	var body: some View {
 		Picker("Region", selection: self.$selection) {
 			ForEach(self.regions, id: \.self) { region in
-					Text(region).tag(region)
+				Text(region).tag(region)
 			}
 		}
 		.frame(width: 200)

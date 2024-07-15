@@ -14,8 +14,13 @@ import XDKAWSSSO
 struct AWSConsoleView: View {
 	@EnvironmentObject var userSession: WebSessionManager
 
-	@State var expiry: Date?
-
+	@Binding var expiry: Date?
+	
+	init() {
+//		super.init()
+		self._expiry = Binding.constant(Date())
+	}
+ 
 	var body: some View {
 		VStack(spacing: 0) {
 			// Top bar
@@ -24,7 +29,8 @@ struct AWSConsoleView: View {
 				selectedRole: self.$userSession.role,
 				selectedService: self.$userSession.service,
 				selectedRegion: self.$userSession.region,
-				expiration: self.$expiry,
+				roleExpiration: self.$userSession.roleExpiration,
+				tokenExpiration: self.$userSession.tokenExpiration,
 				accounts: self.userSession.accountsList.accounts,
 				onRefresh: {
 					return
@@ -35,14 +41,12 @@ struct AWSConsoleView: View {
 //				.edgesIgnoringSafeArea(.all)
 		}
 		.edgesIgnoringSafeArea(.bottom)
-		.onAppearAndChange(of: self.userSession.currentWebSession) {o, n in
-			expiry = n?.expiry
-		}
+
 	}
 }
 
 // preview
-//struct AWSConsoleView_Previews: PreviewProvider {
+// struct AWSConsoleView_Previews: PreviewProvider {
 //	static var previews: some View {
 //		AWSConsoleView()
 //			.environmentObject(
@@ -52,7 +56,7 @@ struct AWSConsoleView: View {
 //							RoleInfo(roleName: "me", accountID: "111")], accountEmail: "ok@me.com"),
 //					]), storage: NoopStorage()))
 //	}
-//}
+// }
 
 @MainActor
 func injectCustomCSS(_ view: WKWebView) {
@@ -60,7 +64,7 @@ func injectCustomCSS(_ view: WKWebView) {
 	let jsString = "var style = document.createElement('style'); style.innerHTML = '\(cssString)'; document.head.appendChild(style);"
 
 	view.evaluateJavaScript(jsString, completionHandler: { result, error in
-		if let error = error {
+		if let error {
 			print("JavaScript evaluation error: \(error.localizedDescription), result \(result.debugDescription)")
 		} else {
 			print("CSS injected successfully")
@@ -79,14 +83,13 @@ func injectCustomCSS(_ view: WKWebView) {
 			init(_ parent: WebViewWrapper) {
 				self.parent = parent
 			}
-			
-				func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+
+			func webView(_: WKWebView, didFinish _: WKNavigation!) {
 //				Task(priority: .userInitiated)  { @MainActor in
 //					injectCustomCSS(webView)
 //				}
 			}
 		}
-
 
 		func makeCoordinator() -> Coordinator {
 			Coordinator(self)
@@ -110,9 +113,8 @@ func injectCustomCSS(_ view: WKWebView) {
 		func updateNSView(_ nsView: NSView, context: Context) {
 			// Ensure the container only contains the current web view
 			if let curr = userSession.currentWebview() {
-				
 				nsView.subviews.forEach { $0.removeFromSuperview() }
-				
+
 				nsView.addSubview(curr)
 
 				curr.frame = CGRect(x: 0, y: 0, width: nsView.bounds.width, height: nsView.bounds.height)
@@ -120,12 +122,10 @@ func injectCustomCSS(_ view: WKWebView) {
 				curr.navigationDelegate = context.coordinator // Ensure delegate is set on update
 			}
 		}
-		
-		func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+
+		func webView(_ webView: WKWebView, didFinish _: WKNavigation!) {
 			injectCustomCSS(webView)
 		}
-		
-
 	}
 #else
 	struct WebViewWrapper: UIViewRepresentable {

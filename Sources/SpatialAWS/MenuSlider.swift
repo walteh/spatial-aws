@@ -177,7 +177,6 @@ struct TextView: View {
 	var body: some View {
 		Label {
 			Text(self.text)
-
 				//				.font(.system(size: 14 * scale)) // Adjust the font size based on scale
 				//				.frame(width: 50 * scale, height: 50 * scale) // Adjust frame size based on scale
 				.background(Color.clear) // Ensure background does not affect position

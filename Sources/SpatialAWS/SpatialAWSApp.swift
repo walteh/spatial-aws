@@ -52,10 +52,9 @@ struct SpatialAWSApp: App {
 
 		let loc = XDKKeychain.LocalAuthenticationClient(group: self.keychainGroup, version: self.keychainStorageVersion)
 
-		
 		let session = try! XDK.StoredAppSession(storageAPI: loc)
-		
-		let usersession = WebSessionManager(accounts: AccountInfoList.init(accounts: []), storage: loc, appSession: session)
+
+		let usersession = WebSessionManager(accounts: AccountInfoList(accounts: []), storage: loc, appSession: session)
 
 		self.storageAPI = loc
 		self.configAPI = XDK.BundleConfig(bundle: Bundle.main)
@@ -70,22 +69,21 @@ struct SpatialAWSApp: App {
 			ev.add("device", XDK.GetDeviceFamily(using: self.configAPI).value)
 		}
 
-		let res = XDKAWSSSO.getSignedInSSOUserFromKeychain(session: appSessionAPI, storage: self.storageAPI)
+		let res = XDKAWSSSO.getSignedInSSOUserFromKeychain(session: self.appSessionAPI, storage: self.storageAPI)
 		if let err = res.error {
 			XDK.Log(.error).err(err).send("error caught by notification handler")
 		} else if let v = res.value {
-			if let v = v {
-				
-
-			Task {
-				XDK.Log(.warning).send("we are here, not sure what is happening")
-				var err = Error?.none
-				guard let _ = await usersession.refresh(session: session, storageAPI: loc, accessToken: v).err(&err) else {
-					XDK.Log(.error).err(err).send("not sure what happened")
-					throw XDK.Err("problem refreshing access token", root: err)
+			if let v {
+				Task {
+					XDK.Log(.warning).send("we are here, not sure what is happening")
+					var err = Error?.none
+					guard let _ = await usersession.refresh(session: session, storageAPI: loc, accessToken: v).err(&err) else {
+						XDK.Log(.error).err(err).send("not sure what happened")
+						throw XDK.Err("problem refreshing access token", root: err)
+					}
 				}
 			}
-			}			}
+		}
 	}
 
 	var body: some Scene {
