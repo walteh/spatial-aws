@@ -87,8 +87,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/walteh/xdk",
       "state" : {
-        "revision" : "f2f69af4351ae5befc62cd646deee354bb0c4032",
-        "version" : "0.49.0"
+        "revision" : "937fa6356492791223d200d127f5e279cbd0cb04",
+        "version" : "0.50.0"
       }
     }
   ],
