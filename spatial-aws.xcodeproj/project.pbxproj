@@ -781,7 +781,7 @@
 			repositoryURL = "https://github.com/walteh/xdk";
 			requirement = {
 				kind = exactVersion;
-				version = 0.50.0;
+				version = 0.51.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
