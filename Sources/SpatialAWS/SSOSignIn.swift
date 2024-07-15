@@ -67,9 +67,10 @@ struct SSOSignInView: View {
 		}
 	}
 
-	@MainActor
+//	@MainActor
 	// The function that gets called when the sign in button is pressed
 	private func signInUsingSSO() {
+		let myselectedregion = selectedRegion
 		Task {
 			do {
 				var err = Error?.none
@@ -82,12 +83,13 @@ struct SSOSignInView: View {
 				guard let ssooidc = XDKAWSSSO.buildAWSSSOSDKProtocolWrapped(ssoRegion: selectedRegion).to(&err) else {
 					throw XDK.Err("problem refreshing access token", root: err)
 				}
+				
 
 				guard let resp = await XDKAWSSSO.generateSSOAccessTokenUsingBrowserIfNeeded(
 					client: ssooidc,
 					storage: storage,
 					session: appSession,
-					ssoRegion: selectedRegion,
+					ssoRegion: myselectedregion,
 					startURL: startURI,
 					callback: { url in
 						DispatchQueue.main.async {
