@@ -11,247 +11,313 @@ import WebKit
 import XDK
 import XDKAWSSSO
 
+@MainActor
 func createWebView() -> WKWebView {
-    let webViewConfig = WKWebViewConfiguration()
-    webViewConfig.websiteDataStore = WKWebsiteDataStore.nonPersistent()
-    let webView = WKWebView(frame: .zero, configuration: webViewConfig)
-    return webView
+	let webViewConfig = WKWebViewConfiguration()
+	webViewConfig.websiteDataStore = WKWebsiteDataStore.nonPersistent()
+	let webView = WKWebView(frame: .zero, configuration: webViewConfig)
+
+	let userScript: WKUserScript = .init(
+		source:
+		"""
+		(function injectWebkitAppRegionStyle(){
+		const styleEle = document.createElement('style');
+		styleEle.type = 'text/css';
+		styleEle.innerHTML = 'div#h { display: none; }';
+		document.head.appendChild(styleEle);
+		})();
+		""",
+		injectionTime: WKUserScriptInjectionTime.atDocumentEnd,
+		forMainFrameOnly: false
+	)
+
+	webView.configuration.userContentController.addUserScript(userScript)
+
+	return webView
 }
 
-public class WebSessionInstance: NSObject, ObservableObject, WKNavigationDelegate {
-    public var currentURL: URL? = nil
+@MainActor
+public class WebSessionInstance: NSObject, ObservableObject {
+	public var currentURL: URL? = nil
 
-    //	public let session: AWSSSOUserSession
-    public let account: AccountInfo
-    public let webview: WKWebView
-    //	public let storage: XDK.StorageAPI
+	public let account: AccountInfo
+	public let role: RoleInfo
+	public let service: String
+	public let region: String
 
-    public let regenerateFunc: (_ account: AccountInfo, _ isLoggedIn: Bool) async -> Result<URL, Error>
+	public let webview: WKWebView
+	public let parent: WebSessionManager
+	@Published public var expiry: Date? = nil
+	public var isLoggedIn: Bool = false
+	
+	public var expiryPublisher: Published<Date?>.Publisher { self.$expiry }
 
-    public var isLoggedIn: Bool = false
 
-    public func rebuildURL() async {
-        var err: Error? = nil
+	public func rebuildURL() async {
+		var err: Error? = nil
 
-        guard let url = await regenerateFunc(account, isLoggedIn).to(&err) else {
-            XDK.Log(.error).err(err).send("error generating console url")
-            return
-        }
+		guard let (url, exp) = await regenerate(appSession: parent.appSession, account: account, role: role, isLoggedIn: self.isLoggedIn).to(&err) else {
+			XDK.Log(.error).err(err).send("error generating console url")
+			return
+		}
 
-        isLoggedIn = true
-		
-		
-//		webview
+		self.isLoggedIn = true
+		self.expiry = exp
 
-        guard let _ = await webview.load(URLRequest(url: url)) else {
-            XDK.Log(.error).send("error loading webview")
-            return
-        }
-    }
-
-    public init(webview: WKWebView, account: AccountInfo, regenerateFunc: @escaping (_ account: AccountInfo, _ isLoggedIn: Bool) async -> Result<URL, Error>) {
-        self.webview = webview
-        self.regenerateFunc = regenerateFunc
-        //		self.session = session
-        self.account = account
-        //		self.storage = storage
-
-        super.init()
-
-        self.webview.navigationDelegate = self
-
-        Task {
-            XDK.Log(.info).info("rebuilding", "url").send("rebuilding")
-            await self.rebuildURL()
-        }
-    }
-
-    // when the webview starts up
-    public func webView(_ webview: WKWebView, didStartProvisionalNavigation _: WKNavigation!) {
-        XDK.Log(.info).info("url", webview.url).send("webview navigation start")
+		guard let _ = webview.load(URLRequest(url: url)) else {
+			XDK.Log(.error).send("error loading webview")
+			return
+		}
 	}
 
-    public func webView(_ webView: WKWebView, didFinish _: WKNavigation!) {
-        XDK.Log(.info).info("url", webview.url).send("webview navigation navigation")
+	public func regenerate(appSession: AppSessionAPI, account: AccountInfo, role: RoleInfo, isLoggedIn: Bool) async -> Result<(URL, Date), Error> {
+		var err: Error? = nil
 
-        currentURL = webView.url
-    }
+		guard let res = XDKAWSSSO.getSignedInSSOUserFromKeychain(session: appSession, storage: self.parent.storageAPI).to(&err) else {
+			return .failure(x.error("getting access token", root: err))
+		}
 
-    public func webView(_: WKWebView, didFail _: WKNavigation!, withError error: Error) {
-        XDK.Log(.error).err(error).send("webview navigation error")
+		guard let accessToken = res else {
+			return .failure(x.error("access token not set"))
+		}
 
-        // constructSimpleConsoleURL(region: session.region ?? session.accessToken?.region ?? "us-east-1", service: session.service)
-    }
+		return
+			await XDKAWSSSO.generateAWSConsoleURLWithExpiryWithDefaultClient(
+				account: account,
+				role: role,
+				managedRegion: SimpleManagedRegionService(region: self.region, service: self.service == "console-home" ? "" : self.service),
+				storageAPI: self.parent.storageAPI,
+				accessToken: accessToken,
+				isSignedIn: isLoggedIn
+			)
+	}
+
+	public init(webview: WKWebView, account: AccountInfo, role: RoleInfo, parent: WebSessionManager, service: String, region: String) {
+		self.webview = webview
+		self.parent = parent
+		self.account = account
+		self.role = role
+		self.region = region
+		self.service = service
+		super.init()
+
+		webview.navigationDelegate = self
+
+		Task {
+			XDK.Log(.info).info("rebuilding", "url").send("rebuilding")
+			await self.rebuildURL()
+		}
+	}
 }
 
-public class WebSessionManager: ObservableObject, XDKAWSSSO.ManagedRegionService {
-    public var accessTokenPublisher: Published<SecureAWSSSOAccessToken?>.Publisher { $accessToken }
+extension WebSessionInstance: WKNavigationDelegate {
+	public nonisolated func webView(_ webView: WKWebView, didStartProvisionalNavigation _: WKNavigation!) {
+		Task { @MainActor in
+			XDK.Log(.info).info("url", webView.url).send("webview navigation start")
+		}
+	}
 
-    @Published public var accessToken: SecureAWSSSOAccessToken? = nil
-    @Published public var accountsList: AccountInfoList = .init(accounts: [])
+	public nonisolated func webView(_ webView: WKWebView, didFinish _: WKNavigation!) {
+		Task { @MainActor in
+			XDK.Log(.info).info("url", webView.url).send("webview navigation navigation")
+			self.currentURL = webView.url
+		}
+	}
 
-    @Published public var accounts: [AccountInfo: WebSessionInstance] = [:]
+	public nonisolated func webView(_: WKWebView, didFail _: WKNavigation!, withError error: Error) {
+		XDK.Log(.error).err(error).send("webview navigation error")
+	}
 
-    @Published public var region: String? {
-        didSet {
-            if oldValue != region {
-                DispatchQueue.main.async {
-                    for (_, viewer) in self.accounts {
-                        Task {
-                            XDK.Log(.info).info("rebuilding", "region").send("rebuilding")
-                            await viewer.rebuildURL()
-                        }
-                    }
-                }
-            }
-        }
-    }
+	public nonisolated func webView(_ webView: WKWebView, decidePolicyFor _: WKNavigationResponse) async -> WKNavigationResponsePolicy {
+		Task { @MainActor in
+			XDK.Log(.info).add("url", webView.url).send("webView decideNavicagtionPOclidy")
+		}
+		return .allow
+	}
+}
 
-    @Published public var service: String? = nil {
-        didSet {
-            if oldValue != service {
-                DispatchQueue.main.async {
-                    for (_, viewer) in self.accounts {
-                        Task {
-                            XDK.Log(.info).info("rebuilding", "service").send("rebuilding")
-                            await viewer.rebuildURL()
-                        }
-                    }
-                }
-            }
-        }
-    }
+@MainActor
+public class WebSessionManager: ObservableObject {
+	public var accessTokenPublisher: Published<SecureAWSSSOAccessToken?>.Publisher { self.$accessToken }
 
-    let storageAPI: any XDK.StorageAPI
+	@Published public var accessToken: SecureAWSSSOAccessToken? = nil
+	@Published public var accountsList: AccountInfoList = .init(accounts: [])
+	@Published public var webSessionInstanceCache: [String: WebSessionInstance] = [:]
+	@Published public var lastRoleForAccount: [String: RoleInfo] = [:]
 
-    @Published public var currentAccount: AccountInfo? = nil
+	let storageAPI: any XDK.StorageAPI
+	let appSession: any AppSessionAPI
+	
+	@Published public var roleExpiration: Date? = nil
+	@Published public var tokenExpiration: Date? = nil
 
-    public var currentAccountOrFirst: AccountInfo {
-        get {
-            if let account = currentAccount {
-                return account
-            } else {
-                return accountsList.accounts.first!
-            }
-        }
-        set {
-            currentAccount = newValue
-        }
-    }
+	@Published public var role: RoleInfo? = nil {
+		didSet {
+			if let me = role {
+				self.lastRoleForAccount[me.accountID] = me
+				
+				var err: Error? = nil
+				
+				if let accessToken = accessToken {
+					
+					
+					
+					guard let awsClient = XDKAWSSSO.buildAWSSSOSDKProtocolWrapped(ssoRegion: accessToken.stsRegion()).to(&err) else {
+						return
+					}
+					
+					Task {
+						guard let res = await getRoleCredentialsUsing(sso: awsClient,storage: storageAPI, accessToken: accessToken, role: me).to(&err) else {
+							return
+						}
+						
+						roleExpiration = res.data.expiresAt
+					}
+					
+					XDK.Log(.info).info("role updated", self.role).send("okay")
+				}
+			}
+			self.updateCurrentWebSession()
+			
 
-    public func currentWebview() -> WKWebView {
-        if let currentAccount {
-            if let wk = accounts[currentAccount] {
-                return wk.webview
-            } else {
-                let viewer = WebSessionInstance(webview: createWebView(), account: currentAccount) { account, isLoggedIn in
-                    await XDKAWSSSO.generateAWSConsoleURLWithDefaultClient(
-                        account: account,
-                        managedRegion: self,
-                        storageAPI: self.storageAPI,
-                        accessToken: self.accessToken!,
-                        isSignedIn: isLoggedIn
-                    )
-                }
-                DispatchQueue.main.async {
-                    self.accounts[currentAccount] = viewer
-                }
-                return viewer.webview
-            }
-        }
-        let wv = createWebView()
-        // load google.com
-        wv.load(URLRequest(url: URL(string: "https://www.google.com")!))
-        return wv
-    }
 
-    public init(storageAPI: any XDK.StorageAPI, account: AccountInfo? = nil) {
-        currentAccount = account
-        self.storageAPI = storageAPI
-    }
+		}
+		willSet {}
+	}
 
-    public func refresh(accessToken: SecureAWSSSOAccessToken?, storageAPI: XDK.StorageAPI) async -> Result<Void, Error> {
-        var err: Error? = nil
+	public func updateCurrentWebSession() {
+		if let me = role {
+			if let cache = webSessionInstanceCache[uniqueIDFor(role: me)] {
+				self.currentWebSession = cache
+				self.currentExpiration = cache.expiry
+			} else {
+				let created = WebSessionInstance(webview: createWebView(), account: currentAccount!, role: me, parent: self, service: service, region: region)
+				self.currentWebSession = created
+				self.currentExpiration = created.expiry
+				self.webSessionInstanceCache[self.uniqueIDFor(role: me)] = created
+			}
+		}
+	}
 
-        guard let accessToken = accessToken ?? self.accessToken else {
-            return .failure(x.error("accessToken not set"))
-        }
+	@Published public var currentAccount: AccountInfo? = nil {
+		didSet {
+			if let me = currentAccount {
+				self.role = self.lastRoleForAccount[me.accountID] ?? me.roles.first ?? nil
+			}
+		}
+	}
 
-        guard let awsClient = XDKAWSSSO.buildAWSSSOSDKProtocolWrapped(ssoRegion: accessToken.region).to(&err) else {
-            return .failure(x.error("creating aws client", root: err))
-        }
+	@Published public var currentWebSession: WebSessionInstance? = nil {
+		didSet {
+			// refresh here if needed (is expired)
+		}
+	}
 
-        guard let accounts = await getAccountsRoleList(client: awsClient, storage: storageAPI, accessToken: accessToken).to(&err) else {
-            return .failure(x.error("error updating accounts", root: err))
-        }
+	init(accounts: AccountInfoList, storage: StorageAPI, appSession: AppSessionAPI) {
+		self.accountsList = accounts
+		self.storageAPI = storage
+		self.appSession = appSession
+		self.role = accounts.accounts.first?.roles.first
+		self.currentAccount = accounts.accounts.first
+		self.region = "us-east-1"
+		self.service = "console-home"
+	}
 
-        // guard let client = Result.X({ try AWSSSO.SSOClient(region: accessToken.region) }).to(&err) else {
-        // 	return .failure(x.error("error updating sso client", root: err))
-        // }
+	@Published public var currentExpiration: Date?
 
-        // guard let ssooidcClient = Result.X({ try AWSSSOOIDC.SSOOIDCClient(region: accessToken.region) }).to(&err) else {
-        // 	return .failure(x.error("error updating ssooidc client", root: err))
-        // }
+	public func addAccount(account: AccountInfo) {
+		for role in account.roles {
+			if self.webSessionInstanceCache[self.uniqueIDFor(role: role)] == nil {
+				let viewer = WebSessionInstance(webview: createWebView(), account: account, role: role, parent: self, service: "", region: self.accessToken?.stsRegion() ?? "us-east-1")
+				self.webSessionInstanceCache[self.uniqueIDFor(role: role)] = viewer
+			}
+		}
+	}
 
-        DispatchQueue.main.async {
-            self.accessToken = accessToken
-            self.accountsList = accounts
-            //			self.ssooidcClient = ssooidcClient
-        }
+	func uniqueIDFor(role: RoleInfo) -> String {
+		return "\(role.uniqueID)_\(self.service)_\(self.region)"
+	}
 
-        return .success(())
-    }
+	public func currentAccessToken() -> SecureAWSSSOAccessToken? {
+		return self.accessToken
+	}
 
-    // 	public func initialize(accessToken: SecureAWSSSOAccessToken?, storageAPI: XDK.StorageAPI)  -> Result<Void, Error> {
-    // 	var err: Error? = nil
+	public func currentStorageAPI() -> StorageAPI {
+		return self.storageAPI
+	}
 
-    // 	guard let accessToken = accessToken ?? self.accessToken else {
-    // 		return .failure(x.error("accessToken not set"))
-    // 	}
+	public func currentWebview() -> WKWebView? {
+		return self.currentWebSession?.webview
+	}
 
-    // 	guard let client = Result.X({ try AWSSSO.SSOClient(region: accessToken.region) }).to(&err) else {
-    // 		return .failure(x.error("error updating sso client", root: err))
-    // 	}
+	public func refresh(session: XDK.AppSessionAPI, storageAPI: XDK.StorageAPI, accessToken: AccessToken) async -> Result<Void, Error> {
+		var err: Error? = nil
 
-    // 	guard let ssooidcClient = Result.X({ try AWSSSOOIDC.SSOOIDCClient(region: accessToken.region) }).to(&err) else {
-    // 		return .failure(x.error("error updating ssooidc client", root: err))
-    // 	}
+		guard let awsClient = XDKAWSSSO.buildAWSSSOSDKProtocolWrapped(ssoRegion: accessToken.stsRegion()).to(&err) else {
+			return .failure(x.error("creating aws client", root: err))
+		}
 
-    // 	DispatchQueue.main.async {
-    // 		self.accessToken = accessToken
-    // 		self.ssoClient = client
-    // 		self.ssooidcClient = ssooidcClient
-    // 		self.accountsList = accounts
-    // 	}
+		guard let res = XDKAWSSSO.getSignedInSSOUserFromKeychain(session: session, storage: self.storageAPI).to(&err) else {
+			return .failure(x.error("getting access token", root: err))
+		}
 
-    // 	return .success(())
-    // }
+		guard let accessToken = res else {
+			return .failure(x.error("access token not set"))
+		}
 
-    // private func buildSSOClient(accessToken: SecureAWSSSOAccessToken) async -> Result<AWSSSO.SSOClient, Error> {
-    // 	var err: Error? = nil
+		guard let accounts = await getAccountsRoleList(client: awsClient, storage: storageAPI, accessToken: accessToken).to(&err) else {
+			return .failure(x.error("error updating accounts", root: err))
+		}
 
-    // 	guard let client = Result.X({ try AWSSSO.SSOClient(region: accessToken.region) }).to(&err) else {
-    // 		return .failure(x.error("error creating client", root: err))
-    // 	}
+		self.accessToken = accessToken
+		self.accountsList = accounts
+		
+		self.tokenExpiration = accessToken.expiresAt
 
-    // 	return .success(client)
-    // }
+		for account in accounts {
+			self.addAccount(account: account)
+		}
 
-    func configureCookies(accessToken: SecureAWSSSOAccessToken, webview: WKWebView) -> Result<Void, Error> {
-        if let cookie = HTTPCookie(properties: [
-            .domain: "aws.amazon.com",
-            .path: "/",
-            .name: "AWSALB", // Adjust the name based on the actual cookie name required by AWS
-            .value: accessToken.accessToken,
-            .secure: true,
-            .expires: accessToken.expiresAt,
-        ]) {
-            DispatchQueue.main.async {
-                webview.configuration.websiteDataStore.httpCookieStore.setCookie(cookie)
-            }
-            return .success(())
-        } else {
-            return .failure(x.error("error creating cookie"))
-        }
-    }
+		return .success(())
+	}
+
+	func configureCookies(accessToken: SecureAWSSSOAccessToken, webview: WKWebView) -> Result<Void, Error> {
+		if let cookie = HTTPCookie(properties: [
+			.domain: "aws.amazon.com",
+			.path: "/",
+			.name: "AWSALB", // Adjust the name based on the actual cookie name required by AWS
+			.value: accessToken.accessToken,
+			.secure: true,
+			.expires: accessToken.expiresAt,
+		]) {
+			DispatchQueue.main.async {
+				webview.configuration.websiteDataStore.httpCookieStore.setCookie(cookie)
+			}
+			return .success(())
+		} else {
+			return .failure(x.error("error creating cookie"))
+		}
+	}
+
+	@Published public var region: String {
+		didSet {
+			if oldValue != self.region {
+				self.updateCurrentWebSession()
+			}
+		}
+	}
+
+	@Published public var service: String {
+		didSet {
+			if oldValue != self.service {
+				self.updateCurrentWebSession()
+			}
+		}
+	}
+
+	let services = XDKAWSSSO.loadTheServices()
+
+	func managedRegionService() -> ManagedRegionService {
+		return SimpleManagedRegionService(region: self.region, service: self.service)
+	}
 }

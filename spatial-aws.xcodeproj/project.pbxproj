@@ -3,10 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 63;
+	objectVersion = 73;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A644EF642C456CC200B1E974 /* XDK in Frameworks */ = {isa = PBXBuildFile; productRef = A644EF632C456CC200B1E974 /* XDK */; };
+		A644EF662C456CC200B1E974 /* XDKAWSSSO in Frameworks */ = {isa = PBXBuildFile; productRef = A644EF652C456CC200B1E974 /* XDKAWSSSO */; };
+		A644EF682C456CC200B1E974 /* XDKKeychain in Frameworks */ = {isa = PBXBuildFile; productRef = A644EF672C456CC200B1E974 /* XDKKeychain */; };
+		A644EF6A2C456CC200B1E974 /* XDKLogging in Frameworks */ = {isa = PBXBuildFile; productRef = A644EF692C456CC200B1E974 /* XDKLogging */; };
+		A64D67F72C3DB7E900DE90ED /* XDKWebsocket in Frameworks */ = {isa = PBXBuildFile; productRef = A64D67F62C3DB7E900DE90ED /* XDKWebsocket */; };
+		A64D67F92C3EF71F00DE90ED /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64D67F82C3EF71A00DE90ED /* Timer.swift */; };
+		A64D67FB2C3EF93100DE90ED /* TobBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64D67FA2C3EF92E00DE90ED /* TobBar.swift */; };
+		A64D67FD2C3F152A00DE90ED /* Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64D67FC2C3F152800DE90ED /* Ticker.swift */; };
+		A64D67FF2C3F154E00DE90ED /* NumberAnimate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64D67FE2C3F154E00DE90ED /* NumberAnimate.swift */; };
 		A670B8F12C08C12D009CEC87 /* WebSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A670B8F02C08C12D009CEC87 /* WebSession.swift */; };
 		A6963EC32C0E23CE00CA55F2 /* MenuSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6963EC22C0E23CE00CA55F2 /* MenuSlider.swift */; };
 		A6A2FE862C0F514800786029 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A2FE852C0F514800786029 /* Label.swift */; };
@@ -18,7 +27,6 @@
 		A6AAC1252C06C28400D69005 /* SpatialAWSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AAC1242C06C28400D69005 /* SpatialAWSTests.swift */; };
 		A6AAC12F2C06C28400D69005 /* SpatialAWSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AAC12E2C06C28400D69005 /* SpatialAWSUITests.swift */; };
 		A6AAC1312C06C28400D69005 /* SpatialAWSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AAC1302C06C28400D69005 /* SpatialAWSUITestsLaunchTests.swift */; };
-		A6ADC95B2C06C92300F8209C /* Aside.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ADC9572C06C92300F8209C /* Aside.swift */; };
 		A6ADC95C2C06C92300F8209C /* AWSMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ADC9582C06C92300F8209C /* AWSMenu.swift */; };
 		A6ADC95D2C06C92300F8209C /* SSOSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ADC9592C06C92300F8209C /* SSOSignIn.swift */; };
 		A6ADC95E2C06C92300F8209C /* AWSConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ADC95A2C06C92300F8209C /* AWSConsole.swift */; };
@@ -26,8 +34,6 @@
 		A6ADC9632C06CB5200F8209C /* XDKAWSSSO in Frameworks */ = {isa = PBXBuildFile; productRef = A6ADC9622C06CB5200F8209C /* XDKAWSSSO */; };
 		A6ADC9652C06CB5200F8209C /* XDKKeychain in Frameworks */ = {isa = PBXBuildFile; productRef = A6ADC9642C06CB5200F8209C /* XDKKeychain */; };
 		A6ADC9672C06CB5200F8209C /* XDKLogging in Frameworks */ = {isa = PBXBuildFile; productRef = A6ADC9662C06CB5200F8209C /* XDKLogging */; };
-		A6ADC9692C06CB5200F8209C /* XDKMOC in Frameworks */ = {isa = PBXBuildFile; productRef = A6ADC9682C06CB5200F8209C /* XDKMOC */; };
-		A6ADC96B2C06CB5200F8209C /* XDKWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = A6ADC96A2C06CB5200F8209C /* XDKWebSocket */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +54,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A64D67F82C3EF71A00DE90ED /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		A64D67FA2C3EF92E00DE90ED /* TobBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TobBar.swift; sourceTree = "<group>"; };
+		A64D67FC2C3F152800DE90ED /* Ticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticker.swift; sourceTree = "<group>"; };
+		A64D67FE2C3F154E00DE90ED /* NumberAnimate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberAnimate.swift; sourceTree = "<group>"; };
 		A670B8F02C08C12D009CEC87 /* WebSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSession.swift; sourceTree = "<group>"; };
 		A6963EC22C0E23CE00CA55F2 /* MenuSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSlider.swift; sourceTree = "<group>"; };
 		A6A2FE852C0F514800786029 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
@@ -63,7 +73,6 @@
 		A6AAC12A2C06C28400D69005 /* SpatialAWSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpatialAWSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6AAC12E2C06C28400D69005 /* SpatialAWSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpatialAWSUITests.swift; sourceTree = "<group>"; };
 		A6AAC1302C06C28400D69005 /* SpatialAWSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpatialAWSUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		A6ADC9572C06C92300F8209C /* Aside.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aside.swift; sourceTree = "<group>"; };
 		A6ADC9582C06C92300F8209C /* AWSMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSMenu.swift; sourceTree = "<group>"; };
 		A6ADC9592C06C92300F8209C /* SSOSignIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSOSignIn.swift; sourceTree = "<group>"; };
 		A6ADC95A2C06C92300F8209C /* AWSConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSConsole.swift; sourceTree = "<group>"; };
@@ -77,12 +86,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6ADC96B2C06CB5200F8209C /* XDKWebSocket in Frameworks */,
-				A6ADC9692C06CB5200F8209C /* XDKMOC in Frameworks */,
+				A644EF642C456CC200B1E974 /* XDK in Frameworks */,
+				A64D67F72C3DB7E900DE90ED /* XDKWebsocket in Frameworks */,
 				A6ADC9672C06CB5200F8209C /* XDKLogging in Frameworks */,
 				A6ADC9632C06CB5200F8209C /* XDKAWSSSO in Frameworks */,
+				A644EF662C456CC200B1E974 /* XDKAWSSSO in Frameworks */,
 				A6ADC9612C06CB5200F8209C /* XDK in Frameworks */,
+				A644EF682C456CC200B1E974 /* XDKKeychain in Frameworks */,
 				A6ADC9652C06CB5200F8209C /* XDKKeychain in Frameworks */,
+				A644EF6A2C456CC200B1E974 /* XDKLogging in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +115,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A64D67F52C3DB7D300DE90ED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A6AAC1062C06C28300D69005 = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +130,7 @@
 				A6AAC13D2C06C2BE00D69005 /* Sources */,
 				A6AAC13E2C06C2C500D69005 /* Tests */,
 				A6AAC1102C06C28300D69005 /* Products */,
+				A64D67F52C3DB7D300DE90ED /* Frameworks */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 1;
@@ -128,7 +148,10 @@
 		A6AAC1112C06C28300D69005 /* SpatialAWS */ = {
 			isa = PBXGroup;
 			children = (
-				A6ADC9572C06C92300F8209C /* Aside.swift */,
+				A64D67FC2C3F152800DE90ED /* Ticker.swift */,
+				A64D67FE2C3F154E00DE90ED /* NumberAnimate.swift */,
+				A64D67FA2C3EF92E00DE90ED /* TobBar.swift */,
+				A64D67F82C3EF71A00DE90ED /* Timer.swift */,
 				A6ADC95A2C06C92300F8209C /* AWSConsole.swift */,
 				A6ADC9582C06C92300F8209C /* AWSMenu.swift */,
 				A6ADC9592C06C92300F8209C /* SSOSignIn.swift */,
@@ -225,8 +248,11 @@
 				A6ADC9622C06CB5200F8209C /* XDKAWSSSO */,
 				A6ADC9642C06CB5200F8209C /* XDKKeychain */,
 				A6ADC9662C06CB5200F8209C /* XDKLogging */,
-				A6ADC9682C06CB5200F8209C /* XDKMOC */,
-				A6ADC96A2C06CB5200F8209C /* XDKWebSocket */,
+				A64D67F62C3DB7E900DE90ED /* XDKWebsocket */,
+				A644EF632C456CC200B1E974 /* XDK */,
+				A644EF652C456CC200B1E974 /* XDKAWSSSO */,
+				A644EF672C456CC200B1E974 /* XDKKeychain */,
+				A644EF692C456CC200B1E974 /* XDKLogging */,
 			);
 			productName = "spatial-aws";
 			productReference = A6AAC10F2C06C28300D69005 /* SpatialAWS.app */;
@@ -276,7 +302,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					A6AAC10E2C06C28300D69005 = {
 						CreatedOnToolsVersion = 15.4;
@@ -292,7 +318,6 @@
 				};
 			};
 			buildConfigurationList = A6AAC10A2C06C28300D69005 /* Build configuration list for PBXProject "spatial-aws" */;
-			compatibilityVersion = "Xcode 15.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -301,8 +326,9 @@
 			);
 			mainGroup = A6AAC1062C06C28300D69005;
 			packageReferences = (
-				A6A2FE872C0F641300786029 /* XCRemoteSwiftPackageReference "xdk" */,
+				A644EF622C456CC200B1E974 /* XCRemoteSwiftPackageReference "xdk" */,
 			);
+			preferredProjectObjectVersion = 73;
 			productRefGroup = A6AAC1102C06C28300D69005 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -346,14 +372,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6ADC95C2C06C92300F8209C /* AWSMenu.swift in Sources */,
+				A64D67FD2C3F152A00DE90ED /* Ticker.swift in Sources */,
 				A6AAC1152C06C28300D69005 /* ContentView.swift in Sources */,
 				A670B8F12C08C12D009CEC87 /* WebSession.swift in Sources */,
 				A6ADC95D2C06C92300F8209C /* SSOSignIn.swift in Sources */,
-				A6ADC95B2C06C92300F8209C /* Aside.swift in Sources */,
 				A6A2FE892C0F815900786029 /* Button.swift in Sources */,
 				A6A2FE862C0F514800786029 /* Label.swift in Sources */,
 				A6AAC1132C06C28300D69005 /* SpatialAWSApp.swift in Sources */,
 				A6963EC32C0E23CE00CA55F2 /* MenuSlider.swift in Sources */,
+				A64D67FB2C3EF93100DE90ED /* TobBar.swift in Sources */,
+				A64D67FF2C3F154E00DE90ED /* NumberAnimate.swift in Sources */,
+				A64D67F92C3EF71F00DE90ED /* Timer.swift in Sources */,
 				A6ADC95E2C06C92300F8209C /* AWSConsole.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,6 +454,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -451,6 +481,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -488,6 +519,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -506,6 +538,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Release;
 		};
@@ -519,6 +552,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 4497QJSAD3;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -548,7 +582,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 			};
 			name = Debug;
@@ -563,6 +597,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 4497QJSAD3;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -592,7 +627,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 			};
 			name = Release;
@@ -600,10 +635,10 @@
 		A6AAC1382C06C28400D69005 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 4497QJSAD3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Resources/Info.gen.plist;
@@ -625,10 +660,10 @@
 		A6AAC1392C06C28400D69005 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 4497QJSAD3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Resources/Info.gen.plist;
@@ -650,10 +685,10 @@
 		A6AAC13B2C06C28400D69005 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 4497QJSAD3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Resources/Info.gen.plist;
@@ -676,10 +711,10 @@
 		A6AAC13C2C06C28400D69005 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 4497QJSAD3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Resources/Info.gen.plist;
@@ -741,17 +776,41 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A6A2FE872C0F641300786029 /* XCRemoteSwiftPackageReference "xdk" */ = {
+		A644EF622C456CC200B1E974 /* XCRemoteSwiftPackageReference "xdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/walteh/xdk.git";
+			repositoryURL = "https://github.com/walteh/xdk";
 			requirement = {
 				kind = exactVersion;
-				version = 0.40.0;
+				version = 0.49.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A644EF632C456CC200B1E974 /* XDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A644EF622C456CC200B1E974 /* XCRemoteSwiftPackageReference "xdk" */;
+			productName = XDK;
+		};
+		A644EF652C456CC200B1E974 /* XDKAWSSSO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A644EF622C456CC200B1E974 /* XCRemoteSwiftPackageReference "xdk" */;
+			productName = XDKAWSSSO;
+		};
+		A644EF672C456CC200B1E974 /* XDKKeychain */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A644EF622C456CC200B1E974 /* XCRemoteSwiftPackageReference "xdk" */;
+			productName = XDKKeychain;
+		};
+		A644EF692C456CC200B1E974 /* XDKLogging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A644EF622C456CC200B1E974 /* XCRemoteSwiftPackageReference "xdk" */;
+			productName = XDKLogging;
+		};
+		A64D67F62C3DB7E900DE90ED /* XDKWebsocket */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = XDKWebsocket;
+		};
 		A6ADC9602C06CB5200F8209C /* XDK */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = XDK;
@@ -767,14 +826,6 @@
 		A6ADC9662C06CB5200F8209C /* XDKLogging */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = XDKLogging;
-		};
-		A6ADC9682C06CB5200F8209C /* XDKMOC */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = XDKMOC;
-		};
-		A6ADC96A2C06CB5200F8209C /* XDKWebSocket */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = XDKWebSocket;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

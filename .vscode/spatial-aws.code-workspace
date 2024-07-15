@@ -11,7 +11,7 @@
 	"[swift]": {
 		"editor.formatOnSave": true
 	},
-	"lldb.library": "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
+	"lldb.library": "/Applications/Xcode-beta.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
 	"lldb.launch.expressions": "native",
 	"cmake.options.statusBarVisibility": "visible",
 	}
