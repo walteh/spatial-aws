@@ -35,33 +35,42 @@ struct SSOSignInView: View {
 
 	var body: some View {
 		VStack {
-			TextField("AWS SSO Start URL", text: self.$startURL)
+			
+			
+			Image(nsImage: NSImage(named: "AppIcon") ?? NSImage())
+
+		
+			TextField("aws sso start url", text: self.$startURL)
 				.textFieldStyle(RoundedBorderTextFieldStyle())
 				.padding()
 				//				.autocapitalization()
 				.disableAutocorrection(true)
 			// Add your validation logic here
 
-			Picker("Select Region", selection: self.$selectedRegion) {
+			Picker("aws sso region", selection: self.$selectedRegion) {
 				ForEach(self.regions, id: \.self) {
 					Text($0)
 				}
 			}
 			.pickerStyle(MenuPickerStyle())
-			.padding()
 
 			// Here you would add the foundation logic for the sign-in action
-			Button(background: .dark, action: self.signInUsingSSO, content: {
-				Text("Sign in Using SSO")
-			})
-			.padding()
-		}
-		.padding()
-		.sheet(isPresented: self.$showSignInDetail) {
-			if let userSignInData = promptURL {
-				SignInDetailView(userSignInData: userSignInData)
+			Button(action: self.signInUsingSSO) {
+				Text("generate sign in code")
+			}
+			
+			if showSignInDetail {
+				if let userSignInData = promptURL {
+					SignInDetailView(userSignInData: userSignInData)
+				}
 			}
 		}
+		.padding()
+//		.sheet(isPresented: self.$showSignInDetail) {
+//			if let userSignInData = promptURL {
+//				SignInDetailView(userSignInData: userSignInData)
+//			}
+//		}
 		.onChange(of: self.promptURL, initial: false) { _, _ in
 			self.showSignInDetail = (self.promptURL != nil)
 		}
@@ -116,13 +125,12 @@ struct SignInDetailView: View {
 	let userSignInData: XDKAWSSSO.AWSSSOSignInCodeData
 
 	var body: some View {
-		VStack {
+//		VStack {
 			// if this isa macos catalyst, add option to open in browser
 			#if os(macOS)
-				Button(background: .dark, action: {
+				Button(action: {
 					NSWorkspace.shared.open(self.userSignInData.activationURLWithCode)
-				}, content: { Text("Open in Browser") })
-					.padding()
+				}) { Text("open in browser") }
 
 			#else
 				Link("Open In Safari", destination: self.userSignInData.activationURLWithCode)
@@ -132,8 +140,8 @@ struct SignInDetailView: View {
 					.padding()
 			#endif
 
-			Spacer()
-		}
+//			Spacer()
+//		}
 	}
 }
 

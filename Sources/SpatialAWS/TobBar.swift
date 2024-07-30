@@ -27,31 +27,40 @@ struct TopBar: View {
 	var onRefresh: () -> Void
 
 	var body: some View {
-		HStack {
-			AccountPicker(selection: self.$selectedAccount, accounts: self.accounts)
+		VStack {
+//			Spacer()
+			HStack {
+				
+				AccountPicker(selection: self.$selectedAccount, accounts: self.accounts)
 
-			Divider()
+				Divider()
 
-			RolePicker(selection: self.$selectedRole, roles: self.selectedAccount?.roles ?? [])
+				RolePicker(selection: self.$selectedRole, roles: self.selectedAccount?.roles ?? [])
 
-			Divider()
+				Divider()
 
-			ServicePicker(selection: self.$selectedService, services: self.services)
 
-			Divider()
+				Label { TimeTicker(endDate: self.$roleExpiration) }
+	//			Label { TimeTicker(endDate: self.$tokenExpiration) }
+	//
+	//			Text("Spatial AWS")
+	//				.font(.headline)
+			}
+			HStack {
+//				Divider()
 
-			RegionPicker(selection: self.$selectedRegion, regions: self.regions)
+				ServicePicker(selection: self.$selectedService, services: self.services)
 
-			Spacer()
-
-			Label { TimeTicker(endDate: self.$roleExpiration) }
-			Label { TimeTicker(endDate: self.$tokenExpiration) }
-
-			Text("Spatial AWS")
-				.font(.headline)
+				Divider()
+	//
+				RegionPicker(selection: self.$selectedRegion, regions: self.regions)
+	//
+	//			Spacer()
+			}
 		}
+
 		.padding(.horizontal)
-		.frame(height: 40)
+		.frame(height: 80)
 //		.background(Color(.windowBackgroundColor))
 //		.border(Color(.separatorColor), width: 1)
 	}
@@ -64,7 +73,7 @@ struct AccountPicker: View {
 	var body: some View {
 		Picker("Account", selection: self.$selection) {
 			ForEach(self.accounts, id: \.accountID) { account in
-				Text(account.accountName).tag(account)
+				Text(account.accountName == "nugg.xyz" ? "primary" : account.accountName ).tag(account)
 			}
 		}
 		.frame(width: 200)
@@ -81,7 +90,7 @@ struct RolePicker: View {
 				Text(role.roleName).tag(role)
 			}
 		}
-		.frame(width: 200)
+		.frame(width: 300)
 	}
 }
 
