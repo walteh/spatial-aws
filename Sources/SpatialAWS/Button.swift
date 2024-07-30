@@ -13,7 +13,7 @@ enum MonoColor {
 	case light
 }
 
-struct Button<Content: View>: View {
+struct CustomButton<Content: View>: View {
 	var background: MonoColor
 
 	var content: () -> Content // change to closure
@@ -50,22 +50,22 @@ struct Button<Content: View>: View {
 struct Button_Previews: PreviewProvider {
 	static var previews: some View {
 		VStack {
-			Button(background: .light, action: {
+			CustomButton(background: .light, action: {
 				print("hi")
 			}) {
 				Text(verbatim: "Hello")
 			}.padding(5.0).background(.primary)
-			Button(action: {
+			CustomButton(action: {
 				print("hi")
 			}) {
 				Text(verbatim: "12:43")
 			}.padding(5.0).background(.white)
-			Button(action: {
+			CustomButton(action: {
 				print("hi")
 			}) {
 				Text(verbatim: "Hello")
 			}.padding(5.0).background(.blue)
-			Button(background: .dark, action: {
+			CustomButton(background: .dark, action: {
 				print("hi")
 			}) {
 				Text(verbatim: "12:43")

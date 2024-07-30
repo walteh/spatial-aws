@@ -25,7 +25,6 @@ struct MenuView3<T: Hashable>: View {
 				VStack {
 					Spacer()
 					Button(
-						background: .dark,
 						action: {
 							withAnimation {
 								self.isExpanded.toggle()
