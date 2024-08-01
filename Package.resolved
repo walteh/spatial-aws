@@ -1,0 +1,114 @@
+{
+  "originHash" : "8072ee07a6aa053e8a846cc5740097bfb1f0473a7c0337eb4019e7891d6840dc",
+  "pins" : [
+    {
+      "identity" : "aws-crt-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/awslabs/aws-crt-swift",
+      "state" : {
+        "revision" : "b6380f683b31072d77b601c88674461c11bcad5a",
+        "version" : "0.30.0"
+      }
+    },
+    {
+      "identity" : "aws-sdk-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/awslabs/aws-sdk-swift.git",
+      "state" : {
+        "revision" : "3c20e0be8c8246de8b8e04372404ef1f90be71b6",
+        "version" : "0.46.0"
+      }
+    },
+    {
+      "identity" : "bigint",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/attaswift/BigInt.git",
+      "state" : {
+        "revision" : "88071df9f27361b52d92f9acea85e8b658af8183",
+        "version" : "5.4.0"
+      }
+    },
+    {
+      "identity" : "micro-deterministic-ecdsa",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/walteh/micro-deterministic-ecdsa.git",
+      "state" : {
+        "revision" : "53a1d3a9588cb008de7472f64fd8b7b244645286",
+        "version" : "0.8.0"
+      }
+    },
+    {
+      "identity" : "smithy-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/smithy-lang/smithy-swift",
+      "state" : {
+        "revision" : "b2322a067f85c230f17c80be8a67dd543454b081",
+        "version" : "0.51.0"
+      }
+    },
+    {
+      "identity" : "swift-atomics",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-atomics.git",
+      "state" : {
+        "revision" : "cd142fd2f64be2100422d658e7411e39489da985",
+        "version" : "1.2.0"
+      }
+    },
+    {
+      "identity" : "swift-log",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-log.git",
+      "state" : {
+        "revision" : "9cb486020ebf03bfa5b5df985387a14a98744537",
+        "version" : "1.6.1"
+      }
+    },
+    {
+      "identity" : "swift-service-context",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-service-context.git",
+      "state" : {
+        "revision" : "ce0141c8f123132dbd02fd45fea448018762df1b",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftlang/swift-syntax.git",
+      "state" : {
+        "revision" : "06b5cdc432e93b60e3bdf53aff2857c6b312991a",
+        "version" : "600.0.0-prerelease-2024-07-30"
+      }
+    },
+    {
+      "identity" : "swift-testing",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-testing.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "607734789b82748affba30d21540e64e7fc34174"
+      }
+    },
+    {
+      "identity" : "swift-xid",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/uatuko/swift-xid.git",
+      "state" : {
+        "revision" : "9172b9e07dbc6b94ce91c9455c090efdfdd556c9",
+        "version" : "0.2.1"
+      }
+    },
+    {
+      "identity" : "xdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/walteh/xdk",
+      "state" : {
+        "revision" : "a5beb73915a9f5a21bcdfeb0a5557a34f87d6c25",
+        "version" : "0.55.0"
+      }
+    }
+  ],
+  "version" : 3
+}

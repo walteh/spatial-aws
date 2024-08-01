@@ -30,7 +30,6 @@ struct TopBar: View {
 		VStack {
 //			Spacer()
 			HStack {
-				
 				AccountPicker(selection: self.$selectedAccount, accounts: self.accounts)
 
 				Divider()
@@ -39,12 +38,11 @@ struct TopBar: View {
 
 				Divider()
 
-
 				Label { TimeTicker(endDate: self.$roleExpiration) }
-	//			Label { TimeTicker(endDate: self.$tokenExpiration) }
-	//
-	//			Text("Spatial AWS")
-	//				.font(.headline)
+				//			Label { TimeTicker(endDate: self.$tokenExpiration) }
+				//
+				//			Text("Spatial AWS")
+				//				.font(.headline)
 			}
 			HStack {
 //				Divider()
@@ -52,10 +50,10 @@ struct TopBar: View {
 				ServicePicker(selection: self.$selectedService, services: self.services)
 
 				Divider()
-	//
+				//
 				RegionPicker(selection: self.$selectedRegion, regions: self.regions)
-	//
-	//			Spacer()
+				//
+				//			Spacer()
 			}
 		}
 
@@ -73,7 +71,7 @@ struct AccountPicker: View {
 	var body: some View {
 		Picker("Account", selection: self.$selection) {
 			ForEach(self.accounts, id: \.accountID) { account in
-				Text(account.accountName == "nugg.xyz" ? "primary" : account.accountName ).tag(account)
+				Text(account.accountName == "nugg.xyz" ? "primary" : account.accountName).tag(account)
 			}
 		}
 		.frame(width: 200)

@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:spatial-aws}",
+            "name": "Debug SpatialAWS",
+            "program": "${workspaceFolder:spatial-aws}/.build/debug/SpatialAWS",
+            "preLaunchTask": "swift: Build Debug SpatialAWS"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:spatial-aws}",
+            "name": "Release SpatialAWS",
+            "program": "${workspaceFolder:spatial-aws}/.build/release/SpatialAWS",
+            "preLaunchTask": "swift: Build Release SpatialAWS"
+        }
+    ]
+}

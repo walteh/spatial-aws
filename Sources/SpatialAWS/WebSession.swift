@@ -49,9 +49,8 @@ public class WebSessionInstance: NSObject, ObservableObject {
 	public let parent: WebSessionManager
 	@Published public var expiry: Date? = nil
 	public var isLoggedIn: Bool = false
-	
-	public var expiryPublisher: Published<Date?>.Publisher { self.$expiry }
 
+	public var expiryPublisher: Published<Date?>.Publisher { self.$expiry }
 
 	public func rebuildURL() async {
 		var err: Error? = nil
@@ -147,7 +146,7 @@ public class WebSessionManager: ObservableObject {
 
 	let storageAPI: any XDK.StorageAPI
 	let appSession: any AppSessionAPI
-	
+
 	@Published public var roleExpiration: Date? = nil
 	@Published public var tokenExpiration: Date? = nil
 
@@ -155,32 +154,26 @@ public class WebSessionManager: ObservableObject {
 		didSet {
 			if let me = role {
 				self.lastRoleForAccount[me.accountID] = me
-				
+
 				var err: Error? = nil
-				
-				if let accessToken = accessToken {
-					
-					
-					
+
+				if let accessToken {
 					guard let awsClient = XDKAWSSSO.buildAWSSSOSDKProtocolWrapped(ssoRegion: accessToken.stsRegion()).to(&err) else {
 						return
 					}
-					
+
 					Task {
-						guard let res = await getRoleCredentialsUsing(sso: awsClient,storage: storageAPI, accessToken: accessToken, role: me).to(&err) else {
+						guard let res = await getRoleCredentialsUsing(sso: awsClient, storage: storageAPI, accessToken: accessToken, role: me).to(&err) else {
 							return
 						}
-						
-						roleExpiration = res.data.expiresAt
+
+						self.roleExpiration = res.data.expiresAt
 					}
-					
+
 					XDK.Log(.info).info("role updated", self.role).send("okay")
 				}
 			}
 			self.updateCurrentWebSession()
-			
-
-
 		}
 		willSet {}
 	}
@@ -271,7 +264,7 @@ public class WebSessionManager: ObservableObject {
 
 		self.accessToken = accessToken
 		self.accountsList = accounts
-		
+
 		self.tokenExpiration = accessToken.expiresAt
 
 		for account in accounts {

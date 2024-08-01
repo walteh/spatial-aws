@@ -6,6 +6,7 @@
 //
 
 import AWSSSO
+import Combine
 import SwiftUI
 import WebKit
 import XDK
@@ -15,12 +16,12 @@ struct AWSConsoleView: View {
 	@EnvironmentObject var userSession: WebSessionManager
 
 	@Binding var expiry: Date?
-	
+
 	init() {
 //		super.init()
 		self._expiry = Binding.constant(Date())
 	}
- 
+
 	var body: some View {
 		VStack(spacing: 0) {
 			// Top bar
@@ -41,7 +42,6 @@ struct AWSConsoleView: View {
 //				.edgesIgnoringSafeArea(.all)
 		}
 		.edgesIgnoringSafeArea(.bottom)
-
 	}
 }
 

@@ -35,11 +35,8 @@ struct SSOSignInView: View {
 
 	var body: some View {
 		VStack {
-			
-			
 			Image(nsImage: NSImage(named: "AppIcon") ?? NSImage())
 
-		
 			TextField("aws sso start url", text: self.$startURL)
 				.textFieldStyle(RoundedBorderTextFieldStyle())
 				.padding()
@@ -58,8 +55,8 @@ struct SSOSignInView: View {
 			Button(action: self.signInUsingSSO) {
 				Text("generate sign in code")
 			}
-			
-			if showSignInDetail {
+
+			if self.showSignInDetail {
 				if let userSignInData = promptURL {
 					SignInDetailView(userSignInData: userSignInData)
 				}
@@ -79,7 +76,7 @@ struct SSOSignInView: View {
 //	@MainActor
 	// The function that gets called when the sign in button is pressed
 	private func signInUsingSSO() {
-		let myselectedregion = selectedRegion
+		let myselectedregion = self.selectedRegion
 		Task {
 			do {
 				var err = Error?.none
@@ -92,7 +89,6 @@ struct SSOSignInView: View {
 				guard let ssooidc = XDKAWSSSO.buildAWSSSOSDKProtocolWrapped(ssoRegion: selectedRegion).to(&err) else {
 					throw XDK.Err("problem refreshing access token", root: err)
 				}
-				
 
 				guard let resp = await XDKAWSSSO.generateSSOAccessTokenUsingBrowserIfNeeded(
 					client: ssooidc,
@@ -126,19 +122,19 @@ struct SignInDetailView: View {
 
 	var body: some View {
 //		VStack {
-			// if this isa macos catalyst, add option to open in browser
-			#if os(macOS)
-				Button(action: {
-					NSWorkspace.shared.open(self.userSignInData.activationURLWithCode)
-				}) { Text("open in browser") }
+		// if this isa macos catalyst, add option to open in browser
+		#if os(macOS)
+			Button(action: {
+				NSWorkspace.shared.open(self.userSignInData.activationURLWithCode)
+			}) { Text("open in browser") }
 
-			#else
-				Link("Open In Safari", destination: self.userSignInData.activationURLWithCode)
-					.padding()
-				// if this is an iOS device, add option to share
-				ShareLink(item: self.userSignInData.activationURLWithCode)
-					.padding()
-			#endif
+		#else
+			Link("Open In Safari", destination: self.userSignInData.activationURLWithCode)
+				.padding()
+			// if this is an iOS device, add option to share
+			ShareLink(item: self.userSignInData.activationURLWithCode)
+				.padding()
+		#endif
 
 //			Spacer()
 //		}
