@@ -8,6 +8,8 @@
 import Combine
 import Foundation
 import XDK
+import Err
+import LogEvent
 
 class TimerViewModel: ObservableObject {}
 
@@ -36,7 +38,7 @@ struct TimerView: View {
 	}
 
 	private func updateTimeRemaining() {
-		Log(.info).meta(["time": .string(self.endDate?.formatted() ?? "none"), "left": .string(self.endDate?.timeIntervalSinceNow.description ?? "none")]).send("up")
+		log(.info).meta(["time": .string(self.endDate?.formatted() ?? "none"), "left": .string(self.endDate?.timeIntervalSinceNow.description ?? "none")]).send("up")
 		self.timeRemaining = self.endDate?.timeIntervalSinceNow ?? 1
 		if self.timeRemaining <= 0 {
 			self.timer?.cancel()

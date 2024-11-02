@@ -10,6 +10,8 @@ import Foundation
 import WebKit
 import XDK
 import XDKAWSSSO
+import Err
+import LogEvent
 
 @MainActor
 func createWebView() -> WKWebView {
@@ -52,11 +54,10 @@ public class WebSessionInstance: NSObject, ObservableObject {
 
 	public var expiryPublisher: Published<Date?>.Publisher { self.$expiry }
 
-	public func rebuildURL() async {
-		var err: Error? = nil
+	@err public func rebuildURL() async {
 
-		guard let (url, exp) = await regenerate(appSession: parent.appSession, account: account, role: role, isLoggedIn: self.isLoggedIn).to(&err) else {
-			XDK.Log(.error).err(err).send("error generating console url")
+		guard let (url, exp) = try await regenerate(appSession: parent.appSession, account: account, role: role, isLoggedIn: self.isLoggedIn).get() [self] else {
+			log(.error).err(err).send("error generating console url")
 			return
 		}
 
@@ -64,15 +65,14 @@ public class WebSessionInstance: NSObject, ObservableObject {
 		self.expiry = exp
 
 		guard let _ = webview.load(URLRequest(url: url)) else {
-			XDK.Log(.error).send("error loading webview")
+			log(.error).send("error loading webview")
 			return
 		}
 	}
 
-	public func regenerate(appSession: AppSessionAPI, account: AccountInfo, role: RoleInfo, isLoggedIn: Bool) async -> Result<(URL, Date), Error> {
-		var err: Error? = nil
+	@err public func regenerate(appSession: AppSessionAPI, account: AccountInfo, role: RoleInfo, isLoggedIn: Bool) async -> Result<(URL, Date), Error> {
 
-		guard let res = XDKAWSSSO.getSignedInSSOUserFromKeychain(session: appSession, storage: self.parent.storageAPI).to(&err) else {
+		guard let res = XDKAWSSSO.getSignedInSSOUserFromKeychain(session: appSession, storage: self.parent.storageAPI).get() else {
 			return .failure(x.error("getting access token", root: err))
 		}
 
@@ -103,7 +103,7 @@ public class WebSessionInstance: NSObject, ObservableObject {
 		webview.navigationDelegate = self
 
 		Task {
-			XDK.Log(.info).info("rebuilding", "url").send("rebuilding")
+			log(.info).info("rebuilding", "url").send("rebuilding")
 			await self.rebuildURL()
 		}
 	}
@@ -112,24 +112,24 @@ public class WebSessionInstance: NSObject, ObservableObject {
 extension WebSessionInstance: WKNavigationDelegate {
 	public nonisolated func webView(_ webView: WKWebView, didStartProvisionalNavigation _: WKNavigation!) {
 		Task { @MainActor in
-			XDK.Log(.info).info("url", webView.url).send("webview navigation start")
+			log(.info).info("url", webView.url).send("webview navigation start")
 		}
 	}
 
 	public nonisolated func webView(_ webView: WKWebView, didFinish _: WKNavigation!) {
 		Task { @MainActor in
-			XDK.Log(.info).info("url", webView.url).send("webview navigation navigation")
+			log(.info).info("url", webView.url).send("webview navigation navigation")
 			self.currentURL = webView.url
 		}
 	}
 
 	public nonisolated func webView(_: WKWebView, didFail _: WKNavigation!, withError error: Error) {
-		XDK.Log(.error).err(error).send("webview navigation error")
+		log(.error).err(error).send("webview navigation error")
 	}
 
 	public nonisolated func webView(_ webView: WKWebView, decidePolicyFor _: WKNavigationResponse) async -> WKNavigationResponsePolicy {
 		Task { @MainActor in
-			XDK.Log(.info).add("url", webView.url).send("webView decideNavicagtionPOclidy")
+			log(.info).info("url", webView.url).send("webView decideNavicagtionPOclidy")
 		}
 		return .allow
 	}
@@ -149,29 +149,32 @@ public class WebSessionManager: ObservableObject {
 
 	@Published public var roleExpiration: Date? = nil
 	@Published public var tokenExpiration: Date? = nil
+	
+	@err public func check(me: RoleInfo) {
+		if let accessToken {
+			guard let awsClient = XDKAWSSSO.buildAWSSSOSDKProtocolWrapped(ssoRegion: accessToken.stsRegion()).get() else {
+				return
+			}
+
+			Task {
+				guard let res = await getRoleCredentialsUsing(sso: awsClient, storage: self.storageAPI, accessToken: accessToken, role: me).get() else {
+					return
+				}
+
+				self.roleExpiration = res.data.expiresAt
+			}
+
+			log(.info).info("role updated", self.role).send("okay")
+		}
+	}
 
 	@Published public var role: RoleInfo? = nil {
 		didSet {
 			if let me = role {
 				self.lastRoleForAccount[me.accountID] = me
 
-				var err: Error? = nil
+				check(me: me)
 
-				if let accessToken {
-					guard let awsClient = XDKAWSSSO.buildAWSSSOSDKProtocolWrapped(ssoRegion: accessToken.stsRegion()).to(&err) else {
-						return
-					}
-
-					Task {
-						guard let res = await getRoleCredentialsUsing(sso: awsClient, storage: storageAPI, accessToken: accessToken, role: me).to(&err) else {
-							return
-						}
-
-						self.roleExpiration = res.data.expiresAt
-					}
-
-					XDK.Log(.info).info("role updated", self.role).send("okay")
-				}
 			}
 			self.updateCurrentWebSession()
 		}
@@ -243,14 +246,13 @@ public class WebSessionManager: ObservableObject {
 		return self.currentWebSession?.webview
 	}
 
-	public func refresh(session: XDK.AppSessionAPI, storageAPI: XDK.StorageAPI, accessToken: AccessToken) async -> Result<Void, Error> {
-		var err: Error? = nil
+	@err public func refresh(session: XDK.AppSessionAPI, storageAPI: XDK.StorageAPI, accessToken: AccessToken) async -> Result<Void, Error> {
 
-		guard let awsClient = XDKAWSSSO.buildAWSSSOSDKProtocolWrapped(ssoRegion: accessToken.stsRegion()).to(&err) else {
+		guard let awsClient = try XDKAWSSSO.buildAWSSSOSDKProtocolWrapped(ssoRegion: accessToken.stsRegion()).get() else {
 			return .failure(x.error("creating aws client", root: err))
 		}
 
-		guard let res = XDKAWSSSO.getSignedInSSOUserFromKeychain(session: session, storage: self.storageAPI).to(&err) else {
+		guard let res = try XDKAWSSSO.getSignedInSSOUserFromKeychain(session: session, storage: self.storageAPI).get() else {
 			return .failure(x.error("getting access token", root: err))
 		}
 
@@ -258,7 +260,7 @@ public class WebSessionManager: ObservableObject {
 			return .failure(x.error("access token not set"))
 		}
 
-		guard let accounts = await getAccountsRoleList(client: awsClient, storage: storageAPI, accessToken: accessToken).to(&err) else {
+		guard let accounts = try await getAccountsRoleList(client: awsClient, storage: storageAPI, accessToken: accessToken).get() else {
 			return .failure(x.error("error updating accounts", root: err))
 		}
 

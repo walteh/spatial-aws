@@ -17,7 +17,9 @@ import Logging
 import XDK
 import XDKAWSSSO
 import XDKKeychain
-import XDKLogging
+import Err
+import LogEvent
+import LogDistributor
 
 @main
 struct SpatialAWSApp: App {
@@ -29,12 +31,12 @@ struct SpatialAWSApp: App {
 	let userSessionAPI: WebSessionManager
 	let appSessionAPI: any XDK.AppSessionAPI
 	let configAPI: any XDK.ConfigAPI
-	let errorHandler: any XDK.ErrorHandler
+	let errorHandler: ErrorBroadcaster.HandlerFunc
 
 	let keychainGroup = "\(XDK.getTeamID()!).main.keychain.group"
 	let keychainStorageVersion = "1.0.22"
 
-	public init() {
+	@err public init() {
 		if !XDK.IS_BEING_UNIT_TESTED() {
 			LoggingSystem.bootstrap { label in
 				var level: Logger.Level = .trace
@@ -44,11 +46,12 @@ struct SpatialAWSApp: App {
 				default:
 					level = .trace
 				}
-				return XDKLogging.ConsoleLogger(label: label, level: level, metadata: .init())
+				return LogDistributor.ConsoleLogger(label: label, level: level, metadata: .init())
+//				return LogDistributor.StdOutHandler(level: level)
 			}
 		}
 
-		XDK.Log(.info).add("teamid", self.keychainGroup).send("getting team id")
+		log(.info).info("teamid", self.keychainGroup).send("getting team id")
 
 		let loc = XDKKeychain.LocalAuthenticationClient(group: self.keychainGroup, version: self.keychainStorageVersion)
 
@@ -61,25 +64,24 @@ struct SpatialAWSApp: App {
 		self.authenticationAPI = loc
 		self.appSessionAPI = session
 		self.userSessionAPI = usersession
-		self.errorHandler = XDK.NotificationCenterErrorHandler {
-			XDK.Log(.error).err($0).send("error caught by notification handler")
+		self.errorHandler =  {
+			log(.error).err($0).send("error caught by notification handler")
 		}
 
-		XDK.AddLoggerMetadataToContext { ev in
-			ev.add("device", XDK.GetDeviceFamily(using: self.configAPI).value)
+		AddLoggerMetadataToContext { ev in
+			ev.info("device", XDK.GetDeviceFamily(using: self.configAPI).value)
 		}
 
 		let res = XDKAWSSSO.getSignedInSSOUserFromKeychain(session: self.appSessionAPI, storage: self.storageAPI)
 		if let err = res.error {
-			XDK.Log(.error).err(err).send("error caught by notification handler")
+			log(.error).err(err).send("error caught by notification handler")
 		} else if let v = res.value {
 			if let v {
 				Task {
-					XDK.Log(.warning).send("we are here, not sure what is happening")
-					var err = Error?.none
-					guard let _ = await usersession.refresh(session: session, storageAPI: loc, accessToken: v).err(&err) else {
-						XDK.Log(.error).err(err).send("not sure what happened")
-						throw XDK.Err("problem refreshing access token", root: err)
+					log(.warning).send("we are here, not sure what is happening")
+					guard let _ = try await usersession.refresh(session: session, storageAPI: loc, accessToken: v).get() else {
+						log(.error).err(err).send("not sure what happened")
+						throw x.error("problem refreshing access token", root: err)
 					}
 				}
 			}

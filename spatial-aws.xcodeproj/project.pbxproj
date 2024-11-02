@@ -7,10 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A644EF642C456CC200B1E974 /* XDK in Frameworks */ = {isa = PBXBuildFile; productRef = A644EF632C456CC200B1E974 /* XDK */; };
-		A644EF662C456CC200B1E974 /* XDKAWSSSO in Frameworks */ = {isa = PBXBuildFile; productRef = A644EF652C456CC200B1E974 /* XDKAWSSSO */; };
-		A644EF682C456CC200B1E974 /* XDKKeychain in Frameworks */ = {isa = PBXBuildFile; productRef = A644EF672C456CC200B1E974 /* XDKKeychain */; };
-		A644EF6A2C456CC200B1E974 /* XDKLogging in Frameworks */ = {isa = PBXBuildFile; productRef = A644EF692C456CC200B1E974 /* XDKLogging */; };
+		A6156B682CD6E1D000D2766F /* XDK in Frameworks */ = {isa = PBXBuildFile; productRef = A6156B672CD6E1D000D2766F /* XDK */; };
+		A6156B6A2CD6E1D000D2766F /* XDKAWSSSO in Frameworks */ = {isa = PBXBuildFile; productRef = A6156B692CD6E1D000D2766F /* XDKAWSSSO */; };
+		A6156B6C2CD6E1D000D2766F /* XDKKeychain in Frameworks */ = {isa = PBXBuildFile; productRef = A6156B6B2CD6E1D000D2766F /* XDKKeychain */; };
 		A64D67F72C3DB7E900DE90ED /* XDKWebsocket in Frameworks */ = {isa = PBXBuildFile; productRef = A64D67F62C3DB7E900DE90ED /* XDKWebsocket */; };
 		A64D67F92C3EF71F00DE90ED /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64D67F82C3EF71A00DE90ED /* Timer.swift */; };
 		A64D67FB2C3EF93100DE90ED /* TobBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64D67FA2C3EF92E00DE90ED /* TobBar.swift */; };
@@ -33,7 +32,6 @@
 		A6ADC9612C06CB5200F8209C /* XDK in Frameworks */ = {isa = PBXBuildFile; productRef = A6ADC9602C06CB5200F8209C /* XDK */; };
 		A6ADC9632C06CB5200F8209C /* XDKAWSSSO in Frameworks */ = {isa = PBXBuildFile; productRef = A6ADC9622C06CB5200F8209C /* XDKAWSSSO */; };
 		A6ADC9652C06CB5200F8209C /* XDKKeychain in Frameworks */ = {isa = PBXBuildFile; productRef = A6ADC9642C06CB5200F8209C /* XDKKeychain */; };
-		A6ADC9672C06CB5200F8209C /* XDKLogging in Frameworks */ = {isa = PBXBuildFile; productRef = A6ADC9662C06CB5200F8209C /* XDKLogging */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,15 +84,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A644EF642C456CC200B1E974 /* XDK in Frameworks */,
+				A6156B6C2CD6E1D000D2766F /* XDKKeychain in Frameworks */,
 				A64D67F72C3DB7E900DE90ED /* XDKWebsocket in Frameworks */,
-				A6ADC9672C06CB5200F8209C /* XDKLogging in Frameworks */,
 				A6ADC9632C06CB5200F8209C /* XDKAWSSSO in Frameworks */,
-				A644EF662C456CC200B1E974 /* XDKAWSSSO in Frameworks */,
+				A6156B6A2CD6E1D000D2766F /* XDKAWSSSO in Frameworks */,
 				A6ADC9612C06CB5200F8209C /* XDK in Frameworks */,
-				A644EF682C456CC200B1E974 /* XDKKeychain in Frameworks */,
+				A6156B682CD6E1D000D2766F /* XDK in Frameworks */,
 				A6ADC9652C06CB5200F8209C /* XDKKeychain in Frameworks */,
-				A644EF6A2C456CC200B1E974 /* XDKLogging in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,12 +243,10 @@
 				A6ADC9602C06CB5200F8209C /* XDK */,
 				A6ADC9622C06CB5200F8209C /* XDKAWSSSO */,
 				A6ADC9642C06CB5200F8209C /* XDKKeychain */,
-				A6ADC9662C06CB5200F8209C /* XDKLogging */,
 				A64D67F62C3DB7E900DE90ED /* XDKWebsocket */,
-				A644EF632C456CC200B1E974 /* XDK */,
-				A644EF652C456CC200B1E974 /* XDKAWSSSO */,
-				A644EF672C456CC200B1E974 /* XDKKeychain */,
-				A644EF692C456CC200B1E974 /* XDKLogging */,
+				A6156B672CD6E1D000D2766F /* XDK */,
+				A6156B692CD6E1D000D2766F /* XDKAWSSSO */,
+				A6156B6B2CD6E1D000D2766F /* XDKKeychain */,
 			);
 			productName = "spatial-aws";
 			productReference = A6AAC10F2C06C28300D69005 /* SpatialAWS.app */;
@@ -326,7 +320,7 @@
 			);
 			mainGroup = A6AAC1062C06C28300D69005;
 			packageReferences = (
-				A644EF622C456CC200B1E974 /* XCRemoteSwiftPackageReference "xdk" */,
+				A6156B662CD6E1D000D2766F /* XCRemoteSwiftPackageReference "xdk" */,
 			);
 			preferredProjectObjectVersion = 73;
 			productRefGroup = A6AAC1102C06C28300D69005 /* Products */;
@@ -776,36 +770,31 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A644EF622C456CC200B1E974 /* XCRemoteSwiftPackageReference "xdk" */ = {
+		A6156B662CD6E1D000D2766F /* XCRemoteSwiftPackageReference "xdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/walteh/xdk";
 			requirement = {
 				kind = exactVersion;
-				version = 0.55.0;
+				version = 0.60.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A644EF632C456CC200B1E974 /* XDK */ = {
+		A6156B672CD6E1D000D2766F /* XDK */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A644EF622C456CC200B1E974 /* XCRemoteSwiftPackageReference "xdk" */;
+			package = A6156B662CD6E1D000D2766F /* XCRemoteSwiftPackageReference "xdk" */;
 			productName = XDK;
 		};
-		A644EF652C456CC200B1E974 /* XDKAWSSSO */ = {
+		A6156B692CD6E1D000D2766F /* XDKAWSSSO */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A644EF622C456CC200B1E974 /* XCRemoteSwiftPackageReference "xdk" */;
+			package = A6156B662CD6E1D000D2766F /* XCRemoteSwiftPackageReference "xdk" */;
 			productName = XDKAWSSSO;
 		};
-		A644EF672C456CC200B1E974 /* XDKKeychain */ = {
+		A6156B6B2CD6E1D000D2766F /* XDKKeychain */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A644EF622C456CC200B1E974 /* XCRemoteSwiftPackageReference "xdk" */;
+			package = A6156B662CD6E1D000D2766F /* XCRemoteSwiftPackageReference "xdk" */;
 			productName = XDKKeychain;
-		};
-		A644EF692C456CC200B1E974 /* XDKLogging */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A644EF622C456CC200B1E974 /* XCRemoteSwiftPackageReference "xdk" */;
-			productName = XDKLogging;
 		};
 		A64D67F62C3DB7E900DE90ED /* XDKWebsocket */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -822,10 +811,6 @@
 		A6ADC9642C06CB5200F8209C /* XDKKeychain */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = XDKKeychain;
-		};
-		A6ADC9662C06CB5200F8209C /* XDKLogging */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = XDKLogging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

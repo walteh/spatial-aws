@@ -13,6 +13,7 @@ import SwiftUI
 import XDK
 import XDKAWSSSO
 import XDKKeychain
+import Err
 
 struct SSOSignInView: View {
 	@Environment(\.authentication) var authentication
@@ -75,44 +76,41 @@ struct SSOSignInView: View {
 
 //	@MainActor
 	// The function that gets called when the sign in button is pressed
-	private func signInUsingSSO() {
+	@err_traced private func signInUsingSSO() {
 		let myselectedregion = self.selectedRegion
 		Task {
-			do {
-				var err = Error?.none
-
-				let val = "https://\(self.startURL).awsapps.com/start#/"
-				guard let startURI = URL(string: val) else {
-					throw URLError(.init(rawValue: 0), userInfo: ["uri": val])
-				}
-
-				guard let ssooidc = XDKAWSSSO.buildAWSSSOSDKProtocolWrapped(ssoRegion: selectedRegion).to(&err) else {
-					throw XDK.Err("problem refreshing access token", root: err)
-				}
-
-				guard let resp = await XDKAWSSSO.generateSSOAccessTokenUsingBrowserIfNeeded(
-					client: ssooidc,
-					storage: storage,
-					session: appSession,
-					ssoRegion: myselectedregion,
-					startURL: startURI,
-					callback: { url in
-						DispatchQueue.main.async {
-							self.promptURL = url
-						}
-					}
-				).to(&err) else {
-					throw XDK.Err("problem signing in with sso", root: err)
-				}
-
-				guard let _ = await self.userSession.refresh(session: appSession, storageAPI: storage, accessToken: resp).err(&err) else {
-					throw XDK.Err("problem refreshing access token", root: err)
-				}
-
-				try print(resp.encodeToJSON())
-			} catch {
-				x.log(.critical).err(error).send("problem signing in with soo")
+			let val = "https://\(self.startURL).awsapps.com/start#/"
+			guard let startURI = URL(string: val) else {
+				throw URLError(.init(rawValue: 0), userInfo: ["uri": val])
 			}
+
+			guard let ssooidc = XDKAWSSSO.buildAWSSSOSDKProtocolWrapped(ssoRegion: selectedRegion).get() else {
+				x.log(.critical).err(err).send("problem signing in with sso")
+				return
+			}
+
+			guard let resp = await XDKAWSSSO.generateSSOAccessTokenUsingBrowserIfNeeded(
+				client: ssooidc,
+				storage: storage,
+				session: appSession,
+				ssoRegion: myselectedregion,
+				startURL: startURI,
+				callback: { url in
+					DispatchQueue.main.async {
+						self.promptURL = url
+					}
+				}
+			).get() else {
+				x.log(.critical).err(err).send("problem signing in with sso")
+				return
+			}
+
+			guard let _ = await self.userSession.refresh(session: appSession, storageAPI: storage, accessToken: resp).get() else {
+				x.log(.critical).err(err).send("problem refreshing access token")
+				return
+			}
+
+			try print(resp.encodeToJSON())
 		}
 	}
 }
